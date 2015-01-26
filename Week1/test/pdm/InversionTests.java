@@ -7,11 +7,11 @@ import org.junit.Test;
 
 public class InversionTests {
 
-	private InversionX inversion;
+	private Inversion inversion;
 	
 	@Before
 	public void setup() {
-		inversion = new Inversion();
+		inversion = new BruteForce();
 	}
 	
 	@Test
