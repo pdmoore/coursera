@@ -11,7 +11,8 @@ public class InversionTests {
 	
 	@Before
 	public void setup() {
-		inversion = new BruteForce();
+//		inversion = new BruteForce();
+		inversion = new Recursive();
 	}
 	
 	@Test
