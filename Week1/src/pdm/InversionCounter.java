@@ -7,32 +7,27 @@ import java.util.Scanner;
 public class InversionCounter {
 
 	public static void main(String args[]) {
-		int[] tall = getElementsToCount();
+		int[] elements = fileOfIntegersToArray();
 		
 		Inversion inversion = new Recursive(); 
-		long actual = inversion.count(tall);
+		long actual = inversion.count(elements);
 
 		System.out.println(actual);
 	}
 
-	private static int[] getElementsToCount() {
+	private static int[] fileOfIntegersToArray() {
+		int [] elements = new int [100000];
 		try {
 			Scanner scanner = new Scanner(new File("IntegerArray.txt"));
-			int [] elements = new int [100000];
 			int i = 0;
 			while(scanner.hasNextInt()){
 			   elements[i++] = scanner.nextInt();
 			}
 			scanner.close();
-
-//			assertEquals(100000, i);
-//			assertEquals(91901, tall[100000-1]);
-
-			return elements;
 		} catch (FileNotFoundException e) {
 			System.out.println("Problem opening file: " + e.getMessage());
-			return null;
 		}
-		
+
+		return elements;
 	}
 }
