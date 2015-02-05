@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class QuickSort {
 
@@ -53,7 +54,7 @@ public class QuickSort {
 		counter = 0;
 		sortPivotLast(elements, 0, elements.length);
 
-//		System.out.println(Arrays.toString(elements));
+		// System.out.println(Arrays.toString(elements));
 		return counter;
 	}
 
@@ -92,12 +93,95 @@ public class QuickSort {
 				i = i + 1;
 			}
 		}
-		
+
 		tmp = elements[left];
 		elements[left] = elements[i - 1];
 		elements[i - 1] = tmp;
 
 		return i;
+	}
 
+	public static long sortPivotMedian(int[] elements) {
+		counter = 0;
+//		System.out.println(Arrays.toString(elements));
+
+		sortPivotMedian(elements, 0, elements.length);
+
+//		System.out.println(Arrays.toString(elements));
+		return counter;
+	}
+
+	private static void sortPivotMedian(int[] elements, int left, int right) {
+		if ((right - left) <= 1)
+			return;
+
+		int pivot = partitionPivotMedian(elements, left, right);
+
+		// System.out.println("pivot: " + pivot + "  " + dumpEls(elements, left,
+		// pivot - 1)
+		// + " and " + dumpEls(elements, pivot, right));
+
+		if (left < pivot - 1) {
+			counter += pivot - 1 - left;
+			sortPivotMedian(elements, left, pivot - 1);
+		}
+		if (pivot < right) {
+			counter += right - pivot;
+			sortPivotMedian(elements, pivot, right);
+		}
+	}
+
+	private static int partitionPivotMedian(int[] elements, int left, int right) {
+		int firstIx = left;
+		int lastIx = right - 1;
+		int middleIx = (((right - 1) - left) / 2) + left;
+
+		int pivotIx = indexOfMedian(elements, firstIx, lastIx, middleIx);
+		int pivot = elements[pivotIx];
+
+		int tmp = elements[left];
+		elements[left] = elements[pivotIx];
+		elements[pivotIx] = tmp;
+
+		int i, j;
+		i = left + 1;
+		for (j = (i); j < right; j++) {
+			if (elements[j] < pivot) {
+				tmp = elements[i];
+				elements[i] = elements[j];
+				elements[j] = tmp;
+				i = i + 1;
+			}
+		}
+		tmp = elements[left];
+		elements[left] = elements[i - 1];
+		elements[i - 1] = tmp;
+
+		return pivot;
+	}
+
+	static int indexOfMedian(int[] elements, int firstIx, int lastIx, int middleIx) {
+		if ((firstIx + 1) == lastIx)
+			return lastIx;
+
+		int median = medianValueOfThree(elements[firstIx], elements[lastIx],
+				elements[middleIx]);
+		if (elements[lastIx] == median)
+			return lastIx;
+		if (elements[middleIx] == median)
+			return middleIx;
+		if (elements[firstIx] == median)
+			return firstIx;
+
+		throw new IllegalArgumentException();
+	}
+
+	static int medianValueOfThree(int first, int last, int middle) {
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		numbers.add(first);
+		numbers.add(last);
+		numbers.add(middle);
+		Collections.sort(numbers);
+		return numbers.get(1);
 	}
 }

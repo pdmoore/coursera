@@ -28,6 +28,13 @@ public class QuickSortTests {
          assertEquals(29, actual);
     }
 
+    @Test
+    public void tenElement_PivotOnMedian() {
+         int[] elements = new int[10];
+         readFile(_10_ELEMENTS_TO_SORT, elements);
+         long actual = QuickSort.sortPivotMedian(elements);
+         assertEquals(21, actual);
+    }
 
     private void readFile(String filename, int[] elements) {
         Scanner scanner;
