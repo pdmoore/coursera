@@ -9,13 +9,25 @@ import org.junit.Test;
 
 public class QuickSortTests {
 
-    @Test
+    private static final String _10_ELEMENTS_TO_SORT = "data/10.txt";
+
+
+	@Test
     public void tenElement_PivotOnFirst() {
          int[] elements = new int[10];
-         readFile("data/10.txt", elements);
+         readFile(_10_ELEMENTS_TO_SORT, elements);
          long actual = QuickSort.sortPivotFirst(elements);
          assertEquals(25, actual);
     }
+    
+    @Test
+    public void tenElement_PivotOnLast() {
+         int[] elements = new int[10];
+         readFile(_10_ELEMENTS_TO_SORT, elements);
+         long actual = QuickSort.sortPivotLast(elements);
+         assertEquals(29, actual);
+    }
+
 
     private void readFile(String filename, int[] elements) {
         Scanner scanner;
