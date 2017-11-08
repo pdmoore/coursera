@@ -218,9 +218,18 @@ xx      public     int numberOfOpenSites()       // number of open sites
         assertThrows(IllegalArgumentException.class, isFullWithInvalidColParam, "");
     }
 
+    // backwash case for isFull
+    @Test
+    public void BackwashNotAllowed() {
+        Percolation p = new Percolation(3);
+        p.open(1,1);
+        p.open(2,1);
+        p.open(3,1);
+        p.open(3,3);
+        assertFalse(p.isFull(3, 3), "open site on bottom row should not be Full when not connected");
+    }
 
     // percolates with virtual top and virtual bottom - need another UF object to check. mirror ufFull
-    // backwash case for isFull
 
 
 }
