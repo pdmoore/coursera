@@ -18,9 +18,13 @@ public class Percolation {
         return openSiteCount;
     }
 
-    public void open(int row, int col) {
+    private void validateParameters(int row, int col) {
         if ((row <= 0) || (row > gridWidth)) throw new IllegalArgumentException();
         if ((col <= 0) || (col > gridWidth)) throw new IllegalArgumentException();
+    }
+
+    public void open(int row, int col) {
+        validateParameters(row, col);
 
         if (openSites[row][col] == CLOSED) {
             openSites[row][col] = OPEN;
@@ -28,10 +32,12 @@ public class Percolation {
         }
     }
 
-    public static void main(String[] args) {
+    public boolean isOpen(int row, int col) {
+        validateParameters(row, col);
+
+        return openSites[row][col];
     }
 
-    public boolean isOpen(int row, int col) {
-        return openSites[row][col];
+    public static void main(String[] args) {
     }
 }

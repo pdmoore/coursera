@@ -16,20 +16,21 @@ public class PercolationTest {
       public boolean percolates()              // does the system percolate?
 
       public static void main(String[] args)   // test client (optional)
-}
-
-
      */
 
     @Test
     public void ConstructorFailsWhenParamZeroOrLess() {
         Executable constructorCalledWithInvalidParameter =
-                () -> { new Percolation(0); };
+                () -> {
+                    new Percolation(0);
+                };
 
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
 
         constructorCalledWithInvalidParameter =
-                () -> { new Percolation(-1); };
+                () -> {
+                    new Percolation(-1);
+                };
 
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
     }
@@ -61,19 +62,27 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
 
         Executable openWithInvalidRowParam =
-                () -> { p.open(0, 1); };
+                () -> {
+                    p.open(0, 1);
+                };
         assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
 
         openWithInvalidRowParam =
-                () -> { p.open(-1, 1); };
+                () -> {
+                    p.open(-1, 1);
+                };
         assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
 
         Executable openWithInvalidColParam =
-                () -> { p.open(1, 0); };
+                () -> {
+                    p.open(1, 0);
+                };
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
 
         openWithInvalidColParam =
-                () -> { p.open(1, -1); };
+                () -> {
+                    p.open(1, -1);
+                };
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
     }
 
@@ -82,24 +91,57 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
 
         Executable openWithInvalidRowParam =
-                () -> { p.open(3, 1); };
+                () -> {
+                    p.open(3, 1);
+                };
         assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
 
-       Executable openWithInvalidColParam =
-                () -> { p.open(1, 3); };
+        Executable openWithInvalidColParam =
+                () -> {
+                    p.open(1, 3);
+                };
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
     }
 
     @Test
     public void CanAskIfSiteIsOpen() {
         Percolation p = new Percolation(2);
-        assertFalse(p.isOpen(1,1), "site should be Closed on construction");
+        assertFalse(p.isOpen(1, 1), "site should be Closed on construction");
         p.open(1, 1);
-        assertTrue(p.isOpen(1,1));
+        assertTrue(p.isOpen(1, 1));
     }
 
-    // check if a site is open
+    @Test
+    public void IsOpenWhenParamZeroOrLess() {
+        Percolation p = new Percolation(2);
 
-    // validate params on isOpen
+        Executable isOpenWithInvalidRowParam =
+                () -> {
+                    p.isOpen(0, 1);
+                };
+        assertThrows(IllegalArgumentException.class, isOpenWithInvalidRowParam, "");
 
+        isOpenWithInvalidRowParam =
+                () -> {
+                    p.isOpen(-1, 1);
+                };
+        assertThrows(IllegalArgumentException.class, isOpenWithInvalidRowParam, "");
+
+        Executable isOpenWithInvalidColParam =
+                () -> {
+                    p.isOpen(1, 0);
+                };
+        assertThrows(IllegalArgumentException.class, isOpenWithInvalidColParam, "");
+
+        isOpenWithInvalidColParam =
+                () -> {
+                    p.open(1, -1);
+                };
+        assertThrows(IllegalArgumentException.class, isOpenWithInvalidColParam, "");
+    }
+
+    // Next tests - connect the UF object for (one each for Full and Percolates):
+    // simple isFull impl - site on top row, sites from mid/bottom to top: virtual top but not bottom
+    // percolates with virtual top and virtual bottom
+    // backwash case for isFull
 }
