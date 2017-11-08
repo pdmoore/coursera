@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -24,15 +25,15 @@ public class PercolationTest {
 
     @Test
     public void ConstructorFailsWhenParamZeroOrLess() {
-        Executable closureContainingCodeToTest =
+        Executable constructorCalledWithInvalidParameter =
                 () -> { new Percolation(0); };
 
-        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "");
+        assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
 
-        closureContainingCodeToTest =
+        constructorCalledWithInvalidParameter =
                 () -> { new Percolation(-1); };
 
-        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "");
+        assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
     }
 
     @Test
@@ -47,4 +48,44 @@ public class PercolationTest {
         p.open(1, 1);
         assertEquals(1, p.numberOfOpenSites());
     }
+
+    @Test
+    public void OpenFailsWhenParamZeroOrLess() {
+        Percolation p = new Percolation(2);
+
+        Executable openWithInvalidRowParam =
+                () -> { p.open(0, 1); };
+        assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
+
+        openWithInvalidRowParam =
+                () -> { p.open(-1, 1); };
+        assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
+
+        Executable openWithInvalidColParam =
+                () -> { p.open(1, 0); };
+        assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
+
+        openWithInvalidColParam =
+                () -> { p.open(1, -1); };
+        assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
+    }
+
+    @Test public void OpenFailsWhenParamExceedsGridWidth() {
+        Percolation p = new Percolation(2);
+
+        Executable openWithInvalidRowParam =
+                () -> { p.open(3, 1); };
+        assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
+
+       Executable openWithInvalidColParam =
+                () -> { p.open(1, 3); };
+        assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
+    }
+
+
+    // open more than one site
+    // try to open site already opened
+    // check if a site is open
+    // validate params on open
+
 }
