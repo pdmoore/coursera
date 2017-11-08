@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+
 public class Percolation {
 
     private int openSiteCount;
@@ -7,11 +9,15 @@ public class Percolation {
     private static final boolean OPEN   = true;
     private static final boolean CLOSED = false;
 
+    private WeightedQuickUnionUF unionFindFull;
+
     public Percolation(int n) {
         if (n <= 0) throw new IllegalArgumentException();
 
         gridWidth = n;
         openSites = new boolean[gridWidth + 1][gridWidth + 1];
+
+        unionFindFull = new WeightedQuickUnionUF((gridWidth * gridWidth) + 1);
     }
 
     public int numberOfOpenSites() {
@@ -29,7 +35,15 @@ public class Percolation {
         if (openSites[row][col] == CLOSED) {
             openSites[row][col] = OPEN;
             openSiteCount++;
+
+            if (row == 1) {
+                unionFindFull.union(0, siteIndex(row, col));
+            }
         }
+    }
+
+    private int siteIndex(int row, int col) {
+        return ((row - 1) * gridWidth) + col;
     }
 
     public boolean isOpen(int row, int col) {
@@ -38,6 +52,11 @@ public class Percolation {
         return openSites[row][col];
     }
 
+    public boolean isFull(int row, int col) {
+        return unionFindFull.connected(0, siteIndex(row, col));
+    }
+
     public static void main(String[] args) {
     }
+
 }
