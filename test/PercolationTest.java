@@ -46,7 +46,8 @@ public class PercolationTest {
     public void TrackNumberOfOpenSites() {
         Percolation p = new Percolation(2);
         p.open(1, 1);
-        assertEquals(1, p.numberOfOpenSites());
+        p.open(2, 2);
+        assertEquals(2, p.numberOfOpenSites());
     }
 
     @Test
@@ -70,7 +71,8 @@ public class PercolationTest {
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
     }
 
-    @Test public void OpenFailsWhenParamExceedsGridWidth() {
+    @Test
+    public void OpenFailsWhenParamExceedsGridWidth() {
         Percolation p = new Percolation(2);
 
         Executable openWithInvalidRowParam =
@@ -82,10 +84,16 @@ public class PercolationTest {
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
     }
 
+    @Test
+    public void SiteCanOnlyBeOpenedOnce() {
+        Percolation p = new Percolation(2);
+        p.open(1, 1);
+        p.open(1, 1);
+        assertEquals(1, p.numberOfOpenSites());
+    }
+
 
     // open more than one site
-    // try to open site already opened
     // check if a site is open
-    // validate params on open
 
 }

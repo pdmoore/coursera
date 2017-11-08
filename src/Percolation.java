@@ -1,13 +1,17 @@
 public class Percolation {
 
-
     private int openSiteCount;
     private int gridWidth;
+
+    private boolean openSites[][];
+    private static final boolean OPEN   = true;
+    private static final boolean CLOSED = false;
 
     public Percolation(int n) {
         if (n <= 0) throw new IllegalArgumentException();
 
         gridWidth = n;
+        openSites = new boolean[gridWidth + 1][gridWidth + 1];
     }
 
     public int numberOfOpenSites() {
@@ -18,7 +22,10 @@ public class Percolation {
         if ((row <= 0) || (row > gridWidth)) throw new IllegalArgumentException();
         if ((col <= 0) || (col > gridWidth)) throw new IllegalArgumentException();
 
-        openSiteCount++;
+        if (openSites[row][col] == CLOSED) {
+            openSites[row][col] = OPEN;
+            openSiteCount++;
+        }
     }
 
     public static void main(String[] args) {
