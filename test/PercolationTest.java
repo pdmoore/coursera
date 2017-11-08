@@ -5,19 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PercolationTest {
 
-    /* API to implement
-
-    public class Percolation {
-xx      public Percolation(int n)                // create n-by-n grid, with all sites blocked
-xx      public    void open(int row, int col)    // open site (row, col) if it is not open already
-xx      public boolean isOpen(int row, int col)  // is site (row, col) open?
-      public boolean isFull(int row, int col)  // is site (row, col) full?
-xx      public     int numberOfOpenSites()       // number of open sites
-      public boolean percolates()              // does the system percolate?
-
-      public static void main(String[] args)   // test client (optional)
-     */
-
     @Test
     public void ConstructorFailsWhenParamZeroOrLess() {
         Executable constructorCalledWithInvalidParameter =
@@ -218,7 +205,6 @@ xx      public     int numberOfOpenSites()       // number of open sites
         assertThrows(IllegalArgumentException.class, isFullWithInvalidColParam, "");
     }
 
-    // backwash case for isFull
     @Test
     public void BackwashNotAllowed() {
         Percolation p = new Percolation(3);
@@ -229,7 +215,23 @@ xx      public     int numberOfOpenSites()       // number of open sites
         assertFalse(p.isFull(3, 3), "open site on bottom row should not be Full when not connected");
     }
 
-    // percolates with virtual top and virtual bottom - need another UF object to check. mirror ufFull
+    @Test
+    void Percolates_simpleConnection() {
+        Percolation p = new Percolation(2);
+        p.open(1,1);
+        p.open(2,1);
+        assertTrue(p.percolates());
+    }
 
-
+    @Test
+    void Percolates_LessSimpleConnection() {
+        Percolation p = new Percolation(3);
+        p.open(3,3);
+        p.open(1,1);
+        p.open(2,3);
+        p.open(2,1);
+        assertFalse(p.percolates(), "connection doesn't exist between bottom and top");
+        p.open(2,2);
+        assertTrue(p.percolates(), "now percolates when bottom and top are connected");
+    }
 }
