@@ -1,9 +1,7 @@
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PercolationTest {
 
@@ -51,6 +49,14 @@ public class PercolationTest {
     }
 
     @Test
+    public void SiteCanOnlyBeOpenedOnce() {
+        Percolation p = new Percolation(2);
+        p.open(1, 1);
+        p.open(1, 1);
+        assertEquals(1, p.numberOfOpenSites());
+    }
+
+    @Test
     public void OpenFailsWhenParamZeroOrLess() {
         Percolation p = new Percolation(2);
 
@@ -85,15 +91,15 @@ public class PercolationTest {
     }
 
     @Test
-    public void SiteCanOnlyBeOpenedOnce() {
+    public void CanAskIfSiteIsOpen() {
         Percolation p = new Percolation(2);
+        assertFalse(p.isOpen(1,1), "site should be Closed on construction");
         p.open(1, 1);
-        p.open(1, 1);
-        assertEquals(1, p.numberOfOpenSites());
+        assertTrue(p.isOpen(1,1));
     }
 
-
-    // open more than one site
     // check if a site is open
+
+    // validate params on isOpen
 
 }

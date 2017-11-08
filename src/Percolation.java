@@ -31,4 +31,7 @@ public class Percolation {
     public static void main(String[] args) {
     }
 
+    public boolean isOpen(int row, int col) {
+        return openSites[row][col];
+    }
 }
