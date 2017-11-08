@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PercolationTest {
@@ -22,10 +23,28 @@ public class PercolationTest {
      */
 
     @Test
-    public void ConstructorFailsWhenPassedZero() {
+    public void ConstructorFailsWhenParamZeroOrLess() {
         Executable closureContainingCodeToTest =
                 () -> { new Percolation(0); };
 
         assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "");
+
+        closureContainingCodeToTest =
+                () -> { new Percolation(-1); };
+
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "");
+    }
+
+    @Test
+    public void NumberOfOpenSitesZeroOnConstruction() {
+        Percolation p = new Percolation(2);
+        assertEquals(0, p.numberOfOpenSites());
+    }
+
+    @Test
+    public void TrackNumberOfOpenSites() {
+        Percolation p = new Percolation(2);
+        p.open(1, 1);
+        assertEquals(1, p.numberOfOpenSites());
     }
 }
