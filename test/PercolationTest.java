@@ -135,7 +135,7 @@ xx      public     int numberOfOpenSites()       // number of open sites
 
         isOpenWithInvalidColParam =
                 () -> {
-                    p.open(1, -1);
+                    p.isOpen(1, -1);
                 };
         assertThrows(IllegalArgumentException.class, isOpenWithInvalidColParam, "");
     }
@@ -189,7 +189,35 @@ xx      public     int numberOfOpenSites()       // number of open sites
         assertTrue(p.isFull(1,2), "site to left of an open & full site should be full");
     }
 
-    // validate params on isFull
+    @Test
+    public void IsFullWhenParamZeroOrLess() {
+        Percolation p = new Percolation(2);
+
+        Executable isFullWithInvalidRowParam =
+                () -> {
+                    p.isFull(0, 1);
+                };
+        assertThrows(IllegalArgumentException.class, isFullWithInvalidRowParam, "");
+
+        isFullWithInvalidRowParam =
+                () -> {
+                    p.isFull(-1, 1);
+                };
+        assertThrows(IllegalArgumentException.class, isFullWithInvalidRowParam, "");
+
+        Executable isFullWithInvalidColParam =
+                () -> {
+                    p.isFull(1, 0);
+                };
+        assertThrows(IllegalArgumentException.class, isFullWithInvalidColParam, "");
+
+        isFullWithInvalidColParam =
+                () -> {
+                    p.isFull(1, -1);
+                };
+        assertThrows(IllegalArgumentException.class, isFullWithInvalidColParam, "");
+    }
+
 
     // percolates with virtual top and virtual bottom - need another UF object to check. mirror ufFull
     // backwash case for isFull

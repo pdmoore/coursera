@@ -75,6 +75,8 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
+        validateParameters(row, col);
+
         return unionFindFull.connected(0, siteIndex(row, col));
     }
 
