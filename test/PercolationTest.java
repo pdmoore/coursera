@@ -140,20 +140,59 @@ xx      public     int numberOfOpenSites()       // number of open sites
         assertThrows(IllegalArgumentException.class, isOpenWithInvalidColParam, "");
     }
 
-    // Next tests - connect the UF object for (one each for Full and Percolates):
-    // simple isFull impl - site on top row, sites from mid/bottom to top: virtual top but not bottom
-    // percolates with virtual top and virtual bottom
-    // backwash case for isFull
-    // validate params on isFull
-
     @Test
     public void SiteThatIsOpenAndConnectedToTopRowIsFull() {
         Percolation p = new Percolation(2);
         assertFalse(p.isFull(1,1), "site is not full to start with");
         p.open(1, 1);
         assertTrue(p.isFull(1,1), "site is full when open and connected to top");
-
-
-
     }
+
+    @Test
+    public void SiteThatIsOpenAndNotConnectedToTopRowIsNotFull() {
+        Percolation p = new Percolation(2);
+        p.open(2, 1);
+        assertFalse(p.isFull(1,1), "site is open but not connected to top, so not full");
+    }
+
+    @Test
+    public void connectSiteAbove() {
+        Percolation p = new Percolation(2);
+        p.open(1, 1);
+        p.open(2, 1);
+        assertTrue(p.isFull(2, 1), " second row site should be open since it connects to above");
+    }
+
+    @Test
+    public void connectSiteBelow() {
+        Percolation p = new Percolation(2);
+        p.open(2,1);
+        p.open(1,1);
+        assertTrue(p.isFull(2, 1), "opening a full site above an open site should then make site below full");
+    }
+
+    @Test
+    public void connectSiteToRight() {
+        Percolation p = new Percolation(2);
+        p.open(1,1);
+        p.open(2,1);
+        p.open(2,2);
+        assertTrue(p.isFull(2, 2), "site to the right of an open & full site should be full");
+    }
+
+    @Test
+    public void connectSiteToLeft() {
+        Percolation p = new Percolation(2);
+        p.open(1,2);
+        p.open(2,2);
+        p.open(1,2);
+        assertTrue(p.isFull(1,2), "site to left of an open & full site should be full");
+    }
+
+    // validate params on isFull
+
+    // percolates with virtual top and virtual bottom - need another UF object to check. mirror ufFull
+    // backwash case for isFull
+
+
 }

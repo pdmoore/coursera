@@ -38,6 +38,28 @@ public class Percolation {
 
             if (row == 1) {
                 unionFindFull.union(0, siteIndex(row, col));
+            } else {
+                if (isOpen(row - 1, col)) {
+                    unionFindFull.union(siteIndex(row, col), siteIndex(row - 1, col));
+                }
+            }
+
+            if (row < gridWidth) {
+                if (isOpen(row + 1, col)) {
+                    unionFindFull.union(siteIndex(row, col), siteIndex(row + 1, col));
+                }
+            }
+
+            if (col > 1) {
+                if (isOpen(row, col - 1)) {
+                    unionFindFull.union(siteIndex(row, col), siteIndex(row, col - 1));
+                }
+            }
+
+            if (col < gridWidth) {
+                if (isOpen(row, col + 1)) {
+                    unionFindFull.union(siteIndex(row, col), siteIndex(row, col + 1));
+                }
             }
         }
     }
