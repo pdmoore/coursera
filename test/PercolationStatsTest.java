@@ -43,11 +43,11 @@ public class PercolationStatsTest {
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidTrialsParameter, "ctor should verify trials > 0");
     }
 
-    @Disabled
     @Test
     public void EnsureMeanIsCalculated() {
+        // really should probably inject a mock Percolation but that would change public interface of PS class
         PercolationStats ps = new PercolationStats(2, 100);
         double mean = ps.mean();
-        assertTrue(mean > 0.0  && mean < 1.0, "mean should be within a reasonable range");
+        assertTrue(mean > 0.5  && mean < 0.7, "mean should be within a reasonable range");
     }
 }
