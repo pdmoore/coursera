@@ -1,9 +1,9 @@
-import edu.princeton.cs.algs4.In;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -158,9 +158,26 @@ public class DequeueTest {
         assertTrue(d.isEmpty());
     }
 
-    // addFirst, removeLast, isEmpty
-    // addLast, removeFirst, isEmpty
-    // iterator and iterate, via next
+    @Test
+    public void IteratorHasNext() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("one");
+        Iterator<String> i = d.iterator();
+        assertTrue(i.hasNext());
+    }
+
+    @Disabled
+    @Test
+    public void IterateViaNext() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("one");
+        d.addLast("two");
+
+        Iterator<String> i = d.iterator();
+        assertEquals("one", i.next());
+        assertEquals("two", i.next());
+    }
+
     // size after adding to front and back
 
     /*
