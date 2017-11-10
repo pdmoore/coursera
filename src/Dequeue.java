@@ -27,7 +27,8 @@ public class Dequeue<Item> {
         return size == 0;
     }
 
-    public static void main(String[] args) {
+    public int size() {
+        return size;
     }
 
     public void addFirst(Item item) {
@@ -39,5 +40,8 @@ public class Dequeue<Item> {
 
         first = n;
         size++;
+    }
+
+    public static void main(String[] args) {
     }
 }

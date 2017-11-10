@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Deque;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,6 +49,15 @@ public class DequeueTest {
         d.addFirst("firstItem");
         String actual = d.removeFirst();
         assertEquals("firstItem", actual);
+    }
+
+    @Test
+    public void SizeAfterAddingFromFront() {
+        Dequeue<Integer> d = new Dequeue<>();
+        d.addFirst(1);
+        d.addFirst(2);
+        d.addFirst(3);
+        assertEquals(3, d.size(), "size should report number of items in Dequeue");
     }
 
     // two removeFirst in a row (current impl doesn't update head"
