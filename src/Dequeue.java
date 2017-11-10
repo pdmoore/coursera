@@ -18,7 +18,7 @@ public class Dequeue<Item> {
         size--;
 
         Item returnVal = last.item;
-        // need test to update last to point to previous
+        last = last.previous;
         return returnVal;
     }
 

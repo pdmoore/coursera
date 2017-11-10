@@ -113,9 +113,18 @@ public class DequeueTest {
         assertEquals("lastOne", actual);
     }
 
-        // addFirst, addFirst, removeFirst, isEmpty
-    // addLast, removeLast, isEmpty
-    // maybe addFirst, removeLast, isEmpty
+    @Test
+    public void AddLastTwiceThenRemoveThemBoth() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addLast("lastOne");
+        d.addLast("lastTwo");
+        d.removeLast();
+        String actual = d.removeLast();
+        assertEquals("lastOne", actual);
+    }
+
+    // addFirst, removeLast, isEmpty
+    // addLast, removeFirst, isEmpty
     // iterator and iterate, via next
     // size after adding to front and back
 
