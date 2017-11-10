@@ -60,7 +60,15 @@ public class DequeueTest {
         assertEquals(3, d.size(), "size should report number of items in Dequeue");
     }
 
-    // two removeFirst in a row (current impl doesn't update head"
+    @Test
+    public void AddFirstTwiceThenRemoveThemBoth() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("one");
+        d.addFirst("two");
+        d.removeFirst();
+        String actual = d.removeFirst();
+        assertEquals("one", actual, "second remove should return the first item");
+    }
 
     /*
     Throw a java.lang.IllegalArgumentException if the client calls either addFirst() or addLast() with a null argument.

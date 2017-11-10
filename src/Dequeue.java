@@ -4,6 +4,8 @@ public class Dequeue<Item> {
         size--;
 
         Item returnVal = first.item;
+        first = first.next;
+        // need a test to update first node's prev to first
 
         return returnVal;
     }
