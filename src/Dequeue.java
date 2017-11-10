@@ -34,6 +34,8 @@ public class Dequeue<Item> {
 
         first = n;
         size++;
+
+        if (last == null) last = first;
     }
 
     public void addLast(Item item) {
@@ -46,6 +48,8 @@ public class Dequeue<Item> {
 
         last = n;
         size++;
+
+        if (first == null) first = last;
     }
 
     public Item removeFirst() {
