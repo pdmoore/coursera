@@ -1,5 +1,8 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DequeueTest {
@@ -23,10 +26,43 @@ public class DequeueTest {
         assertTrue(d.isEmpty());
     }
 
-    // addFirst, isEmpty, and size
+    @Test
+    public void AddFirst() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("frist!");
+        assertFalse(d.isEmpty(), "dequeue is not empty after adding an item up front");
+    }
+
+    @Test
+    public void DequeueIsEmptyAfterRemoveFirst() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("firstItem");
+        String actual = d.removeFirst();
+        assertTrue(d.isEmpty(), "dequeue should be empty after removing only item");
+    }
+
+    @Test
+    public void AddAndRemoveFromFront() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("firstItem");
+        String actual = d.removeFirst();
+        assertEquals("firstItem", actual);
+    }
+
+    // two removeFirst in a row (current impl doesn't update head"
+
+    /*
+    Throw a java.lang.IllegalArgumentException if the client calls either addFirst() or addLast() with a null argument.
+Throw a java.util.NoSuchElementException if the client calls either removeFirst() or removeLast when the deque is empty.
+Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
+Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
+     */
+
+
+    // size after adding to front and back
     // addLast, isEmpty, size
-    // addFirst, removeFirst, isEmpty
+    // addFirst, addFirst, removeFirst, isEmpty
     // addLast, removeLast, isEmpty
     // maybe addFirst, removeLast, isEmpty
-    // iterator and iterate
+    // iterator and iterate, via next
 }
