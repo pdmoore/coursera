@@ -2,26 +2,6 @@ import java.util.NoSuchElementException;
 
 public class Dequeue<Item> {
 
-    public Item removeFirst() {
-        if (first == null) throw new NoSuchElementException();
-
-        size--;
-
-        Item returnVal = first.item;
-        first = first.next;
-        // need a test to update first node's prev to first
-
-        return returnVal;
-    }
-
-    public Item removeLast() {
-        size--;
-
-        Item returnVal = last.item;
-        last = last.previous;
-        return returnVal;
-    }
-
     private class Node {
         Item item;
         Node next;
@@ -30,7 +10,6 @@ public class Dequeue<Item> {
     private Node first;
     private Node last;
     private int size;
-
 
     public Dequeue() {
         first = null;
@@ -58,6 +37,7 @@ public class Dequeue<Item> {
     }
 
     public void addLast(Item item) {
+        if (item == null) throw new IllegalArgumentException();
 
         Node n = new Node();
         n.item = item;
@@ -68,6 +48,29 @@ public class Dequeue<Item> {
         size++;
     }
 
+    public Item removeFirst() {
+        if (first == null) throw new NoSuchElementException();
+
+        size--;
+
+        Item returnVal = first.item;
+        first = first.next;
+        // need a test to update new first node's prev to first
+
+        return returnVal;
+    }
+
+    public Item removeLast() {
+        if (last == null) throw new NoSuchElementException();
+
+        size--;
+
+        Item returnVal = last.item;
+        last = last.previous;
+        // need a test to update new last node's next to null
+
+        return returnVal;
+    }
 
     public static void main(String[] args) {
     }

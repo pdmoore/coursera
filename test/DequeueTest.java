@@ -123,14 +123,33 @@ public class DequeueTest {
         assertEquals("lastOne", actual);
     }
 
+    @Test
+    public void ValidateParamsToAddLast() {
+        Dequeue<Integer> d = new Dequeue<>();
+
+        Executable addLastCalledWithNull = () -> {
+            d.addLast(null);
+        };
+        assertThrows(IllegalArgumentException.class, addLastCalledWithNull, "");
+    }
+
+    @Test
+    public void ValidateCallsToRemoveLast() {
+        Dequeue<Integer> d = new Dequeue<>();
+        Executable removeLastCalledOnEmptyDequeue = () -> {
+            d.removeLast();
+        };
+        assertThrows(NoSuchElementException.class, removeLastCalledOnEmptyDequeue, "No bueno to call removeLast on an empty dequeue");
+    }
+
+
     // addFirst, removeLast, isEmpty
     // addLast, removeFirst, isEmpty
     // iterator and iterate, via next
     // size after adding to front and back
 
     /*
-    Throw a java.lang.IllegalArgumentException if the client calls addLast() with a null argument.
-Throw a java.util.NoSuchElementException if the client calls removeLast when the deque is empty.
+ Throw a java.util.NoSuchElementException if the client calls removeLast when the deque is empty.
 Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
 Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
      */
