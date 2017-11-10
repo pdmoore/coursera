@@ -91,6 +91,25 @@ public class DequeueTest {
         assertThrows(NoSuchElementException.class, removeFirstCalledOnEmptyDequeue, "");
     }
 
+    @Test
+    public void AddLast() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addLast("last!");
+        assertFalse(d.isEmpty(), "dequeue is not empty after adding an item at end");
+    }
+
+    @Test
+    public void DequeueIsEmptyAfterRemoveLast() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addLast("last");
+        d.removeLast();
+        assertTrue(d.isEmpty(), "dequeue should be empty after removing only item from end");
+    }
+
+        // addFirst, addFirst, removeFirst, isEmpty
+    // addLast, removeLast, isEmpty
+    // maybe addFirst, removeLast, isEmpty
+    // iterator and iterate, via next
     // size after adding to front and back
 
     /*
@@ -99,11 +118,4 @@ Throw a java.util.NoSuchElementException if the client calls removeLast when the
 Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
 Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
      */
-
-
-    // addLast, isEmpty, size
-    // addFirst, addFirst, removeFirst, isEmpty
-    // addLast, removeLast, isEmpty
-    // maybe addFirst, removeLast, isEmpty
-    // iterator and iterate, via next
 }

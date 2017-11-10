@@ -14,6 +14,12 @@ public class Dequeue<Item> {
         return returnVal;
     }
 
+    public Item removeLast() {
+        size--;
+        
+        return null;
+    }
+
     private class Node {
         Item item;
         Node next;
@@ -48,6 +54,11 @@ public class Dequeue<Item> {
         first = n;
         size++;
     }
+
+    public void addLast(Item s) {
+        size++;
+    }
+
 
     public static void main(String[] args) {
     }
