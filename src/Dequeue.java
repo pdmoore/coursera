@@ -16,8 +16,10 @@ public class Dequeue<Item> {
 
     public Item removeLast() {
         size--;
-        
-        return null;
+
+        Item returnVal = last.item;
+        // need test to update last to point to previous
+        return returnVal;
     }
 
     private class Node {
@@ -55,7 +57,14 @@ public class Dequeue<Item> {
         size++;
     }
 
-    public void addLast(Item s) {
+    public void addLast(Item item) {
+
+        Node n = new Node();
+        n.item = item;
+        n.next = null;
+        n.previous = last;
+
+        last = n;
         size++;
     }
 

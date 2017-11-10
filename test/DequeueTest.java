@@ -79,7 +79,6 @@ public class DequeueTest {
             d.addFirst(null);
         };
         assertThrows(IllegalArgumentException.class, addFirstCalledWithNull, "");
-
     }
 
     @Test
@@ -104,6 +103,14 @@ public class DequeueTest {
         d.addLast("last");
         d.removeLast();
         assertTrue(d.isEmpty(), "dequeue should be empty after removing only item from end");
+    }
+
+    @Test
+    public void AddAndRemoveFromEnd() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addLast("lastOne");
+        String actual = d.removeLast();
+        assertEquals("lastOne", actual);
     }
 
         // addFirst, addFirst, removeFirst, isEmpty
