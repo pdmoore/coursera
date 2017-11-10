@@ -1,6 +1,10 @@
+import java.util.NoSuchElementException;
+
 public class Dequeue<Item> {
 
     public Item removeFirst() {
+        if (first == null) throw new NoSuchElementException();
+
         size--;
 
         Item returnVal = first.item;
@@ -34,6 +38,7 @@ public class Dequeue<Item> {
     }
 
     public void addFirst(Item item) {
+        if (item == null) throw new IllegalArgumentException();
 
         Node n = new Node();
         n.item = item;
