@@ -2,26 +2,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import java.util.Deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DequeueTest {
-
-    /*
-    public class Deque<Item> implements Iterable<Item> {
-   public Deque()                           // construct an empty deque
-   public boolean isEmpty()                 // is the deque empty?
-   public int size()                        // return the number of items on the deque
-   public void addFirst(Item item)          // add the item to the front
-   public void addLast(Item item)           // add the item to the end
-   public Item removeFirst()                // remove and return the item from the front
-   public Item removeLast()                 // remove and return the item from the end
-   public Iterator<Item> iterator()         // return an iterator over items in order from front to end
-   public static void main(String[] args)   // unit testing (optional)
-    */
 
     @Test
     public void NewDequeueIsEmpty() {
@@ -167,6 +153,17 @@ public class DequeueTest {
     }
 
     @Test
+    public void IteratorHasNext_MultipleItems() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addLast("second");
+        d.addFirst("first");
+        Iterator<String> i = d.iterator();
+        i.next();
+        i.next();
+        assertFalse(i.hasNext());
+    }
+
+    @Test
     public void AddFirst_AddLast_ShouldBeConnected() {
         Dequeue<String> d = new Dequeue<>();
         d.addFirst("first");
@@ -219,5 +216,23 @@ public class DequeueTest {
         assertThrows(NoSuchElementException.class, nextCalledWhenNoNextElement, "next should throw when no next element");
     }
 
-    // size after adding to front and back
+    // Remove First/Last needs to sever connections to prev/next!!!!
+
+    @Disabled
+    @Test
+    public void Integration_ExerciseDequeueClass() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("Middle");
+        d.addLast("last");
+        d.addFirst("first");
+        assertEquals(3, d.size());
+        d.removeFirst();
+        d.removeLast();
+        Iterator<String> i = d.iterator();
+        String actual = i.next();
+        assertEquals("Middle", actual);
+        assertFalse(i.hasNext(), "iterator shouldn't have anything");
+        d.removeLast();
+        assertTrue(d.isEmpty(), "dequeue should now be empty");
+    }
 }

@@ -14,7 +14,7 @@ public class Dequeue<Item> implements Iterable<Item>{
 
         @Override
         public boolean hasNext() {
-            return first != null;
+            return current != null;
         }
 
         @Override
