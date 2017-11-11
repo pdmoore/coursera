@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RandomizedQueueTest {
 
@@ -47,9 +47,23 @@ public class RandomizedQueueTest {
         assertThrows(IllegalArgumentException.class, enqueueCalledWithNull, "enqueue expects non-null argument");
     }
 
+    @Test
+    public void EnqueueAnItem_RandomizedQueueIsNoLongerEmpty() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        rq.enqueue(1);
+        assertFalse(rq.isEmpty(), "randomized queue should not be empty after adding smething");
+    }
 
-    // add item, check isEmpty false
-    // add two items, check size is 2
+    @Test
+    public void EnqueueManyItems_ConfirmSizeIsCorrect() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("one");
+        rq.enqueue("two");
+        rq.enqueue("three");
+        assertEquals(3, rq.size());
+    }
+
+
     // add single item, call dequeue, confirm same item
     // add single item, call dequeue, confirm isEmpty
     // add signle item, call dequeue, confirm size 0

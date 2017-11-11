@@ -1,13 +1,17 @@
 public class RandomizedQueue<Item> {
+    private int size;
+
     public boolean isEmpty() {
-        return true;
+        return size == 0;
     }
 
     public int size() {
-        return 0;
+        return size;
     }
 
     public void enqueue(Item item) {
-        throw new IllegalArgumentException();
+        if (item == null) throw new IllegalArgumentException();
+
+        size++;
     }
 }
