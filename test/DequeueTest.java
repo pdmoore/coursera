@@ -186,7 +186,6 @@ public class DequeueTest {
         assertEquals("first", actual);
     }
 
-    @Disabled
     @Test
     public void IterateViaNext() {
         Dequeue<String> d = new Dequeue<>();
@@ -198,10 +197,27 @@ public class DequeueTest {
         assertEquals("two", i.next());
     }
 
-    // size after adding to front and back
+    @Test
+    public void Iterate_RemoveIsUnsupported() {
+        Dequeue<String> d = new Dequeue<>();
+        Iterator<String> i = d.iterator();
 
-    /*
-Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
-Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
-     */
+        Executable removeCalledOnIterator = () -> {
+            i.remove();
+        };
+        assertThrows(UnsupportedOperationException.class, removeCalledOnIterator, "remove is not supported for dequeue");
+    }
+
+    @Test
+    public void Iterate_NextThrowsExceptionWhenNoMoreElements() {
+        Dequeue<String> d = new Dequeue<>();
+        Iterator<String> i = d.iterator();
+
+        Executable nextCalledWhenNoNextElement = () -> {
+            i.next();
+        };
+        assertThrows(NoSuchElementException.class, nextCalledWhenNoNextElement, "next should throw when no next element");
+    }
+
+    // size after adding to front and back
 }
