@@ -6,4 +6,8 @@ public class RandomizedQueue<Item> {
     public int size() {
         return 0;
     }
+
+    public void enqueue(Item item) {
+        throw new IllegalArgumentException();
+    }
 }

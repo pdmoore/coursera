@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RandomizedQueueTest {
@@ -18,7 +20,6 @@ public class RandomizedQueueTest {
  */
 
 //
-//    Throw a java.lang.IllegalArgumentException if the client calls enqueue() with a null argument.
 //    Throw a java.util.NoSuchElementException if the client calls either sample() or dequeue() when the randomized queue is empty.
 //
 //    Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
@@ -36,4 +37,20 @@ public class RandomizedQueueTest {
         RandomizedQueue<String> rq = new RandomizedQueue<>();
         assertEquals(0, rq.size(), "newly constructed queue starts off with size zero");
     }
+
+    @Test
+    public void ValidateParamToEnqueue() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        Executable enqueueCalledWithNull = () -> {
+            rq.enqueue(null);
+        };
+        assertThrows(IllegalArgumentException.class, enqueueCalledWithNull, "enqueue expects non-null argument");
+    }
+
+
+    // add item, check isEmpty false
+    // add two items, check size is 2
+    // add single item, call dequeue, confirm same item
+    // add single item, call dequeue, confirm isEmpty
+    // add signle item, call dequeue, confirm size 0
 }
