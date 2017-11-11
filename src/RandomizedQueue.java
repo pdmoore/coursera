@@ -14,4 +14,16 @@ public class RandomizedQueue<Item> {
 
         size++;
     }
+
+    public Item dequeue() {
+
+        size--;
+
+        return null;
+    }
+
+
+    public static void main(String[] args) {
+
+    }
 }

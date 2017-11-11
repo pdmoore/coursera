@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RandomizedQueueTest {
@@ -63,8 +61,31 @@ public class RandomizedQueueTest {
         assertEquals(3, rq.size());
     }
 
+    // add single item, call dequeue, confirm size 0
+    @Test
+    public void EnqueueThenDequeue_ConfirmIsEmpty() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("foo");
+        rq.dequeue();
+        assertTrue(rq.isEmpty(), "randomized queue should be empty after removing last item");
+    }
+
+    @Test
+    public void EnqueueThenDequeue_ConfirmSizeIsZero() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("foo");
+        rq.dequeue();
+        assertEquals(0, rq.size(), "randomized queue should have size 0 after removing last item");
+    }
+
 
     // add single item, call dequeue, confirm same item
-    // add single item, call dequeue, confirm isEmpty
-    // add signle item, call dequeue, confirm size 0
+
+
+    // add multiple, confirm random result?
+
+    // sample method with one item
+    // sample item with multiple
+
+    // iterator tests -- WHICH ONES?
 }
