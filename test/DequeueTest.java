@@ -166,6 +166,26 @@ public class DequeueTest {
         assertTrue(i.hasNext());
     }
 
+    @Test
+    public void AddFirst_AddLast_ShouldBeConnected() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("first");
+        d.addLast("last");
+        d.removeFirst();
+        String actual = d.removeFirst();
+        assertEquals("last", actual);
+    }
+
+    @Test
+    public void AddLast_AddFirst_ShouldBeConnected() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addLast("last");
+        d.addFirst("first");
+        d.removeLast();
+        String actual = d.removeLast();
+        assertEquals("first", actual);
+    }
+
     @Disabled
     @Test
     public void IterateViaNext() {

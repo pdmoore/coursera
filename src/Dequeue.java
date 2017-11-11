@@ -50,6 +50,8 @@ public class Dequeue<Item> implements Iterable<Item>{
         n.next = first;
         n.previous = null;
 
+        if (n.next != null) n.next.previous = n;
+
         first = n;
         size++;
 
@@ -64,6 +66,8 @@ public class Dequeue<Item> implements Iterable<Item>{
         n.next = null;
         n.previous = last;
 
+        if (n.previous != null) n.previous.next = n;
+
         last = n;
         size++;
 
@@ -77,7 +81,6 @@ public class Dequeue<Item> implements Iterable<Item>{
 
         Item returnVal = first.item;
         first = first.next;
-        // need a test to update new first node's prev to first
 
         return returnVal;
     }
@@ -89,7 +92,6 @@ public class Dequeue<Item> implements Iterable<Item>{
 
         Item returnVal = last.item;
         last = last.previous;
-        // need a test to update new last node's next to null
 
         return returnVal;
     }
@@ -100,5 +102,4 @@ public class Dequeue<Item> implements Iterable<Item>{
 
     public static void main(String[] args) {
     }
-
 }
