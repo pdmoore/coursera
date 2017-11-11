@@ -93,6 +93,8 @@ public class Dequeue<Item> implements Iterable<Item>{
         size--;
 
         Item returnVal = last.item;
+        if (last.previous != null) last.previous.next = null;
+
         last = last.previous;
 
         return returnVal;

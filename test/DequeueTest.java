@@ -216,9 +216,19 @@ public class DequeueTest {
         assertThrows(NoSuchElementException.class, nextCalledWhenNoNextElement, "next should throw when no next element");
     }
 
-    // Remove First/Last needs to sever connections to prev/next!!!!
+    @Test
+    public void removeLastShouldSeverNextLink() {
+        Dequeue<String> d = new Dequeue<>();
+        d.addFirst("first");
+        d.addLast("last");
+        d.removeLast();
+        Iterator<String> i = d.iterator();
+        i.next();
+        assertFalse(i.hasNext(), "dequeue has a single element, iterator should not hasNext after next() call");
+    }
 
-    @Disabled
+    // Not a similar issue with removeFirst since there isn't a reverse iterator to manage cleaning up Node.previous
+
     @Test
     public void Integration_ExerciseDequeueClass() {
         Dequeue<String> d = new Dequeue<>();
