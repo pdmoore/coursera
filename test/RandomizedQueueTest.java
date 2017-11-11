@@ -1,5 +1,8 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,7 +64,6 @@ public class RandomizedQueueTest {
         assertEquals(3, rq.size());
     }
 
-    // add single item, call dequeue, confirm size 0
     @Test
     public void EnqueueThenDequeue_ConfirmIsEmpty() {
         RandomizedQueue<String> rq = new RandomizedQueue<>();
@@ -78,8 +80,22 @@ public class RandomizedQueueTest {
         assertEquals(0, rq.size(), "randomized queue should have size 0 after removing last item");
     }
 
+    @Test
+    public void ValidateParamsOnDequeue() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        Executable dequeueCalledOnEmptyRandomizedQueue = () -> {
+            rq.dequeue();
+        };
+        assertThrows(NoSuchElementException.class, dequeueCalledOnEmptyRandomizedQueue,
+                "should throw when trying to dequeue an empty randomized queue");
+    }
 
     // add single item, call dequeue, confirm same item
+    @Disabled
+    @Test
+    public void EnqueueThenDequeue_ShouldBeSameItemWhenOnlyOneItem() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+    }
 
 
     // add multiple, confirm random result?

@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class RandomizedQueue<Item> {
     private int size;
 
@@ -16,6 +18,7 @@ public class RandomizedQueue<Item> {
     }
 
     public Item dequeue() {
+        if (size == 0) throw new NoSuchElementException();
 
         size--;
 
