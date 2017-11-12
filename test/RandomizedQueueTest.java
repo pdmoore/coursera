@@ -1,8 +1,7 @@
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +19,7 @@ public class RandomizedQueueTest {
         public static void main(String[] args)   // unit testing (optional)
  */
 
-//
-//    Throw a java.util.NoSuchElementException if the client calls either sample() or dequeue() when the randomized queue is empty.
+//    Throw a java.util.NoSuchElementException if the client calls sample() when the randomized queue is empty.
 //
 //    Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
 //    Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
@@ -90,18 +88,63 @@ public class RandomizedQueueTest {
                 "should throw when trying to dequeue an empty randomized queue");
     }
 
-    // add single item, call dequeue, confirm same item
-    @Disabled
     @Test
     public void EnqueueThenDequeue_ShouldBeSameItemWhenOnlyOneItem() {
         RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("only");
+        String actual = rq.dequeue();
+        assertEquals("only", actual);
+    }
+
+    @Test
+    public void EnqueueMultipleItems_DequeueSameNumber_VerifyEachReturnedOnlyOnce() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("a one");
+        rq.enqueue("b two");
+        rq.enqueue("c three");
+
+        List actual = new ArrayList();
+        actual.add(rq.dequeue());
+        actual.add(rq.dequeue());
+        actual.add(rq.dequeue());
+        Collections.sort(actual);
+        String[] expected = new String[] { "a one", "b two", "c three" };
+        assertArrayEquals(expected, actual.toArray());
+    }
+
+    @Test
+    public void SampleWithOneItemReturnsThatOneItem() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("one");
+        assertEquals("one", rq.sample());
+    }
+
+    @Test
+    public void Sample_DoesNotAlterSize() {
+        RandomizedQueue rq = new RandomizedQueue();
+        rq.enqueue(1);
+        rq.enqueue(2);
+        rq.enqueue(3);
+        int sizeBefore = rq.size();
+        rq.sample();
+        assertEquals(sizeBefore, rq.size());
+    }
+
+    @Test
+    public void ValidateParamsOnSample() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        Executable sampleCalledOnEmptyRandomizedQueue = () -> {
+            rq.sample();
+        };
+        assertThrows(NoSuchElementException.class, sampleCalledOnEmptyRandomizedQueue,
+                "should throw when trying to sample an empty randomized queue");
     }
 
 
-    // add multiple, confirm random result?
+    // sample item with multiple - how to test randomness?
 
-    // sample method with one item
-    // sample item with multiple
+    // dequeue is random - how to test randomness?
 
     // iterator tests -- WHICH ONES?
+    // also impl the param validation as at top of this file
 }
