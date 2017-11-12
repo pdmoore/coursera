@@ -19,8 +19,6 @@ public class RandomizedQueueTest {
         public static void main(String[] args)   // unit testing (optional)
  */
 
-//    Throw a java.util.NoSuchElementException if the client calls sample() when the randomized queue is empty.
-//
 //    Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
 //    Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
 
@@ -142,8 +140,8 @@ public class RandomizedQueueTest {
 
 
     // sample item with multiple - how to test randomness?
-
     // dequeue is random - how to test randomness?
+
 
     // iterator tests -- WHICH ONES?
     // also impl the param validation as at top of this file

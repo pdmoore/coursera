@@ -28,19 +28,15 @@ public class RandomizedQueue<Item> {
         size++;
     }
 
-    private void resize(int capacity) {
-        Item[] copy = (Item[])new Object[capacity];
-        for (int i = 0; i < size; i++)
-            copy[i] = items[i];
-        items = copy;
-    }
-
     public Item dequeue() {
         if (size == 0) throw new NoSuchElementException();
 
-        Item returnVal = items[size - 1];
+        int index = StdRandom.uniform(size);
+        Item returnVal = items[index];
+        items[index] = items[--size];
+        items[size] = null;
 
-        size--;
+        if (size > 0 && size == items.length/4) resize(items.length/2);
 
         return returnVal;
     }
@@ -49,6 +45,14 @@ public class RandomizedQueue<Item> {
         if (size == 0) throw new NoSuchElementException();
 
         return items[StdRandom.uniform(size)];
+    }
+
+
+    private void resize(int capacity) {
+        Item[] copy = (Item[])new Object[capacity];
+        for (int i = 0; i < size; i++)
+            copy[i] = items[i];
+        items = copy;
     }
 
     public static void main(String[] args) {
