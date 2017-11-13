@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Dequeue<Item> implements Iterable<Item>{
+public class Deque<Item> implements Iterable<Item>{
 
     private class Node {
         Item item;
@@ -9,7 +9,7 @@ public class Dequeue<Item> implements Iterable<Item>{
         Node previous;
     }
 
-    private class DequeueIterator implements Iterator<Item> {
+    private class DequeIterator implements Iterator<Item> {
         private Node current = first;
 
         @Override
@@ -31,7 +31,7 @@ public class Dequeue<Item> implements Iterable<Item>{
     private Node last;
     private int size;
 
-    public Dequeue() {
+    public Deque() {
         first = null;
         last  = null;
     }
@@ -101,7 +101,7 @@ public class Dequeue<Item> implements Iterable<Item>{
     }
 
     public Iterator<Item> iterator() {
-        return new DequeueIterator();
+        return new DequeIterator();
     }
 
     public static void main(String[] args) {
