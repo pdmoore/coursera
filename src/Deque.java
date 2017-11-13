@@ -79,26 +79,32 @@ public class Deque<Item> implements Iterable<Item>{
     public Item removeFirst() {
         if (first == null) throw new NoSuchElementException();
 
-        size--;
-
         Item returnVal = first.item;
-        first = first.next;
-        if (first == null) last = null;
+        if (size == 1) {
+            first = null;
+            last  = null;
+        } else {
+            first = first.next;
+            first.previous = null;
+        }
 
+        size--;
         return returnVal;
     }
 
     public Item removeLast() {
         if (last == null) throw new NoSuchElementException();
 
-        size--;
-
         Item returnVal = last.item;
-        if (last.previous != null) last.previous.next = null;
+        if (size == 1) {
+            last  = null;
+            first = null;
+        } else {
+            last = last.previous;
+            last.next = null;
+        }
 
-        last = last.previous;
-        if (last == null) first = null;
-
+        size--;
         return returnVal;
     }
 

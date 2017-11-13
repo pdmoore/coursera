@@ -256,7 +256,7 @@ public class DequeTest {
     }
 
     @Test
-    public void Integration_RemoveFirstShouldNullLastOnEmptyList(){
+    public void Integration_RemoveFirstShouldNullLastOnEmptyList() {
         Deque<Integer> d = new Deque<>();
         d.addLast(1);
         d.removeFirst();
