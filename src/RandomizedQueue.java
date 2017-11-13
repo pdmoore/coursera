@@ -8,14 +8,28 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
     private Item[] items;
 
     private class RandomizedQueueIterator implements Iterator<Item> {
+        private int currentIndex;
+        private int[] indices;
+
+        public RandomizedQueueIterator() {
+            this.currentIndex = 0;
+            indices = new int[size];
+            for (int i=0; i < indices.length; i++) {
+                indices[i] = i;
+            }
+            StdRandom.shuffle(indices);
+        }
+
         @Override
         public boolean hasNext() {
-            return true;
+            return currentIndex < size;
         }
 
         @Override
         public Item next() {
-            throw new NoSuchElementException();
+            if (!hasNext()) throw new NoSuchElementException();
+
+            return items[indices[currentIndex++]];
         }
     }
 
@@ -59,7 +73,6 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
 
         return items[StdRandom.uniform(size)];
     }
-
 
     private void resize(int capacity) {
         Item[] copy = (Item[])new Object[capacity];

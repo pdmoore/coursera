@@ -8,19 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RandomizedQueueTest {
 
-/*
-    public class RandomizedQueue<Item> implements Iterable<Item> {
-        public RandomizedQueue()                 // construct an empty randomized queue
-        public boolean isEmpty()                 // is the randomized queue empty?
-        public int size()                        // return the number of items on the randomized queue
-        public void enqueue(Item item)           // add the item
-        public Item dequeue()                    // remove and return a random item
-        public Item sample()                     // return a random item (but do not remove it)
-        public Iterator<Item> iterator()         // return an independent iterator over items in random order
-        public static void main(String[] args)   // unit testing (optional)
- */
-
-
     @Test
     public void RandomizedQueueStartsOffEmpty() {
         RandomizedQueue<String> rq = new RandomizedQueue<>();
@@ -166,9 +153,35 @@ public class RandomizedQueueTest {
         assertThrows(NoSuchElementException.class, nextCalledWhenNoNextElement, "next should throw when there is no next element");
     }
 
+    @Test
+    public void IterateViaNext() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("aaa");
+        rq.enqueue("bbb");
+        rq.enqueue("ccc");
+        Iterator<String> i = rq.iterator();
+
+        List actual = new ArrayList();
+        actual.add(i.next());
+        actual.add(i.next());
+        actual.add(i.next());
+        Collections.sort(actual);
+
+        String[] expected = new String[] { "aaa", "bbb", "ccc" };
+        assertArrayEquals(expected, actual.toArray());
+    }
+
+    @Test
+    public void IteratorHasNext_MultipleItems() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        rq.enqueue(1);
+        rq.enqueue(2);
+        Iterator<Integer> i = rq.iterator();
+        i.next();
+        i.next();
+        assertFalse(i.hasNext(), "iterator should not have next after iterating over all elements");
+    }
 
     // sample item with multiple - how to test randomness?
     // dequeue is random - how to test randomness?
-
-
 }
