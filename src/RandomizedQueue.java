@@ -1,10 +1,23 @@
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class RandomizedQueue<Item> {
+public class RandomizedQueue<Item> implements Iterable<Item>  {
     private int size;
     private Item[] items;
+
+    private class RandomizedQueueIterator implements Iterator<Item> {
+        @Override
+        public boolean hasNext() {
+            return true;
+        }
+
+        @Override
+        public Item next() {
+            throw new NoSuchElementException();
+        }
+    }
 
     public RandomizedQueue() {
         items = (Item[])new Object[1];
@@ -57,5 +70,10 @@ public class RandomizedQueue<Item> {
 
     public static void main(String[] args) {
 
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new RandomizedQueueIterator();
     }
 }

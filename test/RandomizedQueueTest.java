@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -18,9 +19,6 @@ public class RandomizedQueueTest {
         public Iterator<Item> iterator()         // return an independent iterator over items in random order
         public static void main(String[] args)   // unit testing (optional)
  */
-
-//    Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
-//    Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
 
 
     @Test
@@ -138,11 +136,39 @@ public class RandomizedQueueTest {
                 "should throw when trying to sample an empty randomized queue");
     }
 
+    // iterator tests -- WHICH ONES?
+    // also impl the param validation as at top of this file
+    @Test
+    public void IteratorHasNext() {
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
+        rq.enqueue("first");
+        Iterator<String> i = rq.iterator();
+        assertTrue(i.hasNext(), "randomized queue containing an element should hasNext on first iterator");
+    }
+
+    @Test
+    public void Iterator_RemoveIsUnsupported() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        Iterator<Integer> i = rq.iterator();
+        Executable removeCalledOnIterator = () -> {
+            i.remove();
+        };
+        assertThrows(UnsupportedOperationException.class, removeCalledOnIterator, "remove is not supported for randomized queue");
+    }
+
+    @Test
+    public void Iterator_NextThrowsExceptionWhenNoMoreElements() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        Iterator<Integer> i = rq.iterator();
+        Executable nextCalledWhenNoNextElement = () -> {
+            i.next();
+        };
+        assertThrows(NoSuchElementException.class, nextCalledWhenNoNextElement, "next should throw when there is no next element");
+    }
+
 
     // sample item with multiple - how to test randomness?
     // dequeue is random - how to test randomness?
 
 
-    // iterator tests -- WHICH ONES?
-    // also impl the param validation as at top of this file
 }
