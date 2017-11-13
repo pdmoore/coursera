@@ -244,4 +244,25 @@ public class DequeTest {
         d.removeLast();
         assertTrue(d.isEmpty(), "deque should now be empty");
     }
+
+    @Test
+    public void Integration_FailedSubmissionTest6_RemoveLastShouldNullFirstOnEmptyList() {
+        Deque<Integer> d = new Deque<>();
+        d.addFirst(0);
+        d.removeLast();
+        d.addLast(3);
+        Integer actual = d.removeFirst();
+        assertEquals(3, actual.intValue(), "item added via last, removed first - should be same");
+    }
+
+    @Test
+    public void Integration_RemoveFirstShouldNullLastOnEmptyList(){
+        Deque<Integer> d = new Deque<>();
+        d.addLast(1);
+        d.removeFirst();
+        d.addFirst(3);
+        Integer actual = d.removeLast();
+        assertEquals(3, actual.intValue());
+    }
+
 }
