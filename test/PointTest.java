@@ -52,6 +52,32 @@ public class PointTest {
         Point p_greater = new Point(5, 8);
         Point p_less    = new Point(3, 8);
         assertTrue(p_greater.compareTo(p_less) > 0, "when y value is same, check x");
+    }
 
+    @Test
+    public void SlopeTo_WithSamePoint_NegativeInfinity() {
+        Point p = new Point(0, 0);
+        assertEquals(Double.NEGATIVE_INFINITY, p.slopeTo(p));
+    }
+
+    @Test
+    public void SlopeTo_HorizontalLine_PositiveInfinity() {
+        Point p = new Point(1, 1);
+        Point p_sameXcoord = new Point( 1, 5);
+        assertEquals(Double.POSITIVE_INFINITY, p.slopeTo(p_sameXcoord));
+    }
+
+    @Test
+    public void SlopeTo_PositiveSlope() {
+        Point p = new Point(5,5);
+        Point other = new Point(1,1);
+        assertEquals(1.0, p.slopeTo(other));
+    }
+
+    @Test
+    public void SlopeTo_NegativeSlope() {
+        Point p = new Point(1,5);
+        Point other = new Point(5, 1);
+        assertEquals(-1.0, p.slopeTo(other));
     }
 }
