@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BruteCollinearPointsTest {
@@ -39,5 +40,12 @@ public class BruteCollinearPointsTest {
             new BruteCollinearPoints(p);
         };
         assertThrows(IllegalArgumentException.class, constructorWithDuplicatedPointInPointsArray, "param list cannot contain duplicate point [0,0]");
+    }
+
+    @Test
+    public void  NoCollinearPoints() {
+        Point[] p = new Point[] {new Point(0,0), new Point(5, 1), new Point(3,3), new Point(2,4) };
+        BruteCollinearPoints b = new BruteCollinearPoints(p);
+        assertEquals(0, b.numberOfSegments() );
     }
 }
