@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -79,5 +81,32 @@ public class PointTest {
         Point p = new Point(1,5);
         Point other = new Point(5, 1);
         assertEquals(-1.0, p.slopeTo(other));
+    }
+
+    @Test
+    public void Comparator_HorizontalPoints() {
+        Point p1 = new Point (0,0);
+        Comparator<Point> c = p1.slopeOrder();
+        Point p2 = new Point(5,0);
+        Point p3 = new Point(3,0);
+        assertTrue(c.compare(p2, p3) == 0, "slope p1-p2 is same as p1-p3, expect 0");
+    }
+
+    @Test
+    public void Comparator_LessThan() {
+        Point p1 = new Point(1,1);
+        Comparator<Point> c = p1.slopeOrder();
+        Point p2 = new Point(5,2);
+        Point p3 = new Point(3,3);
+        assertTrue(c.compare(p2, p3) < 0, "slope p1-p2 is less than slope p1-p3");
+    }
+
+    @Test
+    public void Comparator_GreaterThan() {
+        Point p1 = new Point(1,1);
+        Comparator<Point> c = p1.slopeOrder();
+        Point p2 = new Point(5,2);
+        Point p3 = new Point(3,3);
+        assertTrue(c.compare(p3, p2) > 0, "slope p1-p3 is greater than slope p1-p2");
     }
 }
