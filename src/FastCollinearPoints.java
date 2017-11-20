@@ -13,7 +13,6 @@ public class FastCollinearPoints {
         validateNoNullPoints(pointsBySlopeOrder);
         validatePointsNotDuplicated(pointsBySlopeOrder);
 
-
         lineSegments = new ArrayList<>();
 
         ArrayList<Point> pointsWithEqualSlope = new ArrayList<>();
