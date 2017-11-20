@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FastCollinearPointsTest {
 
@@ -58,9 +60,29 @@ public class FastCollinearPointsTest {
         assertEquals(expectedLs_1.toString(), actual[0].toString());
     }
 
+    @Test
+    public void ValidateConstructor_NullParamNotAllowed() {
+        Executable constructorWithNullParam = () -> {
+            new FastCollinearPoints(null);
+        };
+        assertThrows(IllegalArgumentException.class, constructorWithNullParam, "ctor should throw exception when passed null");
+    }
 
+    @Test
+    public void ValidateConstructor_PointArrayCannotContainNull() {
+        Point[] p = new Point[] { new Point(0,0), new Point(1, 1), null, new Point(5,5) };
+        Executable constructorWithNullValueInPointsArray = () -> {
+            new FastCollinearPoints(p);
+        };
+        assertThrows(IllegalArgumentException.class, constructorWithNullValueInPointsArray, "param list cannot contain a null value");
+    }
 
-    // validate ctor input
-    // not null
-    // no dupes
+    @Test
+    public void ValidateConstructor_PointArrayContainsDuplicateValue() {
+        Point[] p = new Point[] { new Point(0,0), new Point(1,1), new Point(2,2), new Point(0,0) };
+        Executable constructorWithDuplicatedPointInPointsArray = () -> {
+            new FastCollinearPoints(p);
+        };
+        assertThrows(IllegalArgumentException.class, constructorWithDuplicatedPointInPointsArray, "param list cannot contain duplicate point [0,0]");
+    }
 }
