@@ -120,4 +120,11 @@ public class PointTest {
         double slope_ps = p.slopeTo(s);
         assertNotEquals(slope_pr, slope_ps, "these are obviously not the same slope!");
     }
+
+    @Test
+    public void SlopeTo_Test1_HorizontalLine() {
+        Point p = new Point(203,467);
+        Point q = new Point(144,467);
+        assertEquals(0.0, p.slopeTo(q), "slope of horizontal line should be positive zero");
+    }
 }
