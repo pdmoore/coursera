@@ -9,7 +9,6 @@ import java.util.List;
 
 public class BruteCollinearPoints {
 
-    private int numSegments;
     private List<LineSegment> lineSegments;
 
     public BruteCollinearPoints(Point[] points) {
