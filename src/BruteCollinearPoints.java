@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 public class BruteCollinearPoints {
 
+    private int numSegments;
+
     public BruteCollinearPoints(Point[] points) {
         if (points == null) throw new IllegalArgumentException();
 
@@ -13,6 +15,26 @@ public class BruteCollinearPoints {
         }
 
         validatePointsNotDuplicated(sortedPoints);
+
+        findLindSegments(sortedPoints);
+    }
+
+    private void findLindSegments(Point[] sortedPoints) {
+        for (int p = 0; p < sortedPoints.length; p++) {
+            for (int q = p + 1; q < sortedPoints.length; q++) {
+                for (int r = q + 1; r <sortedPoints.length; r++) {
+                    for (int s =  r + 1; s < sortedPoints.length; s++) {
+
+                        double slope_pq = sortedPoints[p].slopeTo(sortedPoints[q]);
+                        double slope_pr = sortedPoints[p].slopeTo(sortedPoints[r]);
+                        double slope_ps = sortedPoints[p].slopeTo(sortedPoints[s]);
+                        if (slope_pq == slope_pr && slope_pq == slope_ps) {
+                            numSegments++;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void validatePointsNotDuplicated(Point[] sortedPoints) {
@@ -22,6 +44,6 @@ public class BruteCollinearPoints {
     }
 
     public int numberOfSegments() {
-        return 0;
+        return numSegments;
     }
 }

@@ -43,9 +43,16 @@ public class BruteCollinearPointsTest {
     }
 
     @Test
-    public void  NoCollinearPoints() {
+    public void NoCollinearPoints() {
         Point[] p = new Point[] {new Point(0,0), new Point(5, 1), new Point(3,3), new Point(2,4) };
         BruteCollinearPoints b = new BruteCollinearPoints(p);
         assertEquals(0, b.numberOfSegments() );
+    }
+
+    @Test
+    public void FourCollinearPoints() {
+        Point[] p = new Point[] {new Point(1,1), new Point(2,2), new Point(3,3), new Point(4,4) };
+        BruteCollinearPoints b = new BruteCollinearPoints(p);
+        assertEquals(1, b.numberOfSegments());
     }
 }
