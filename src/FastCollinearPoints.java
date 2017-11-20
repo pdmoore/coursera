@@ -7,31 +7,31 @@ public class FastCollinearPoints {
     private List<LineSegment> lineSegments;
 
     public FastCollinearPoints(Point[] points) {
-        Point[] sortedPoints = Arrays.copyOf(points, points.length);
-        Arrays.sort(sortedPoints);
+        Point[] pointsBySlopeOrder = Arrays.copyOf(points, points.length);
+        Arrays.sort(pointsBySlopeOrder);
         //check for dupes as in Brute
         
         lineSegments = new ArrayList<>();
 
         ArrayList<Point> pointsWithEqualSlope = new ArrayList<>();
         for (Point eachUnsortedPoint : points) {
-            Arrays.sort(sortedPoints, eachUnsortedPoint.slopeOrder());
+            Arrays.sort(pointsBySlopeOrder, eachUnsortedPoint.slopeOrder());
             
-            for (int i = 1; i < sortedPoints.length; i++) {
-                if (eachUnsortedPoint.slopeTo(sortedPoints[i]) == eachUnsortedPoint.slopeTo(sortedPoints[i - 1])) {
-                    pointsWithEqualSlope.add(sortedPoints[i]);
+            for (int i = 1; i < pointsBySlopeOrder.length; i++) {
+                if (eachUnsortedPoint.slopeTo(pointsBySlopeOrder[i]) == eachUnsortedPoint.slopeTo(pointsBySlopeOrder[i - 1])) {
+                    pointsWithEqualSlope.add(pointsBySlopeOrder[i]);
                 } else {
-                    createCollinearSegmentIfExists(pointsWithEqualSlope);
+                    createCollinearSegmentIfNotKnown(pointsWithEqualSlope);
                     
                     pointsWithEqualSlope.clear();
                     pointsWithEqualSlope.add(eachUnsortedPoint); // p
-                    pointsWithEqualSlope.add(sortedPoints[i]);   // candidate
+                    pointsWithEqualSlope.add(pointsBySlopeOrder[i]);   // candidate
                 }
             }
         }
     }
 
-    private void createCollinearSegmentIfExists(ArrayList<Point> pointsWithEqualsSlope) {
+    private void createCollinearSegmentIfNotKnown(ArrayList<Point> pointsWithEqualsSlope) {
         if (pointsWithEqualsSlope.size() < 4) {
             return;
         }
@@ -51,5 +51,9 @@ public class FastCollinearPoints {
 
     public int numberOfSegments() {
         return lineSegments.size();
+    }
+
+    public LineSegment[] segments() {
+        return lineSegments.toArray(new LineSegment[lineSegments.size()]);
     }
 }
