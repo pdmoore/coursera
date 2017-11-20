@@ -1,20 +1,13 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+
+import javax.sound.sampled.Line;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BruteCollinearPointsTest {
-
-
-    /*
-    public class BruteCollinearPoints {
-   public BruteCollinearPoints(Point[] points)    // finds all line segments containing 4 points
-   public           int numberOfSegments()        // the number of line segments
-   public LineSegment[] segments()                // the line segments
-}
-
-     */
 
     @Test
     public void ValidateConstructor_NullParamNotAllowed() {
@@ -64,5 +57,34 @@ public class BruteCollinearPointsTest {
         LineSegment expected = new LineSegment(new Point(1,1), new Point(4,4));
         LineSegment[] actual = b.segments();
         assertEquals(expected.toString(), actual[0].toString(), "LineSegment equals checks identity, toString is good enough here (1, 1) -> (4, 4)");
+    }
+
+    @Test
+    public void CollinearPoints_DoNotDoubleCountSegments() {
+        Point[] p = new Point[] {           // input8.txt
+                new Point(10000,0),
+                new Point(0,10000),
+                new Point(3000,7000),
+                new Point(7000,3000),
+                new Point(20000,21000),
+                new Point(3000,4000),
+                new Point(14000,15000),
+                new Point(6000,7000)
+        };
+        BruteCollinearPoints b = new BruteCollinearPoints(p);
+
+        LineSegment expectedLs_1 = new LineSegment(new Point(10000,0), new Point(0, 10000));
+        LineSegment expectedLs_2 = new LineSegment(new Point(3000,4000), new Point(20000, 21000));
+        LineSegment[] actual = b.segments();
+        assertEquals(2, actual.length, "there are only 2 collinear segments");
+        // assert LS 1
+        // assert LS 2
+    }
+
+    @Test
+    @Disabled
+    public void RunMain() {
+        String args[] = new String[] { "data/collinear/input8.txt" };
+        BruteCollinearPoints.main(args);
     }
 }

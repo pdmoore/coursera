@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PointTest {
@@ -108,5 +109,15 @@ public class PointTest {
         Point p2 = new Point(5,2);
         Point p3 = new Point(3,3);
         assertTrue(c.compare(p3, p2) > 0, "slope p1-p3 is greater than slope p1-p2");
+    }
+
+    @Test
+    public void SlopeTo_UnequalSlopes() {
+        Point p = new Point(10,0);
+        Point r = new Point(3,7);
+        Point s = new Point(6,7);
+        double slope_pr = p.slopeTo(r);
+        double slope_ps = p.slopeTo(s);
+        assertNotEquals(slope_pr, slope_ps, "these are obviously not the same slope!");
     }
 }
