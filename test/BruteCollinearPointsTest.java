@@ -55,4 +55,14 @@ public class BruteCollinearPointsTest {
         BruteCollinearPoints b = new BruteCollinearPoints(p);
         assertEquals(1, b.numberOfSegments());
     }
+
+    @Test
+    public void FourCollinearPoints_ConfirmLineSegment() {
+        Point[] p = new Point[] {new Point(1,1), new Point(2,2), new Point(3,3), new Point(4,4) };
+        BruteCollinearPoints b = new BruteCollinearPoints(p);
+
+        LineSegment expected = new LineSegment(new Point(1,1), new Point(4,4));
+        LineSegment[] actual = b.segments();
+        assertEquals(expected.toString(), actual[0].toString(), "LineSegment equals checks identity, toString is good enough here (1, 1) -> (4, 4)");
+    }
 }
