@@ -27,6 +27,15 @@ public class BruteCollinearPointsTest {
     }
 
     @Test
+    public void ValidateConstuctor_PointArrayContainsSingleNull() {
+        Point[] p = new Point[] { null };
+        Executable constructorWithNullValueInPointsArray = () -> {
+            new BruteCollinearPoints(p);
+        };
+        assertThrows(IllegalArgumentException.class, constructorWithNullValueInPointsArray, "param list cannot contain a null value");
+    }
+
+    @Test
     public void ValidateConstructor_PointArrayContainsDuplicateValue() {
         Point[] p = new Point[] { new Point(0,0), new Point(1,1), new Point(2,2), new Point(0,0) };
         Executable constructorWithDuplicatedPointInPointsArray = () -> {

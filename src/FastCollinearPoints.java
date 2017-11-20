@@ -10,11 +10,7 @@ public class FastCollinearPoints {
         if (points == null) throw new IllegalArgumentException();
 
         Point[] pointsBySlopeOrder = Arrays.copyOf(points, points.length);
-        try {
-            Arrays.sort(pointsBySlopeOrder);
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException();
-        }
+        validateNoNullPoints(pointsBySlopeOrder);
         validatePointsNotDuplicated(pointsBySlopeOrder);
 
 
@@ -38,12 +34,22 @@ public class FastCollinearPoints {
         }
     }
 
+    private void validateNoNullPoints(Point[] sortedPoints) {
+        if (sortedPoints.length == 1 && sortedPoints[0] == null) throw new IllegalArgumentException();
+        else {
+            try {
+                Arrays.sort(sortedPoints);
+            } catch (NullPointerException e) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
     private void validatePointsNotDuplicated(Point[] sortedPoints) {
         for (int i = 1; i < sortedPoints.length; i++) {
             if (sortedPoints[i-1].compareTo(sortedPoints[i]) == 0) throw new IllegalArgumentException("Duplicate point at " + sortedPoints[i].toString());
         }
     }
-    
+
     private void createCollinearSegmentIfNotKnown(ArrayList<Point> pointsWithEqualsSlope) {
         if (pointsWithEqualsSlope.size() < 4) {
             return;

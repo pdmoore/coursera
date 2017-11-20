@@ -14,16 +14,22 @@ public class BruteCollinearPoints {
         if (points == null) throw new IllegalArgumentException();
 
         Point[] sortedPoints = Arrays.copyOf(points, points.length);
-        try {
-            Arrays.sort(sortedPoints);
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException();
-        }
-
+        validateNoNullPoints(sortedPoints);
         validatePointsNotDuplicated(sortedPoints);
 
         lineSegments = new ArrayList<>();
         findLindSegments(sortedPoints);
+    }
+
+    private void validateNoNullPoints(Point[] sortedPoints) {
+        if (sortedPoints.length == 1 && sortedPoints[0] == null) throw new IllegalArgumentException();
+        else {
+            try {
+                Arrays.sort(sortedPoints);
+            } catch (NullPointerException e) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     private void findLindSegments(Point[] sortedPoints) {
