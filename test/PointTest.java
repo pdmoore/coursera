@@ -112,6 +112,16 @@ public class PointTest {
     }
 
     @Test
+    public void Comparator_HorizontalLine() {
+        Point p = new Point(5,2);
+        Point q = new Point(2,2);
+        Point r = new Point(7,2);
+
+        Comparator<Point> c = p.slopeOrder();
+        assertEquals(0, c.compare(q, r));
+    }
+
+    @Test
     public void SlopeTo_UnequalSlopes() {
         Point p = new Point(10,0);
         Point r = new Point(3,7);
