@@ -17,4 +17,11 @@ public class BoardTest {
         Board b = new Board(blocks);
         assertEquals(2, b.dimension());
     }
+
+    @Test
+    public void ToString() {
+        int[][] blocks = new int[][] { {1, 2}, {3, 4}, {5, 0} };
+        Board b = new Board(blocks);
+        assertEquals("2\n 1 2\n 3 4\n", b.toString());
+    }
 }
