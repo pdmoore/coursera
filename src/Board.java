@@ -29,4 +29,13 @@ public class Board {
         }
         return sb.toString();
     }
+
+    public int hamming() {
+
+        int hamming = 0;
+        for (int i = 1; i < board.length; i++) {
+            if (board[i] != 0 && board[i] != i) hamming++;
+        }
+        return hamming;
+    }
 }
