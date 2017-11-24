@@ -52,4 +52,34 @@ public class BoardTest {
         Board b = new Board(blocks);
         assertEquals(false, b.isGoal(), "any block not in final positions, isGoal is false. " );
     }
+
+    @Test
+    public void Manhattan_CellIsAboveAndLeftOfEndPosition() {
+        int dimension = 3;
+        int index = 1;
+        int value = 8;
+        int row = Math.abs((value - index) / dimension);
+        assertEquals(2,  row , "how many rows does value need to move");
+
+        int col = (value - index) - (dimension * row);
+        assertEquals(1, col, "how many cols does value need to move");
+
+        int manhattan = row + col;
+        assertEquals(3, manhattan, "manhattan is how many rows/cols off from desired location");
+    }
+
+    @Test
+    public void Manhattan_CellIsBelowAndRightOfEndPosition() {
+        int dimension = 3;
+        int index = 6;
+        int value = 2;
+        int row = Math.abs((value - index) / dimension);
+        assertEquals(1, row, "2 is one row below where it ought to be");
+
+        int col = Math.abs(value-index) - (dimension * row);
+        assertEquals(1, col, "2 is one col right of where it ought to be");
+
+        int manhattan = row + col;
+        assertEquals(2, manhattan, "manhattan is how many rows/cols off from desired location");
+    }
 }
