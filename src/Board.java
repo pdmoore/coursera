@@ -45,4 +45,8 @@ public class Board {
         }
         return true;
     }
+
+    public static void main(String[] args) {
+        
+    }
 }
