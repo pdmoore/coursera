@@ -39,6 +39,18 @@ public class Board {
         return hamming;
     }
 
+    public int manhattan() {
+        int manhattan = 0;
+        for (int i = 1; i < board.length; i++) {
+            if (board[i] != 0 && board[i] != i) {
+                int rowOffset = Math.abs((board[i] - i) / dimension);
+                int colOffset = Math.abs(board[i] - i) - (dimension * rowOffset);
+                manhattan += rowOffset + colOffset;
+            }
+        }
+        return manhattan;
+    }
+
     public boolean isGoal() {
         for (int i = 1; i < board.length - 1; i++) {
             if (board[i] != i) return false;

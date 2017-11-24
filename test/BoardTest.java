@@ -82,4 +82,18 @@ public class BoardTest {
         int manhattan = row + col;
         assertEquals(2, manhattan, "manhattan is how many rows/cols off from desired location");
     }
+
+    @Test
+    public void Manhattan_NoneInWrongPosition_NoMoves() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+        Board b = new Board(blocks);
+        assertEquals(0, b.manhattan(), "all blocks are in final position, manhattan score is 0" );
+    }
+
+    @Test
+    public void Manhattan_SomeBlocksInWrongPosition_NoMoves() {
+        int[][] blocks = new int[][] { {8, 1, 3}, {4, 0, 2}, {7, 6, 5} };
+        Board b = new Board(blocks);
+        assertEquals(10, b.manhattan(), "Blocks in wrong positions: 8, 1, 0, 2, 5, 6: manhattan score is 10" );
+    }
 }
