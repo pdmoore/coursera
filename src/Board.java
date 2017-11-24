@@ -38,4 +38,11 @@ public class Board {
         }
         return hamming;
     }
+
+    public boolean isGoal() {
+        for (int i = 1; i < board.length - 1; i++) {
+            if (board[i] != i) return false;
+        }
+        return true;
+    }
 }

@@ -38,4 +38,18 @@ public class BoardTest {
         Board b = new Board(blocks);
         assertEquals(5, b.hamming(), "Blocks in wrong positions: 8, 1, 0, 2, 5, 6: hamming score is 5" );
     }
+
+    @Test
+    public void IsGoal_NoneInWrongPosition() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+        Board b = new Board(blocks);
+        assertEquals(true, b.isGoal(), "all blocks are in final position, isGoal is true" );
+    }
+
+    @Test
+    public void IsGoal_SomeBlocksInWrongPosition() {
+        int[][] blocks = new int[][] { {8, 1, 3}, {4, 0, 2}, {7, 6, 5} };
+        Board b = new Board(blocks);
+        assertEquals(false, b.isGoal(), "any block not in final positions, isGoal is false. " );
+    }
 }
