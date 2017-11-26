@@ -1,6 +1,7 @@
 public class Board {
     private final int dimension;
     private final int[] board;
+    private int manhattan;
 
     public Board(int[][] blocks) {
         dimension = blocks[0].length;
@@ -11,6 +12,7 @@ public class Board {
                 board[index++] = blocks[i][j];
             }
         }
+        computeManhattan();
     }
 
     public int dimension() {
@@ -40,7 +42,10 @@ public class Board {
     }
 
     public int manhattan() {
-        int manhattan = 0;
+        return manhattan;
+    }
+
+    private void computeManhattan() {
         for (int i = 1; i < board.length; i++) {
             if (board[i] != 0 && board[i] != i) {
                 int rowOffset = Math.abs((board[i] - i) / dimension);
@@ -48,8 +53,8 @@ public class Board {
                 manhattan += rowOffset + colOffset;
             }
         }
-        return manhattan;
     }
+
 
     public boolean isGoal() {
         for (int i = 1; i < board.length - 1; i++) {

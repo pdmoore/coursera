@@ -76,7 +76,7 @@ public class BoardTest {
         int row = Math.abs((value - index) / dimension);
         assertEquals(1, row, "2 is one row below where it ought to be");
 
-        int col = Math.abs(value-index) - (dimension * row);
+            int col = Math.abs(value-index) - (dimension * row);
         assertEquals(1, col, "2 is one col right of where it ought to be");
 
         int manhattan = row + col;
