@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -114,5 +116,24 @@ public class BoardTest {
         int[][] scrambled = new int[][] { {3, 1, 2}, {4, 5, 6}, {7, 8, 0} };
         Board unequalBoard = new Board(scrambled);
         assertFalse(b.equals(unequalBoard));
+    }
+
+    @Test
+    public void Neighbors_TwoNeighbors() {
+        int[][] blocks = new int[][] { {0, 1, 2}, {3, 4, 5}, {6, 7, 8} };
+        Board b = new Board(blocks);
+        Iterable<Board> iterable = b.neighbors();
+        Iterator<Board> actualIter = iterable.iterator();
+        Board actualBoard1 = actualIter.next();
+        int[][] n1 = new int[][] { {1, 0, 2}, {3, 4, 5}, {6, 7, 8} };
+        Board neighbor1 = new Board(n1);
+        assertTrue(neighbor1.equals(actualBoard1), "first neighbor swaps the blank to the right");
+        Board actualBoard2 = actualIter.next();
+
+        int[][] n2 = new int[][] { {3, 1, 2}, {0, 4, 5}, {6, 7, 8} };
+        Board neighbor2 = new Board(n2);
+        assertTrue(neighbor2.equals(actualBoard2), "second neighbor swaps the blank to below");
+
+        assertFalse(actualIter.hasNext(), "only two possible neighbors when blank is in a corner");
     }
 }
