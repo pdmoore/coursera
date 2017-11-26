@@ -1,6 +1,6 @@
 public class Board {
     private final int dimension;
-    private final int[] board;
+    final int[] board;
     private int manhattan;
 
     public Board(int[][] blocks) {
@@ -55,11 +55,21 @@ public class Board {
         }
     }
 
-
     public boolean isGoal() {
         for (int i = 1; i < board.length - 1; i++) {
             if (board[i] != i) return false;
         }
+        return true;
+    }
+
+    @Override
+    public boolean equals(Object y) {
+        // Not doing any validation of y
+
+        for (int i = 1; i < board.length; i++) {
+            if (board[i] != ((Board)y).board[i]) return false;
+        }
+
         return true;
     }
 

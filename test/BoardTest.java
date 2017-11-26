@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BoardTest {
 
@@ -95,5 +97,22 @@ public class BoardTest {
         int[][] blocks = new int[][] { {8, 1, 3}, {4, 0, 2}, {7, 6, 5} };
         Board b = new Board(blocks);
         assertEquals(10, b.manhattan(), "Blocks in wrong positions: 8, 1, 0, 2, 5, 6: manhattan score is 10" );
+    }
+
+    @Test
+    public void Equals_BoardsAreEqual() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+        Board b = new Board(blocks);
+        Board equalBoard = new Board(blocks);
+        assertTrue(b.equals(equalBoard));
+    }
+
+    @Test
+    public void Equals_BoardsNotEqual() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+        Board b = new Board(blocks);
+        int[][] scrambled = new int[][] { {3, 1, 2}, {4, 5, 6}, {7, 8, 0} };
+        Board unequalBoard = new Board(scrambled);
+        assertFalse(b.equals(unequalBoard));
     }
 }
