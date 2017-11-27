@@ -4,8 +4,14 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Solver {
 
+    private final boolean solutionExists;
+
     public Solver(Board initial) {
+        if (initial == null) throw new IllegalArgumentException();
+
         MinPQ<Board> minPQ = new MinPQ<>();
+        solutionExists = false;
+
     }
 
     public boolean isSolvable() {
