@@ -119,6 +119,13 @@ public class BoardTest {
     }
 
     @Test
+    public void Equals_Null_notEqual() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+        Board b = new Board(blocks);
+        assertFalse(b.equals(null));
+    }
+
+    @Test
     public void Neighbors_TwoNeighbors_Right_and_Below() {
         int[][] blocks = new int[][] { {0, 1, 2}, {3, 4, 5}, {6, 7, 8} };
         Board b = new Board(blocks);
