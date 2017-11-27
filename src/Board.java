@@ -104,19 +104,33 @@ public class Board {
     }
 
     private void swapWithLeft(List boardList) {
-     // check if on left edge
-// NEED TO IMPLEMENT THIS
+        if (((blankIndex) % dimension) == 1) return;         // blank is on left edge, no swap
+
+        int[] neighborBoard = makeCopyOfBoard();
+        int newBlankIndex = blankIndex - 1;
+        neighborBoard[blankIndex] = neighborBoard[newBlankIndex];
+        neighborBoard[newBlankIndex] = 0;
+
+        Board neighbor = new Board(neighborBoard, dimension, newBlankIndex);
+        boardList.add(neighbor);
     }
 
     private void swapWithAbove(List boardList) {
-//        if (blankIndex <= dimension) return;
-// NEED TO IMPLEMENT THIS
+        if (blankIndex <= dimension) return;                    // blank is on top edge, no swap
+
+        int[] neighborBoard = makeCopyOfBoard();
+        int newBlankIndex = blankIndex - dimension;
+        neighborBoard[blankIndex] = neighborBoard[newBlankIndex];
+        neighborBoard[newBlankIndex] = 0;
+
+        Board neighbor = new Board(neighborBoard, dimension, newBlankIndex);
+        boardList.add(neighbor);
     }
 
     private void swapWithBelow(List boardList) {
-// NEED TO ERROR CHECK IF ON BOTTOM ROW
-        int[] neighborBoard = new int[board.length];
-        System.arraycopy(board, 0, neighborBoard, 0, board.length);
+        if (blankIndex + dimension > board.length) return;      // blank is on bottom edge, no swap
+
+        int[] neighborBoard = makeCopyOfBoard();
         int newBlankIndex = blankIndex + dimension;
         neighborBoard[blankIndex] = neighborBoard[newBlankIndex];
         neighborBoard[newBlankIndex] = 0;
@@ -126,14 +140,20 @@ public class Board {
     }
 
     private void swapWithRight(List boardList) {
-// NEED TO ERROR CHECK IF ON RIGHT EDGE
-        int[] neighborBoard = new int[board.length];
-        System.arraycopy(board, 0, neighborBoard, 0, board.length);
+        if ((blankIndex % dimension) == 0) return;   // blank is on right edge, no swap
+
+        int[] neighborBoard = makeCopyOfBoard();
         int newBlankIndex = blankIndex + 1;
         neighborBoard[blankIndex] = neighborBoard[newBlankIndex];
         neighborBoard[newBlankIndex] = 0;
 
         Board neighbor = new Board(neighborBoard, dimension, newBlankIndex);
         boardList.add(neighbor);
+    }
+
+    private int[] makeCopyOfBoard() {
+        int[] neighborBoard = new int[board.length];
+        System.arraycopy(board, 0, neighborBoard, 0, board.length);
+        return neighborBoard;
     }
 }
