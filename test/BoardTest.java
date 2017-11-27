@@ -154,4 +154,16 @@ public class BoardTest {
         Board neighbor1 = new Board(n1);
         assertTrue(neighbor1.equals(actualBoard1), "second neighbor swaps the blank to the left");
     }
+
+    @Test
+    public void Neighbors_FourNeighbors_EachDirection() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 0, 5}, {6, 7, 8} };
+        Board b = new Board(blocks);
+
+        int neighborCount = 0;
+        for (Board b2 : b.neighbors()) {
+            neighborCount++;
+        }
+        assertEquals(4, neighborCount, "blank is in center, can be swapped in 4 directions");
+    }
 }
