@@ -227,4 +227,22 @@ public class BoardTest {
         b.neighbors();
         assertTrue(true, "call to neighbors caused index out of bounds when blank was in lower left corner");
     }
+
+    @Test
+    public void Twin_blankInSecondRow() {
+        int[][] blocks = new int[][] { {1, 2}, {0, 3} };
+        Board b = new Board(blocks);
+        Board actual = b.twin();
+        assertEquals("2\n 2 1\n 0 3\n", actual.toString(), "twin should swap two blocks, but not the blank");
+    }
+
+    @Test
+    public void Twin_blankInFirstRow() {
+        int[][] blocks = new int[][] { {1, 0}, {2, 3} };
+        Board b = new Board(blocks);
+        Board actual = b.twin();
+        assertEquals("2\n 2 0\n 1 3\n", actual.toString(), "twin should swap two blocks, but not the blank");
+    }
+
+
 }

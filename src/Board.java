@@ -99,7 +99,6 @@ public class Board {
         swapWithAbove(boardList);
         swapWithLeft(boardList);
 
-
         return boardList;
     }
 
@@ -158,8 +157,18 @@ public class Board {
     }
 
     public Board twin() {
-        // stub for now
-        return null;
+        int[] twinBoard = makeCopyOfBoard();
+
+        int swapThis = 1;
+        if (blankIndex == 1) swapThis++;
+        int swapThat = swapThis + 1;
+        if (blankIndex == swapThat) swapThat++;
+
+        int temp = twinBoard[swapThis];
+        twinBoard[swapThis] = twinBoard[swapThat];
+        twinBoard[swapThat] = temp;
+
+        return new Board(twinBoard, dimension, blankIndex);
     }
 
     public static void main(String[] args) {
