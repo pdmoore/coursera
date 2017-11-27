@@ -73,6 +73,35 @@ public class BoardTest {
     }
 
     @Test
+    public void Manhattan_2InLowerLeft() {
+        int dimension = 2;
+        int index = 3;
+        int value = 2;
+        int mod = value % dimension;
+        int div = index / dimension;
+        int rowIndexShouldBeIn = (int) Math.ceil((double) index/dimension);
+        int rowValueShouldBeIn = (int) Math.ceil((double) value/dimension);
+        int row = Math.abs(rowValueShouldBeIn - rowIndexShouldBeIn);
+        assertEquals(1, row, "2 needs to move up one row");
+
+        int col = Math.abs(Math.abs(value-index) - (dimension * row));
+        assertEquals(1, col, "2 needs to move right one col");
+
+        index = 4;
+        value = 3;
+        mod = value % dimension;
+        div = index / dimension;
+        rowIndexShouldBeIn = (int) Math.ceil((double) index/dimension);
+        rowValueShouldBeIn = (int) Math.ceil((double) value/dimension);
+        row = Math.abs(rowValueShouldBeIn - rowIndexShouldBeIn);
+//        row = Math.abs((value % dimension) - (index / dimension));
+        assertEquals(0, row, "3 is in correct row");
+//        col = (index / dimension) - (value % dimension);
+        col = Math.abs(Math.abs(value-index) - (dimension * row));
+        assertEquals(1, col, "3 needs to move right one column");
+    }
+
+    @Test
     public void Manhattan_CellIsBelowAndRightOfEndPosition() {
         int dimension = 3;
         int index = 6;
@@ -80,7 +109,7 @@ public class BoardTest {
         int row = Math.abs((value - index) / dimension);
         assertEquals(1, row, "2 is one row below where it ought to be");
 
-            int col = Math.abs(value-index) - (dimension * row);
+        int col = Math.abs(value-index) - (dimension * row);
         assertEquals(1, col, "2 is one col right of where it ought to be");
 
         int manhattan = row + col;
@@ -99,6 +128,13 @@ public class BoardTest {
         int[][] blocks = new int[][] { {8, 1, 3}, {4, 0, 2}, {7, 6, 5} };
         Board b = new Board(blocks);
         assertEquals(10, b.manhattan(), "Blocks in wrong positions: 8, 1, 0, 2, 5, 6: manhattan score is 10" );
+    }
+
+    @Test
+    public void Manhattan_2by2_BlocksInWrongPosition_NoMoves() {
+        int[][] blocks = new int[][] { {1, 0}, {2, 3} };
+        Board b = new Board(blocks);
+        assertEquals(3, b.manhattan(), "2 has to move twice, 3 has to move once");
     }
 
     @Test

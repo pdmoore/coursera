@@ -63,8 +63,10 @@ public class Board {
     private void computeManhattan() {
         for (int i = 1; i < board.length; i++) {
             if (board[i] != 0 && board[i] != i) {
-                int rowOffset = Math.abs((board[i] - i) / dimension);
-                int colOffset = Math.abs(board[i] - i) - (dimension * rowOffset);
+                int rowIndexShouldBeIn = (int) Math.ceil((double) i / dimension);
+                int rowValueShouldBeIn = (int) Math.ceil((double) board[i] / dimension);
+                int rowOffset = Math.abs(rowValueShouldBeIn - rowIndexShouldBeIn);
+                int colOffset = Math.abs(Math.abs(board[i] - i) - (dimension * rowOffset));
                 manhattan += rowOffset + colOffset;
             }
         }
@@ -79,7 +81,7 @@ public class Board {
 
     @Override
     public boolean equals(Object y) {
-        if ((y == null) || (y instanceof Board) == false) return false;
+        if ((y == null) || (y.getClass() != Board.class)) return false;
 
         if (((Board)y).dimension() != dimension()) return false;
 
