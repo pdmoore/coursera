@@ -77,8 +77,6 @@ public class BoardTest {
         int dimension = 2;
         int index = 3;
         int value = 2;
-        int mod = value % dimension;
-        int div = index / dimension;
         int rowIndexShouldBeIn = (int) Math.ceil((double) index/dimension);
         int rowValueShouldBeIn = (int) Math.ceil((double) value/dimension);
         int row = Math.abs(rowValueShouldBeIn - rowIndexShouldBeIn);
@@ -89,14 +87,10 @@ public class BoardTest {
 
         index = 4;
         value = 3;
-        mod = value % dimension;
-        div = index / dimension;
         rowIndexShouldBeIn = (int) Math.ceil((double) index/dimension);
         rowValueShouldBeIn = (int) Math.ceil((double) value/dimension);
         row = Math.abs(rowValueShouldBeIn - rowIndexShouldBeIn);
-//        row = Math.abs((value % dimension) - (index / dimension));
         assertEquals(0, row, "3 is in correct row");
-//        col = (index / dimension) - (value % dimension);
         col = Math.abs(Math.abs(value-index) - (dimension * row));
         assertEquals(1, col, "3 needs to move right one column");
     }
