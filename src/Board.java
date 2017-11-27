@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Board {
     private final int dimension;
-    final int[] board;
+    private final int[] board;
     private int blankIndex = 0;
     private int manhattan;
 
@@ -22,7 +22,7 @@ public class Board {
         computeManhattan();
     }
 
-    Board(int[] neighborBoard, int dimension, int blankIndex) {
+    private Board(int[] neighborBoard, int dimension, int blankIndex) {
         this.board = neighborBoard;
         this.dimension = dimension;
         this.blankIndex = blankIndex;
@@ -155,5 +155,10 @@ public class Board {
         int[] neighborBoard = new int[board.length];
         System.arraycopy(board, 0, neighborBoard, 0, board.length);
         return neighborBoard;
+    }
+
+    public Board twin() {
+        // stub for now
+        return null;
     }
 }
