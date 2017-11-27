@@ -39,9 +39,9 @@ public class Solver {
         Node root = new Node(initial, null);
         minPQ.insert(root);
 
-        while (solutionExists == false) {
-            solve(minPQ);
-        }
+//        while (solutionExists == false) {
+//            solve(minPQ);
+//        }
     }
 
     private void solve(MinPQ<Node> minPQ) {
