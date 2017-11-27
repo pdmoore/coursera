@@ -91,7 +91,7 @@ public class Board {
     }
 
     public Iterable<Board> neighbors() {
-        List boardList = new ArrayList<Board>();
+        List<Board> boardList = new ArrayList<>();
         swapWithRight(boardList);
         swapWithBelow(boardList);
         swapWithAbove(boardList);
@@ -101,7 +101,7 @@ public class Board {
         return boardList;
     }
 
-    private void swapWithLeft(List boardList) {
+    private void swapWithLeft(List<Board> boardList) {
         if (((blankIndex) % dimension) == 1) return;         // blank is on left edge, no swap
 
         int[] neighborBoard = makeCopyOfBoard();
@@ -113,7 +113,7 @@ public class Board {
         boardList.add(neighbor);
     }
 
-    private void swapWithAbove(List boardList) {
+    private void swapWithAbove(List<Board> boardList) {
         if (blankIndex <= dimension) return;                    // blank is on top edge, no swap
 
         int[] neighborBoard = makeCopyOfBoard();
@@ -125,8 +125,8 @@ public class Board {
         boardList.add(neighbor);
     }
 
-    private void swapWithBelow(List boardList) {
-        if (blankIndex + dimension > board.length) return;      // blank is on bottom edge, no swap
+    private void swapWithBelow(List<Board> boardList) {
+        if (blankIndex + dimension >= board.length) return;      // blank is on bottom edge, no swap
 
         int[] neighborBoard = makeCopyOfBoard();
         int newBlankIndex = blankIndex + dimension;
@@ -137,7 +137,7 @@ public class Board {
         boardList.add(neighbor);
     }
 
-    private void swapWithRight(List boardList) {
+    private void swapWithRight(List<Board> boardList) {
         if ((blankIndex % dimension) == 0) return;   // blank is on right edge, no swap
 
         int[] neighborBoard = makeCopyOfBoard();

@@ -189,4 +189,12 @@ public class BoardTest {
         }
         assertEquals(4, neighborCount, "blank is in center, can be swapped in 4 directions");
     }
+
+    @Test
+    public void Neighbors_bug_SwapBelowIndexOutOfBounds() {
+        int[][] blocks = new int[][] { {1, 2}, {0, 3} };
+        Board b = new Board(blocks);
+        b.neighbors();
+        assertTrue(true, "call to neighbors caused index out of bounds when blank was in lower left corner");
+    }
 }
