@@ -79,7 +79,7 @@ public class Board {
 
     @Override
     public boolean equals(Object y) {
-        if (y == null) return false;
+        if ((y == null) || (y instanceof Board) == false) return false;
 
         for (int i = 1; i < board.length; i++) {
             if (board[i] != ((Board)y).board[i]) return false;
