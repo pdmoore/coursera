@@ -126,9 +126,14 @@ public class Board {
     }
 
     private void swapWithRight(List boardList) {
-// NEED TO IMPLEMENT THIS
-        int[][] neighbor1 = new int[][] { {1, 0, 2}, {3, 4, 5}, {6, 7, 8} };
-        Board b1 = new Board(neighbor1);
-        boardList.add(b1);
+// NEED TO ERROR CHECK IF ON RIGHT EDGE
+        int[] neighborBoard = new int[board.length];
+        System.arraycopy(board, 0, neighborBoard, 0, board.length);
+        int newBlankIndex = blankIndex + 1;
+        neighborBoard[blankIndex] = neighborBoard[newBlankIndex];
+        neighborBoard[newBlankIndex] = 0;
+
+        Board neighbor = new Board(neighborBoard, dimension, newBlankIndex);
+        boardList.add(neighbor);
     }
 }
