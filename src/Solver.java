@@ -1,6 +1,9 @@
+import edu.princeton.cs.algs4.MinPQ;
+
 public class Solver {
 
     public Solver(Board initial) {
+        MinPQ<Board> minPQ = new MinPQ<>();
     }
 
     public boolean isSolvable() {
