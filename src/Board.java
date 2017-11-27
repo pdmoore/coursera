@@ -81,15 +81,13 @@ public class Board {
     public boolean equals(Object y) {
         if ((y == null) || (y instanceof Board) == false) return false;
 
+        if (((Board)y).dimension() != dimension()) return false;
+
         for (int i = 1; i < board.length; i++) {
             if (board[i] != ((Board)y).board[i]) return false;
         }
 
         return true;
-    }
-
-    public static void main(String[] args) {
-
     }
 
     public Iterable<Board> neighbors() {
@@ -160,5 +158,9 @@ public class Board {
     public Board twin() {
         // stub for now
         return null;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

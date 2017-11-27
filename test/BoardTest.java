@@ -133,6 +133,15 @@ public class BoardTest {
     }
 
     @Test
+    public void Equals_DimensionsDoNotAgree() {
+        int[][] blocks = new int[][] { {1, 2, 3}, {4, 5, 6}, {7, 8, 0} };
+        Board b = new Board(blocks);
+        int[][] smallerBoard = new int[][] { {1, 2}, {3, 4} };
+        Board unequalBoard = new Board(smallerBoard);
+        assertFalse(b.equals(unequalBoard));
+    }
+
+    @Test
     public void Neighbors_TwoNeighbors_Right_and_Below() {
         int[][] blocks = new int[][] { {0, 1, 2}, {3, 4, 5}, {6, 7, 8} };
         Board b = new Board(blocks);
