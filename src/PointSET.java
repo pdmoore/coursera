@@ -22,4 +22,8 @@ public class PointSET {
     public int size() {
         return pointCount;
     }
+
+    public static void main(String[] args) {
+        
+    }
 }
