@@ -45,4 +45,30 @@ public class PointSETTest {
         };
         assertThrows(IllegalArgumentException.class, insertCalledWithNull, "insert does not accept null parameter");
     }
+
+    @Test
+    public void contains_ValidateParameter() {
+        PointSET s = new PointSET();
+        Executable containsCalledWithNull = () -> {
+            s.contains(null);
+        };
+        assertThrows(IllegalArgumentException.class, containsCalledWithNull, "contains does not accept null parameter");
+    }
+
+    @Test
+    public void contains_PointHasNotBeenInserted() {
+        PointSET s = new PointSET();
+        Point2D p = new Point2D(0.0, 0.0);
+        assertFalse(s.contains(p), "contains should return false for a point that hasn't been inserted");
+    }
+
+    @Test
+    public void contains_PointHasBeenInserted() {
+        PointSET s = new PointSET();
+        Point2D p = new Point2D(0.5, 0.1);
+        s.insert(p);
+        assertTrue(s.contains(p), "contains should return true for a point that has been inserted");
+    }
+
+
 }
