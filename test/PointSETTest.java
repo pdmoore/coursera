@@ -1,6 +1,8 @@
+import edu.princeton.cs.algs4.Point2D;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PointSETTest {
 
@@ -21,7 +23,26 @@ public class PointSETTest {
 
     @Test
     public void isEmpty_WhenNewlyConstructed() {
-        PointSET p = new PointSET();
-        assertTrue(p.isEmpty(), "newly constructed object doesn't contain any points");
+        PointSET s = new PointSET();
+        assertTrue(s.isEmpty(), "newly constructed object doesn't contain any points");
+    }
+
+    @Test
+    public void addOnePoint_CheckSizeAndEmptiness() {
+        PointSET s = new PointSET();
+        Point2D p = new Point2D(0.0, 0.0);
+        s.insert(p);
+
+        assertFalse(s.isEmpty(), "after adding a point the set is no longer empty");
+        assertEquals(1, s.size(), "PointSET knows how many points have been inserted");
+    }
+
+    @Test
+    public void insert_ValidateParameter() {
+        PointSET s = new PointSET();
+        Executable insertCalledWithNull = () -> {
+            s.insert(null);
+        };
+        assertThrows(IllegalArgumentException.class, insertCalledWithNull, "insert does not accept null parameter");
     }
 }
