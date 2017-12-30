@@ -1,1 +1,7 @@
-zip percolation.zip src/week1/Percolation.zip src/week1/PercolationStats.zip
+if [ -e percolation.zip ] 
+then
+    rm percolation.zip
+fi
+
+zip percolation.zip src/week1/Percolation.java src/week1/PercolationStats.java
+
