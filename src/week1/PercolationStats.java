@@ -2,14 +2,14 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
+    private static final double CONFIDENCE_95 = 1.96;
+
     private final int gridWidth;
     private final int trials;
 
     private final double[] thresholdResults;
     private double mean;
     private double stddev;
-
-    private static final double CONFIDENCE_95 = 1.96;
 
     public PercolationStats(int n, int trials) {
         if (n <= 0) throw new IllegalArgumentException();
@@ -26,7 +26,7 @@ public class PercolationStats {
     private void runExperiments() {
         for (int i = 0; i < trials; i++) {
             int numSites = runExperiment();
-            double threshold = (double)numSites/(gridWidth * gridWidth);
+            double threshold = (double) numSites/(gridWidth * gridWidth);
             thresholdResults[i] = threshold;
         }
 
@@ -37,7 +37,7 @@ public class PercolationStats {
     private int runExperiment() {
         Percolation p = new Percolation(gridWidth);
 
-        while (p.percolates() == false) {
+        while (!p.percolates()) {
             int randRow = StdRandom.uniform(gridWidth) + 1;
             int randCol = StdRandom.uniform(gridWidth) + 1;
             p.open(randRow, randCol);

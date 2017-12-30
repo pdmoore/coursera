@@ -2,15 +2,15 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
 
-    private int openSiteCount;
-    private int gridWidth;
-
-    private boolean openSites[][];
     private static final boolean OPEN   = true;
     private static final boolean CLOSED = false;
 
-    private WeightedQuickUnionUF unionFindFull;
-    private WeightedQuickUnionUF unionFindPercolates;
+    private int openSiteCount;
+    private final int gridWidth;
+
+    private boolean[][] openSites;
+    private final WeightedQuickUnionUF unionFindFull;
+    private final WeightedQuickUnionUF unionFindPercolates;
 
     public Percolation(int n) {
         if (n <= 0) throw new IllegalArgumentException();
@@ -95,5 +95,6 @@ public class Percolation {
     }
 
     public static void main(String[] args) {
+        // method required by grading system
     }
 }

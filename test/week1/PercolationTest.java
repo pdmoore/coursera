@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -25,7 +26,7 @@ public class PercolationTest {
     @Test
     public void NumberOfOpenSitesZeroOnConstruction() {
         Percolation p = new Percolation(2);
-        assertEquals(0, p.numberOfOpenSites());
+        Assertions.assertEquals(0, p.numberOfOpenSites());
     }
 
     @Test
@@ -33,7 +34,7 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
         p.open(1, 1);
         p.open(2, 2);
-        assertEquals(2, p.numberOfOpenSites());
+        Assertions.assertEquals(2, p.numberOfOpenSites());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
         p.open(1, 1);
         p.open(1, 1);
-        assertEquals(1, p.numberOfOpenSites());
+        Assertions.assertEquals(1, p.numberOfOpenSites());
     }
 
     @Test
@@ -93,9 +94,9 @@ public class PercolationTest {
     @Test
     public void CanAskIfSiteIsOpen() {
         Percolation p = new Percolation(2);
-        assertFalse(p.isOpen(1, 1), "site should be Closed on construction");
+        Assertions.assertFalse(p.isOpen(1, 1), "site should be Closed on construction");
         p.open(1, 1);
-        assertTrue(p.isOpen(1, 1));
+        Assertions.assertTrue(p.isOpen(1, 1));
     }
 
     @Test
@@ -130,16 +131,16 @@ public class PercolationTest {
     @Test
     public void SiteThatIsOpenAndConnectedToTopRowIsFull() {
         Percolation p = new Percolation(2);
-        assertFalse(p.isFull(1,1), "site is not full to start with");
+        Assertions.assertFalse(p.isFull(1,1), "site is not full to start with");
         p.open(1, 1);
-        assertTrue(p.isFull(1,1), "site is full when open and connected to top");
+        Assertions.assertTrue(p.isFull(1,1), "site is full when open and connected to top");
     }
 
     @Test
     public void SiteThatIsOpenAndNotConnectedToTopRowIsNotFull() {
         Percolation p = new Percolation(2);
         p.open(2, 1);
-        assertFalse(p.isFull(1,1), "site is open but not connected to top, so not full");
+        Assertions.assertFalse(p.isFull(1,1), "site is open but not connected to top, so not full");
     }
 
     @Test
@@ -147,7 +148,7 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
         p.open(1, 1);
         p.open(2, 1);
-        assertTrue(p.isFull(2, 1), " second row site should be open since it connects to above");
+        Assertions.assertTrue(p.isFull(2, 1), " second row site should be open since it connects to above");
     }
 
     @Test
@@ -155,7 +156,7 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
         p.open(2,1);
         p.open(1,1);
-        assertTrue(p.isFull(2, 1), "opening a full site above an open site should then make site below full");
+        Assertions.assertTrue(p.isFull(2, 1), "opening a full site above an open site should then make site below full");
     }
 
     @Test
@@ -164,7 +165,7 @@ public class PercolationTest {
         p.open(1,1);
         p.open(2,1);
         p.open(2,2);
-        assertTrue(p.isFull(2, 2), "site to the right of an open & full site should be full");
+        Assertions.assertTrue(p.isFull(2, 2), "site to the right of an open & full site should be full");
     }
 
     @Test
@@ -173,7 +174,7 @@ public class PercolationTest {
         p.open(1,2);
         p.open(2,2);
         p.open(1,2);
-        assertTrue(p.isFull(1,2), "site to left of an open & full site should be full");
+        Assertions.assertTrue(p.isFull(1,2), "site to left of an open & full site should be full");
     }
 
     @Test
@@ -212,7 +213,7 @@ public class PercolationTest {
         p.open(2,1);
         p.open(3,1);
         p.open(3,3);
-        assertFalse(p.isFull(3, 3), "open site on bottom row should not be Full when not connected");
+        Assertions.assertFalse(p.isFull(3, 3), "open site on bottom row should not be Full when not connected");
     }
 
     @Test
@@ -220,7 +221,7 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
         p.open(1,1);
         p.open(2,1);
-        assertTrue(p.percolates());
+        Assertions.assertTrue(p.percolates());
     }
 
     @Test
@@ -230,8 +231,8 @@ public class PercolationTest {
         p.open(1,1);
         p.open(2,3);
         p.open(2,1);
-        assertFalse(p.percolates(), "connection doesn't exist between bottom and top");
+        Assertions.assertFalse(p.percolates(), "connection doesn't exist between bottom and top");
         p.open(2,2);
-        assertTrue(p.percolates(), "now percolates when bottom and top are connected");
+        Assertions.assertTrue(p.percolates(), "now percolates when bottom and top are connected");
     }
 }
