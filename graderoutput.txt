@@ -20,8 +20,8 @@ ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-3.3K Nov  9 04:37 Percolation.java
-2.2K Nov  9 04:37 PercolationStats.java
+3.3K Nov  9 04:37 week1.Percolation.java
+2.2K Nov  9 04:37 week1.PercolationStats.java
 
 
 ********************************************************************************
@@ -29,10 +29,10 @@ The following files were submitted:
 ********************************************************************************
 
 
-% javac Percolation.java
+% javac week1.Percolation.java
 *-----------------------------------------------------------
 
-% javac PercolationStats.java
+% javac week1.PercolationStats.java
 *-----------------------------------------------------------
 
 
@@ -41,9 +41,9 @@ The following files were submitted:
 
 Checking the APIs of your programs.
 *-----------------------------------------------------------
-Percolation:
+week1.Percolation:
 
-PercolationStats:
+week1.PercolationStats:
 
 ================================================================
 
@@ -62,10 +62,10 @@ PercolationStats:
 
 % pmd .
 *-----------------------------------------------------------
-Percolation.java:6: The private instance (or static) variable 'gridWidth' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Percolation.java:12: The private instance (or static) variable 'unionFindFull' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Percolation.java:13: The private instance (or static) variable 'unionFindPercolates' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Percolation.java:97: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
+week1.Percolation.java:6: The private instance (or static) variable 'gridWidth' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+week1.Percolation.java:12: The private instance (or static) variable 'unionFindFull' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+week1.Percolation.java:13: The private instance (or static) variable 'unionFindPercolates' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+week1.Percolation.java:97: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
 PMD ends with 4 warnings.
 
 
@@ -74,18 +74,18 @@ PMD ends with 4 warnings.
 
 % checkstyle *.java
 *-----------------------------------------------------------
-[WARN] Percolation.java:8:32: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
-[WARN] Percolation.java:9:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
-[WARN] Percolation.java:10:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
-[WARN] PercolationStats.java:12:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
-[WARN] PercolationStats.java:29:40: Typecast is not followed by whitespace. [WhitespaceAfter]
-[WARN] PercolationStats.java:40:31: Boolean expression can be simplified, e.g., use 'if (!isEmpty)' instead of 'if (isEmpty == false)'. [SimplifyBooleanExpression]
+[WARN] week1.Percolation.java:8:32: To specify an array type, put the square brackets before the variable name, e.g., 'String[] args' instead of 'String args[]'. [ArrayTypeStyle]
+[WARN] week1.Percolation.java:9:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
+[WARN] week1.Percolation.java:10:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
+[WARN] week1.PercolationStats.java:12:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
+[WARN] week1.PercolationStats.java:29:40: Typecast is not followed by whitespace. [WhitespaceAfter]
+[WARN] week1.PercolationStats.java:40:31: Boolean expression can be simplified, e.g., use 'if (!isEmpty)' instead of 'if (isEmpty == false)'. [SimplifyBooleanExpression]
 Checkstyle ends with 0 errors and 6 warnings.
 
-% custom checkstyle checks for Percolation.java
+% custom checkstyle checks for week1.Percolation.java
 *-----------------------------------------------------------
 
-% custom checkstyle checks for PercolationStats.java
+% custom checkstyle checks for week1.PercolationStats.java
 *-----------------------------------------------------------
 
 
@@ -96,11 +96,11 @@ Checkstyle ends with 0 errors and 6 warnings.
 *  TESTING CORRECTNESS
 ********************************************************************************
 
-Testing correctness of Percolation
+Testing correctness of week1.Percolation
 *-----------------------------------------------------------
 Running 15 total tests.
 
-Tests 1 through 8 create a Percolation object using your code, then repeatedly
+Tests 1 through 8 create a week1.Percolation object using your code, then repeatedly
 open sites by calling open(). After each call to open(), it checks the return
 values of isOpen(), percolates(), numberOfOpenSites(), and isFull() in that order.
 Except as noted, a site is opened at most once.
@@ -172,7 +172,7 @@ Test 8: call constructor with invalid argument
   * n = 0
 ==> passed
 
-Test 9: create multiple Percolation objects at the same time
+Test 9: create multiple week1.Percolation objects at the same time
         (to make sure you didn't store data in static variables)
 ==> passed
 
@@ -238,14 +238,14 @@ Total: 15/15 tests passed!
 
 ================================================================
 ********************************************************************************
-*  TESTING CORRECTNESS (substituting reference Percolation)
+*  TESTING CORRECTNESS (substituting reference week1.Percolation)
 ********************************************************************************
 
-Testing correctness of PercolationStats
+Testing correctness of week1.PercolationStats
 *-----------------------------------------------------------
 Running 15 total tests.
 
-Test 1: check that methods in PercolationStats do not print to standard output
+Test 1: check that methods in week1.PercolationStats do not print to standard output
   * n =  20, trials =  10
   * n =  50, trials =  20
   * n = 100, trials =  50
@@ -266,21 +266,21 @@ Test 3: check that stddev() returns value in expected range
   * n =  25, trials = 10000
 ==> passed
 
-Test 4: check that PercolationStats creates trials Percolation objects, each of size n-by-n
+Test 4: check that week1.PercolationStats creates trials week1.Percolation objects, each of size n-by-n
   * n =  20, trials =  10
   * n =  50, trials =  20
   * n = 100, trials =  50
   * n =  64, trials = 150
 ==> passed
 
-Test 5: check that PercolationStats calls open() until system percolates
+Test 5: check that week1.PercolationStats calls open() until system percolates
   * n =  20, trials =  10
   * n =  50, trials =  20
   * n = 100, trials =  50
   * n =  64, trials = 150
 ==> passed
 
-Test 6: check that PercolationStats does not call open() after system percolates
+Test 6: check that week1.PercolationStats does not call open() after system percolates
   * n =  20, trials =  10
   * n =  50, trials =  20
   * n = 100, trials =  50
@@ -318,7 +318,7 @@ Test 10: check that exception is thrown if either n or trials is out of bounds
   * n = -2147483648, trials = -2147483648
 ==> passed
 
-Test 11: create two PercolationStats objects at the same time and check mean()
+Test 11: create two week1.PercolationStats objects at the same time and check mean()
          (to make sure you didn't store data in static variables)
   * n1 =  50, trials1 =  10, n2 =  50, trials2 =   5
   * n1 =  50, trials1 =   5, n2 =  50, trials2 =  10
@@ -361,10 +361,10 @@ Total: 15/15 tests passed!
 
 ================================================================
 ********************************************************************************
-*  MEMORY (substituting reference Percolation)
+*  MEMORY (substituting reference week1.Percolation)
 ********************************************************************************
 
-Analyzing memory of PercolationStats
+Analyzing memory of week1.PercolationStats
 *-----------------------------------------------------------
 Running 4 total tests.
 
@@ -389,10 +389,10 @@ Total: 4/4 tests passed!
 
 
 ********************************************************************************
-*  TIMING (substituting reference Percolation)
+*  TIMING (substituting reference week1.Percolation)
 ********************************************************************************
 
-Timing PercolationStats
+Timing week1.PercolationStats
 *-----------------------------------------------------------
 Running 4 total tests.
 
@@ -410,14 +410,14 @@ Test 2: count calls to methods in StdRandom
   * n = 80, trials = 10
 ==> passed
 
-Test 3: count calls to methods in Percolation
+Test 3: count calls to methods in week1.Percolation
   * n =  20, trials =  10
   * n =  50, trials =  20
   * n = 100, trials =  50
   * n =  64, trials = 150
 ==> passed
 
-Test 4: Call PercolationStats methods with trials = 3 and values of n that go up
+Test 4: Call week1.PercolationStats methods with trials = 3 and values of n that go up
         by a factor of sqrt(2). The test passes when n reaches 2,896.
 
      The approximate order-of-growth is n ^ (log ratio)
@@ -443,7 +443,7 @@ Total: 4/4 tests passed!
 *  MEMORY
 ********************************************************************************
 
-Analyzing memory of Percolation
+Analyzing memory of week1.Percolation
 *-----------------------------------------------------------
 Running 4 total tests.
 
@@ -476,7 +476,7 @@ Total: 4/4 tests passed!
 *  TIMING
 ********************************************************************************
 
-Timing Percolation
+Timing week1.Percolation
 *-----------------------------------------------------------
 Running 16 total tests.
 

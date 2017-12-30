@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -6,17 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PercolationStatsTest {
-    /*  API
-    public class PercolationStats {
-        public PercolationStats(int n, int trials)    // perform trials independent experiments on an n-by-n grid
-        public double mean()                          // sample mean of percolation threshold
-        public double stddev()                        // sample standard deviation of percolation threshold
-        public double confidenceLo()                  // low  endpoint of 95% confidence interval
-        public double confidenceHi()                  // high endpoint of 95% confidence interval
-
-        public static void main(String[] args)        // test client (described below)
-     */
-
     @Test
     public void constructorValidatesParams() {
         Executable constructorCalledWithInvalidSizeParameter =
@@ -45,7 +33,7 @@ public class PercolationStatsTest {
 
     @Test
     public void EnsureMeanIsCalculated() {
-        // really should probably inject a mock Percolation but that would change public interface of PS class
+        // really should probably inject a mock week1.Percolation but that would change public interface of PS class
         PercolationStats ps = new PercolationStats(2, 100);
         double mean = ps.mean();
         assertTrue(mean > 0.5  && mean < 0.7, "mean should be within a reasonable range");
