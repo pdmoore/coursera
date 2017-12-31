@@ -11,16 +11,12 @@ public class PercolationTest {
     @Test
     public void ConstructorFailsWhenParamZeroOrLess() {
         Executable constructorCalledWithInvalidParameter =
-                () -> {
-                    new Percolation(0);
-                };
+                () -> new Percolation(0);;
 
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
 
         constructorCalledWithInvalidParameter =
-                () -> {
-                    new Percolation(-1);
-                };
+                () -> new Percolation(-1);
 
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
     }
@@ -52,27 +48,19 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
 
         Executable openWithInvalidRowParam =
-                () -> {
-                    p.open(0, 1);
-                };
+                () -> p.open(0, 1);
         assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
 
         openWithInvalidRowParam =
-                () -> {
-                    p.open(-1, 1);
-                };
+                () -> p.open(-1, 1);
         assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
 
         Executable openWithInvalidColParam =
-                () -> {
-                    p.open(1, 0);
-                };
+                () -> p.open(1, 0);
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
 
         openWithInvalidColParam =
-                () -> {
-                    p.open(1, -1);
-                };
+                () -> p.open(1, -1);
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
     }
 
@@ -81,15 +69,11 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
 
         Executable openWithInvalidRowParam =
-                () -> {
-                    p.open(3, 1);
-                };
+                () -> p.open(3, 1);
         assertThrows(IllegalArgumentException.class, openWithInvalidRowParam, "");
 
         Executable openWithInvalidColParam =
-                () -> {
-                    p.open(1, 3);
-                };
+                () -> p.open(1, 3);
         assertThrows(IllegalArgumentException.class, openWithInvalidColParam, "");
     }
 
@@ -106,27 +90,19 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
 
         Executable isOpenWithInvalidRowParam =
-                () -> {
-                    p.isOpen(0, 1);
-                };
+                () -> p.isOpen(0, 1);
         assertThrows(IllegalArgumentException.class, isOpenWithInvalidRowParam, "");
 
         isOpenWithInvalidRowParam =
-                () -> {
-                    p.isOpen(-1, 1);
-                };
+                () -> p.isOpen(-1, 1);
         assertThrows(IllegalArgumentException.class, isOpenWithInvalidRowParam, "");
 
         Executable isOpenWithInvalidColParam =
-                () -> {
-                    p.isOpen(1, 0);
-                };
+                () -> p.isOpen(1, 0);
         assertThrows(IllegalArgumentException.class, isOpenWithInvalidColParam, "");
 
         isOpenWithInvalidColParam =
-                () -> {
-                    p.isOpen(1, -1);
-                };
+                () -> p.isOpen(1, -1);
         assertThrows(IllegalArgumentException.class, isOpenWithInvalidColParam, "");
     }
 
@@ -184,27 +160,19 @@ public class PercolationTest {
         Percolation p = new Percolation(2);
 
         Executable isFullWithInvalidRowParam =
-                () -> {
-                    p.isFull(0, 1);
-                };
+                () -> p.isFull(0, 1);
         assertThrows(IllegalArgumentException.class, isFullWithInvalidRowParam, "");
 
         isFullWithInvalidRowParam =
-                () -> {
-                    p.isFull(-1, 1);
-                };
+                () -> p.isFull(-1, 1);
         assertThrows(IllegalArgumentException.class, isFullWithInvalidRowParam, "");
 
         Executable isFullWithInvalidColParam =
-                () -> {
-                    p.isFull(1, 0);
-                };
+                () -> p.isFull(1, 0);
         assertThrows(IllegalArgumentException.class, isFullWithInvalidColParam, "");
 
         isFullWithInvalidColParam =
-                () -> {
-                    p.isFull(1, -1);
-                };
+                () -> p.isFull(1, -1);
         assertThrows(IllegalArgumentException.class, isFullWithInvalidColParam, "");
     }
 

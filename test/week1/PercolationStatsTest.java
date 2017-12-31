@@ -10,26 +10,18 @@ public class PercolationStatsTest {
     @Test
     public void constructorValidatesParams() {
         Executable constructorCalledWithInvalidSizeParameter =
-                () -> {
-                    new PercolationStats(0, 1);
-                };
+                () -> new PercolationStats(0, 1);
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidSizeParameter, "ctor should verify n != 0");
         constructorCalledWithInvalidSizeParameter =
-                () -> {
-                    new PercolationStats(-1, 1);
-                };
+                () -> new PercolationStats(-1, 1);
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidSizeParameter, "ctor should verify n > 0");
 
         Executable constructorCalledWithInvalidTrialsParameter =
-                () -> {
-                    new PercolationStats(2, 0);
-                };
+                () -> new PercolationStats(2, 0);
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidTrialsParameter, "ctor should verify trials != 0");
 
         constructorCalledWithInvalidTrialsParameter =
-                () -> {
-                    new PercolationStats(2, -1);
-                };
+                () -> new PercolationStats(2, -1);
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidTrialsParameter, "ctor should verify trials > 0");
     }
 
