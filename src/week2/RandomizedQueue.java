@@ -1,3 +1,5 @@
+//package week2;
+
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
@@ -9,7 +11,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
 
     private class RandomizedQueueIterator implements Iterator<Item> {
         private int currentIndex;
-        private int[] indices;
+        private final int[] indices;
 
         public RandomizedQueueIterator() {
             this.currentIndex = 0;
@@ -81,12 +83,12 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
         items = copy;
     }
 
-    public static void main(String[] args) {
-
-    }
-
     @Override
     public Iterator<Item> iterator() {
         return new RandomizedQueueIterator();
+    }
+
+    public static void main(String[] args) {
+        // method required by grading system
     }
 }

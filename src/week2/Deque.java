@@ -1,7 +1,13 @@
+//package week2;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item>{
+
+    private Node first;
+    private Node last;
+    private int size;
 
     private class Node {
         Item item;
@@ -26,10 +32,6 @@ public class Deque<Item> implements Iterable<Item>{
             return returnVal;
         }
     }
-
-    private Node first;
-    private Node last;
-    private int size;
 
     public Deque() {
         first = null;
@@ -113,5 +115,6 @@ public class Deque<Item> implements Iterable<Item>{
     }
 
     public static void main(String[] args) {
+        // method required by grading system
     }
 }

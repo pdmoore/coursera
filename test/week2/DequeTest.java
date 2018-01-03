@@ -1,3 +1,6 @@
+//package week2;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -11,14 +14,14 @@ public class DequeTest {
     @Test
     public void NewDequeueIsEmpty() {
         Deque<String> d = new Deque<>();
-        assertTrue(d.isEmpty());
+        Assertions.assertTrue(d.isEmpty());
     }
 
     @Test
     public void AddFirst() {
         Deque<String> d = new Deque<>();
         d.addFirst("frist!");
-        assertFalse(d.isEmpty(), "dequeue is not empty after adding an item up front");
+        Assertions.assertFalse(d.isEmpty(), "dequeue is not empty after adding an item up front");
     }
 
     @Test
@@ -26,7 +29,7 @@ public class DequeTest {
         Deque<String> d = new Deque<>();
         d.addFirst("firstItem");
         String actual = d.removeFirst();
-        assertTrue(d.isEmpty(), "dequeue should be empty after removing only item");
+        Assertions.assertTrue(d.isEmpty(), "dequeue should be empty after removing only item");
     }
 
     @Test
@@ -43,7 +46,7 @@ public class DequeTest {
         d.addFirst(1);
         d.addFirst(2);
         d.addFirst(3);
-        assertEquals(3, d.size(), "size should report number of items in Deque");
+        Assertions.assertEquals(3, d.size(), "size should report number of items in week2.Deque");
     }
 
     @Test
@@ -79,7 +82,7 @@ public class DequeTest {
     public void AddLast() {
         Deque<String> d = new Deque<>();
         d.addLast("last!");
-        assertFalse(d.isEmpty(), "dequeue is not empty after adding an item at end");
+        Assertions.assertFalse(d.isEmpty(), "dequeue is not empty after adding an item at end");
     }
 
     @Test
@@ -87,7 +90,7 @@ public class DequeTest {
         Deque<String> d = new Deque<>();
         d.addLast("last");
         d.removeLast();
-        assertTrue(d.isEmpty(), "dequeue should be empty after removing only item from end");
+        Assertions.assertTrue(d.isEmpty(), "dequeue should be empty after removing only item from end");
     }
 
     @Test
@@ -132,7 +135,7 @@ public class DequeTest {
         Deque<Integer> d = new Deque<>();
         d.addFirst(1);
         d.removeLast();
-        assertTrue(d.isEmpty(), "Add to front one item, removeLast that one item, dequeue should be empty");
+        Assertions.assertTrue(d.isEmpty(), "Add to front one item, removeLast that one item, dequeue should be empty");
     }
 
     @Test
@@ -140,7 +143,7 @@ public class DequeTest {
         Deque<Integer> d = new Deque<>();
         d.addLast(1);
         d.removeFirst();
-        assertTrue(d.isEmpty());
+        Assertions.assertTrue(d.isEmpty());
     }
 
     @Test
@@ -234,7 +237,7 @@ public class DequeTest {
         d.addFirst("Middle");
         d.addLast("last");
         d.addFirst("first");
-        assertEquals(3, d.size());
+        Assertions.assertEquals(3, d.size());
         d.removeFirst();
         d.removeLast();
         Iterator<String> i = d.iterator();
@@ -242,7 +245,7 @@ public class DequeTest {
         assertEquals("Middle", actual);
         assertFalse(i.hasNext(), "iterator shouldn't have anything");
         d.removeLast();
-        assertTrue(d.isEmpty(), "deque should now be empty");
+        Assertions.assertTrue(d.isEmpty(), "deque should now be empty");
     }
 
     @Test
