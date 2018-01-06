@@ -1,4 +1,4 @@
-//package week2;
+package week2;
 
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
@@ -13,7 +13,7 @@ public class Permutation {
             rq.enqueue(StdIn.readString());
         }
 
-        for (int i=1; i<=k; i++) {
+        for (int i = 1; i <= k; i++) {
             StdOut.println(rq.dequeue());
         }
     }

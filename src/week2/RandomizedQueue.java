@@ -1,4 +1,4 @@
-//package week2;
+package week2;
 
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -16,7 +16,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
         public RandomizedQueueIterator() {
             this.currentIndex = 0;
             indices = new int[size];
-            for (int i=0; i < indices.length; i++) {
+            for (int i = 0; i < indices.length; i++) {
                 indices[i] = i;
             }
             StdRandom.shuffle(indices);
@@ -35,6 +35,7 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public RandomizedQueue() {
         items = (Item[])new Object[1];
     }
@@ -77,9 +78,9 @@ public class RandomizedQueue<Item> implements Iterable<Item>  {
     }
 
     private void resize(int capacity) {
+        @SuppressWarnings("unchecked")
         Item[] copy = (Item[])new Object[capacity];
-        for (int i = 0; i < size; i++)
-            copy[i] = items[i];
+        System.arraycopy(items, 0, copy, 0, size);
         items = copy;
     }
 
