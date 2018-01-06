@@ -11,7 +11,7 @@ public class PercolationTest {
     @Test
     public void ConstructorFailsWhenParamZeroOrLess() {
         Executable constructorCalledWithInvalidParameter =
-                () -> new Percolation(0);;
+                () -> new Percolation(0);
 
         assertThrows(IllegalArgumentException.class, constructorCalledWithInvalidParameter, "");
 
