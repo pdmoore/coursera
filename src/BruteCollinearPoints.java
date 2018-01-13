@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BruteCollinearPoints {
 
-    private List<LineSegment> lineSegments;
+    private final List<LineSegment> lineSegments;
 
     public BruteCollinearPoints(Point[] points) {
         if (points == null) throw new IllegalArgumentException();
@@ -27,7 +27,7 @@ public class BruteCollinearPoints {
             try {
                 Arrays.sort(sortedPoints);
             } catch (NullPointerException e) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(e);
             }
         }
     }
@@ -35,13 +35,13 @@ public class BruteCollinearPoints {
     private void findLindSegments(Point[] sortedPoints) {
         for (int p = 0; p < sortedPoints.length - 3; p++) {
             for (int q = p + 1; q < sortedPoints.length - 2; q++) {
-                for (int r = q + 1; r <sortedPoints.length - 1; r++) {
+                for (int r = q + 1; r < sortedPoints.length - 1; r++) {
                     for (int s =  r + 1; s < sortedPoints.length; s++) {
 
-                        double slope_pq = sortedPoints[p].slopeTo(sortedPoints[q]);
-                        double slope_pr = sortedPoints[p].slopeTo(sortedPoints[r]);
-                        double slope_ps = sortedPoints[p].slopeTo(sortedPoints[s]);
-                        if (slope_pq == slope_pr && slope_pq == slope_ps) {
+                        double slopePQ = sortedPoints[p].slopeTo(sortedPoints[q]);
+                        double slopePR = sortedPoints[p].slopeTo(sortedPoints[r]);
+                        double slopePS = sortedPoints[p].slopeTo(sortedPoints[s]);
+                        if (Double.compare(slopePQ, slopePR) == 0 && Double.compare(slopePQ, slopePS) == 0) {
                             LineSegment lineSegment = new LineSegment(sortedPoints[p], sortedPoints[s]);
                             lineSegments.add(lineSegment);
                         }
