@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FastCollinearPoints {
 
-    private List<LineSegment> lineSegments;
+    private final List<LineSegment> lineSegments;
 
     public FastCollinearPoints(Point[] points) {
         if (points == null) throw new IllegalArgumentException();
@@ -20,7 +20,8 @@ public class FastCollinearPoints {
             Arrays.sort(pointsBySlopeOrder, eachUnsortedPoint.slopeOrder());
             
             for (int i = 1; i < pointsBySlopeOrder.length; i++) {
-                if (eachUnsortedPoint.slopeTo(pointsBySlopeOrder[i]) == eachUnsortedPoint.slopeTo(pointsBySlopeOrder[i - 1])) {
+                if (Double.compare(eachUnsortedPoint.slopeTo(pointsBySlopeOrder[i]),
+                                   eachUnsortedPoint.slopeTo(pointsBySlopeOrder[i - 1])) == 0) {
                     pointsWithEqualSlope.add(pointsBySlopeOrder[i]);
                 } else {
                     createCollinearSegmentIfNotKnown(pointsWithEqualSlope);
@@ -39,7 +40,7 @@ public class FastCollinearPoints {
             try {
                 Arrays.sort(sortedPoints);
             } catch (NullPointerException e) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(e);
             }
         }
     }
