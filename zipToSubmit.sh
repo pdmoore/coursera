@@ -18,3 +18,13 @@ then
 
   zip queues.zip src/week2/Deque.java src/week2/RandomizedQueue.java src/week2/Permutation.java
 fi
+
+if [ "$1" == "week3" ]
+then
+  if [ -e collinear.zip ]
+  then
+    rm collinear.zip
+  fi
+
+  zip collinear.zip src/Point.java src/BruteCollinearPoints.java src/FastCollinearPoints.java
+fi
