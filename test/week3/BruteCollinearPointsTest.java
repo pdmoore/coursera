@@ -1,75 +1,68 @@
+package week3;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import javax.sound.sampled.Line;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BruteCollinearPointsTest {
+class BruteCollinearPointsTest {
 
     @Test
-    public void ValidateConstructor_NullParamNotAllowed() {
-        Executable constructorWithNullParam = () -> {
-            new BruteCollinearPoints(null);
-        };
+    void ValidateConstructor_NullParamNotAllowed() {
+        Executable constructorWithNullParam = () -> new BruteCollinearPoints(null);
         assertThrows(IllegalArgumentException.class, constructorWithNullParam, "ctor should throw exception when passed null");
     }
 
     @Test
-    public void ValidateConstructor_PointArrayCannotContainNull() {
+    void ValidateConstructor_PointArrayCannotContainNull() {
         Point[] p = new Point[] { new Point(0,0), new Point(1, 1), null, new Point(5,5) };
-        Executable constructorWithNullValueInPointsArray = () -> {
-            new BruteCollinearPoints(p);
-        };
+        Executable constructorWithNullValueInPointsArray = () -> new BruteCollinearPoints(p);
         assertThrows(IllegalArgumentException.class, constructorWithNullValueInPointsArray, "param list cannot contain a null value");
     }
 
     @Test
-    public void ValidateConstuctor_PointArrayContainsSingleNull() {
+    void ValidateConstuctor_PointArrayContainsSingleNull() {
         Point[] p = new Point[] { null };
-        Executable constructorWithNullValueInPointsArray = () -> {
-            new BruteCollinearPoints(p);
-        };
+        Executable constructorWithNullValueInPointsArray = () -> new BruteCollinearPoints(p);
         assertThrows(IllegalArgumentException.class, constructorWithNullValueInPointsArray, "param list cannot contain a null value");
     }
 
     @Test
-    public void ValidateConstructor_PointArrayContainsDuplicateValue() {
+    void ValidateConstructor_PointArrayContainsDuplicateValue() {
         Point[] p = new Point[] { new Point(0,0), new Point(1,1), new Point(2,2), new Point(0,0) };
-        Executable constructorWithDuplicatedPointInPointsArray = () -> {
-            new BruteCollinearPoints(p);
-        };
+        Executable constructorWithDuplicatedPointInPointsArray = () -> new BruteCollinearPoints(p);
         assertThrows(IllegalArgumentException.class, constructorWithDuplicatedPointInPointsArray, "param list cannot contain duplicate point [0,0]");
     }
 
     @Test
-    public void NoCollinearPoints() {
+    void NoCollinearPoints() {
         Point[] p = new Point[] {new Point(0,0), new Point(5, 1), new Point(3,3), new Point(2,4) };
         BruteCollinearPoints b = new BruteCollinearPoints(p);
-        assertEquals(0, b.numberOfSegments() );
+        Assertions.assertEquals(0, b.numberOfSegments() );
     }
 
     @Test
-    public void FourCollinearPoints() {
+    void FourCollinearPoints() {
         Point[] p = new Point[] {new Point(1,1), new Point(2,2), new Point(3,3), new Point(4,4) };
         BruteCollinearPoints b = new BruteCollinearPoints(p);
-        assertEquals(1, b.numberOfSegments());
+        Assertions.assertEquals(1, b.numberOfSegments());
     }
 
     @Test
-    public void FourCollinearPoints_ConfirmLineSegment() {
+    void FourCollinearPoints_ConfirmLineSegment() {
         Point[] p = new Point[] {new Point(1,1), new Point(2,2), new Point(3,3), new Point(4,4) };
         BruteCollinearPoints b = new BruteCollinearPoints(p);
 
         LineSegment expected = new LineSegment(new Point(1,1), new Point(4,4));
         LineSegment[] actual = b.segments();
-        assertEquals(expected.toString(), actual[0].toString(), "LineSegment equals checks identity, toString is good enough here (1, 1) -> (4, 4)");
+        Assertions.assertEquals(expected.toString(), actual[0].toString(), "week3.LineSegment equals checks identity, toString is good enough here (1, 1) -> (4, 4)");
     }
 
     @Test
-    public void CollinearPoints_DoNotDoubleCountSegments() {
+    void CollinearPoints_DoNotDoubleCountSegments() {
         Point[] p = new Point[] {           // input8.txt
                 new Point(10000,0),
                 new Point(0,10000),
@@ -92,7 +85,7 @@ public class BruteCollinearPointsTest {
 
     @Test
     @Disabled
-    public void RunMain() {
+    void RunMain() {
         String args[] = new String[] { "data/collinear/input8.txt" };
         BruteCollinearPoints.main(args);
     }

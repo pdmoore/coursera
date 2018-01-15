@@ -1,3 +1,5 @@
+package week3;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +29,8 @@ public class FastCollinearPoints {
                     createCollinearSegmentIfNotKnown(pointsWithEqualSlope);
                     
                     pointsWithEqualSlope.clear();
-                    pointsWithEqualSlope.add(eachUnsortedPoint); // p
-                    pointsWithEqualSlope.add(pointsBySlopeOrder[i]);   // candidate
+                    pointsWithEqualSlope.add(eachUnsortedPoint);        // p
+                    pointsWithEqualSlope.add(pointsBySlopeOrder[i]);    // candidate
                 }
             }
         }
