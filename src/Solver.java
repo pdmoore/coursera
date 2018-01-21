@@ -7,7 +7,9 @@ import java.util.Stack;
 
 public class Solver {
 
-    private MinPQ<Node> minPQ;
+    private static Comparator<Node> manhattanComparator = Comparator.comparingInt(o -> o.board.manhattan());
+
+    private final MinPQ<Node> minPQ;
     private boolean solutionExists;
     private Node solutionNode;
 
@@ -15,24 +17,16 @@ public class Solver {
         Board board;
         Node  parent;
 
-        public Node(Board board, Node parent) {
+        Node(Board board, Node parent) {
             this.board  = board;
             this.parent = parent;
         }
     }
 
-    private static Comparator<Node> manhattanComparator = new Comparator<Node>() {
-
-        @Override
-        public int compare(Node o1, Node o2) {
-            return o1.board.manhattan() - o2.board.manhattan();
-        }
-    };
-
     public Solver(Board initial) {
         if (initial == null) throw new IllegalArgumentException();
 
-        minPQ = new MinPQ<Node>(manhattanComparator);
+        minPQ = new MinPQ<>(manhattanComparator);
         solutionExists = false;
         solutionNode = null;
 
@@ -67,7 +61,7 @@ public class Solver {
     }
 
     public int moves() {
-        if (solutionExists == false) return -1;
+        if (!solutionExists) return -1;
 
         int moves = 0;
         Node node = solutionNode;
@@ -81,7 +75,7 @@ public class Solver {
     }
 
     public Iterable<Board> solution() {
-        if (solutionExists == false) return null;
+        if (!solutionExists) return null;
 
         Stack<Board> boardsInSolution = new Stack<>();
 
