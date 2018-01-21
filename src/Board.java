@@ -81,7 +81,7 @@ public class Board {
 
     @Override
     public boolean equals(Object y) {
-        if ((y == null) || (y.getClass() != Board.class)) return false;
+        if ((y == null) || (y.getClass() != this.getClass())) return false;
 
         if (((Board) y).dimension() != dimension()) return false;
 
