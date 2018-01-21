@@ -83,10 +83,10 @@ public class Board {
     public boolean equals(Object y) {
         if ((y == null) || (y.getClass() != Board.class)) return false;
 
-        if (((Board)y).dimension() != dimension()) return false;
+        if (((Board) y).dimension() != dimension()) return false;
 
         for (int i = 1; i < board.length; i++) {
-            if (board[i] != ((Board)y).board[i]) return false;
+            if (board[i] != ((Board) y).board[i]) return false;
         }
 
         return true;
@@ -172,6 +172,6 @@ public class Board {
     }
 
     public static void main(String[] args) {
-
+        // method required for course
     }
 }

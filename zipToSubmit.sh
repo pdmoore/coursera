@@ -28,3 +28,13 @@ then
 
   zip collinear.zip src/Point.java src/BruteCollinearPoints.java src/FastCollinearPoints.java
 fi
+
+if [ "$1" == "week4" ]
+then
+  if [ -e 8puzzle.zip ]
+  then
+    rm 8puzzle.zip
+  fi
+
+  zip 8puzzle.zip src/Board.java src/Solver.java
+fi
