@@ -2,14 +2,16 @@ package nicestring
 
 fun String.isNice(): Boolean {
 
-    val noBadSubstring = !contains("ba") && !contains("be") && !contains("bu")
+    val noBadSubstring = setOf("ba", "be", "bu").none { this.contains(it) }
 
     val hasThreeVowels = count { it in "aeiou" } >= 3
 
-    val pairs = this.toList().zipWithNext();
+    val pairs = this.zipWithNext()
 
     val hasPair = checkForPair(pairs)
 
+
+    
     if (!noBadSubstring) {
         return (hasThreeVowels) && (hasPair);
     }
