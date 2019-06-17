@@ -6,26 +6,17 @@ fun String.isNice(): Boolean {
 
     val hasThreeVowels = count { it in "aeiou" } >= 3
 
-    val pairs = this.zipWithNext()
-
-    val hasPair = checkForPair(pairs)
+    val hasDouble = zipWithNext().any { it.first == it.second }
 
 
-    
     if (!noBadSubstring) {
-        return (hasThreeVowels) && (hasPair);
+        return (hasThreeVowels) && (hasDouble);
     }
 
     if (noBadSubstring) {
-        if ((hasThreeVowels) || hasPair) return true
+        if ((hasThreeVowels) || hasDouble) return true
     }
 
 
     return false;
-}
-
-fun checkForPair(pairs: List<Pair<Char, Char>>): Boolean {
-    pairs.forEach { if (it.first == it.second) return true }
-
-    return false
 }
