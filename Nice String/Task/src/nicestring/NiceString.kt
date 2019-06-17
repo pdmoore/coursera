@@ -9,7 +9,7 @@ fun String.isNice(): Boolean {
     val hasDouble = zipWithNext().any { it.first == it.second }
 
 
-    return listOf(noBadSubstring, hasThreeVowels, hasDouble).filter { it == true }.size >= 2
+    return listOf(noBadSubstring, hasThreeVowels, hasDouble).count { it } >= 2
 
 
     return false
