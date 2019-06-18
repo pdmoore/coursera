@@ -45,17 +45,12 @@ fun TaxiPark.findSmartPassengers(): Set<Passenger> =
  */
 fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
 
-    val tripsByTens = trips.groupingBy { it -> it.duration.div(10) }.eachCount()
-    println(tripsByTens)
-    val maximum = tripsByTens.maxBy { it -> it.value }
+    val timeSlotWithMostTrips = trips.groupingBy { it ->
+        it.duration.div(10) }
+            .eachCount().maxBy { it -> it.value }?.key ?: return null
 
-    if (null == maximum) return null
-
-    println(maximum?.key)
-    val maxKey = maximum!!.key.times(10);
-    val mostFrequent = IntRange(maxKey, maxKey.plus(9) )
-
-    return mostFrequent
+    val timeSlotTens = timeSlotWithMostTrips.times(10);
+    return IntRange(timeSlotTens, timeSlotTens.plus(9) )
 }
 
 /*
