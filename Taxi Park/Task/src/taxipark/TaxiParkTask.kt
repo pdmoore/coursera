@@ -14,8 +14,7 @@ fun TaxiPark.findFakeDrivers(): Set<Driver> =
  */
 fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
         allPassengers.filter { it ->
-            this.trips
-                    .filter { trip: Trip -> it in trip.passengers }
+            trips.filter { trip: Trip -> it in trip.passengers }
                     .count() >= minTrips
         }.toSet()
 
@@ -25,17 +24,19 @@ fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
  */
 fun TaxiPark.findFrequentPassengers(driver: Driver): Set<Passenger> =
         allPassengers.filter { it ->
-            this.trips
-                    .filter { trip: Trip ->
-                        it in trip.passengers && driver == trip.driver }
-                    .count() > 1
+            trips.filter { trip: Trip ->
+                it in trip.passengers && driver == trip.driver }.count() > 1
         }.toSet()
 
 /*
  * Task #4. Find the passengers who had a discount for majority of their trips.
  */
 fun TaxiPark.findSmartPassengers(): Set<Passenger> =
-        TODO()
+        allPassengers.filter { passenger: Passenger ->
+            trips.filter { it -> passenger in it.passengers && it.discount != null }.count() >   // trips with discount
+            trips.filter { it -> passenger in it.passengers && it.discount == null }.count()     // trips without discount
+
+        }.toSet()
 
 /*
  * Task #5. Find the most frequent trip duration among minute periods 0..9, 10..19, 20..29, and so on.
