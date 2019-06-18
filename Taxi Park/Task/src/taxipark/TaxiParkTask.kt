@@ -4,15 +4,16 @@ package taxipark
  * Task #1. Find all the drivers who performed no trips.
  */
 fun TaxiPark.findFakeDrivers(): Set<Driver> =
-        allDrivers.minus(this.trips.map { it.driver }.toSet())
+        allDrivers.minus(
+                trips.map { it.driver }
+                        .toSet())
 
 
 /*
  * Task #2. Find all the clients who completed at least the given number of trips.
  */
 fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
-
-        this.allPassengers.filter { it ->
+        allPassengers.filter { it ->
             this.trips
                     .filter { trip: Trip -> it in trip.passengers }
                     .count() >= minTrips
