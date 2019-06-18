@@ -10,32 +10,14 @@ fun TaxiPark.findFakeDrivers(): Set<Driver> =
 /*
  * Task #2. Find all the clients who completed at least the given number of trips.
  */
-fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> {
-    // allPassengers
-    // each trip can have 1 or more passengers
-    // count each time a passenger is seen in a trip
-    // filter by those counts against minTrips
-    val passengerTripCounts:HashMap<Passenger, Int?> = HashMap()
-    for (passenger in allPassengers) {
-        passengerTripCounts.put(passenger, 0)
-    }
-    for (trip in trips) {
-        for (passenger in trip.passengers) {
-            if (passengerTripCounts.containsKey(passenger)) {
-                var currentCount = passengerTripCounts.get(passenger)
-                passengerTripCounts.replace(passenger, currentCount?.plus(1))
-            }
-        }
-    }
+fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
 
-    val qualifyingPassengers:HashSet<Passenger> = HashSet()
-    for (key in passengerTripCounts.keys) {
-        val tripCount = passengerTripCounts?.get(key) ?: 0
-        if (tripCount < minTrips) qualifyingPassengers.add(key)
-    }
+        this.allPassengers.filter { it ->
+            this.trips
+                    .filter { trip: Trip -> it in trip.passengers }
+                    .count() >= minTrips
+        }.toSet()
 
-    return allPassengers.minus(qualifyingPassengers)
-}
 
 /*
  * Task #3. Find all the passengers, who were taken by a given driver more than once.
