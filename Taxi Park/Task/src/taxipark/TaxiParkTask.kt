@@ -5,7 +5,7 @@ package taxipark
  */
 fun TaxiPark.findFakeDrivers(): Set<Driver> =
         allDrivers.minus(
-                trips.map { it.driver }
+                trips.map { it -> it.driver }
                         .toSet())
 
 
@@ -25,16 +25,17 @@ fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
 fun TaxiPark.findFrequentPassengers(driver: Driver): Set<Passenger> =
         allPassengers.filter { it ->
             trips.filter { trip: Trip ->
-                it in trip.passengers && driver == trip.driver }.count() > 1
+                it in trip.passengers && driver == trip.driver }
+                    .count() > 1
         }.toSet()
 
 /*
  * Task #4. Find the passengers who had a discount for majority of their trips.
  */
 fun TaxiPark.findSmartPassengers(): Set<Passenger> =
-        allPassengers.filter { passenger: Passenger ->
-            trips.filter { it -> passenger in it.passengers && it.discount != null }.count() >   // trips with discount
-            trips.filter { it -> passenger in it.passengers && it.discount == null }.count()     // trips without discount
+        allPassengers.filter { it ->
+            trips.filter { trip: Trip -> it in trip.passengers && trip.discount != null }.count() >   // trips with discount
+            trips.filter { trip: Trip -> it in trip.passengers && trip.discount == null }.count()     // trips without discount
 
         }.toSet()
 
