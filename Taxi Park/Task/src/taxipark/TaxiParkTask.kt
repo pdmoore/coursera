@@ -96,7 +96,6 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
         sumOfTopDrivers = sumOfTopDrivers.plus(result[i].second)
     }
 
-    if (sumOfTopDrivers >= eightPercentOfAllIncome) return true
+    return (sumOfTopDrivers >= eightPercentOfAllIncome)
 
-    return false
 }
