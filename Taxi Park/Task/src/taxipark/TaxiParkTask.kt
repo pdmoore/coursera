@@ -34,9 +34,10 @@ fun TaxiPark.findFrequentPassengers(driver: Driver): Set<Passenger> =
  */
 fun TaxiPark.findSmartPassengers(): Set<Passenger> =
         allPassengers.filter { it ->
-            trips.filter { trip: Trip -> it in trip.passengers && trip.discount != null }.count() >   // trips with discount
-            trips.filter { trip: Trip -> it in trip.passengers && trip.discount == null }.count()     // trips without discount
+            val tripsWithDiscount = trips.count { trip: Trip -> it in trip.passengers && trip.discount != null }
+            val tripsWithoutDiscount = trips.count { trip: Trip -> it in trip.passengers && trip.discount == null }
 
+            tripsWithDiscount > tripsWithoutDiscount
         }.toSet()
 
 /*
@@ -60,7 +61,7 @@ fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
 fun TaxiPark.checkParetoPrinciple(): Boolean {
     if (trips.size == 0) return false
 
-    val allTripsCost = trips.sumByDouble { it.cost }
+    val allTripsIncome = trips.sumByDouble { it.cost }
 
     // for each driver
     // for each trip
@@ -80,7 +81,7 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
     }
 
     // did a single driver exceed 80%?
-    val eightPercentOfAllIncome = allTripsCost.times(.8)
+    val eightPercentOfAllIncome = allTripsIncome.times(.8)
     for (driverIncome in incomeByDriver.values) {
         if (driverIncome >= eightPercentOfAllIncome) return true
     }
