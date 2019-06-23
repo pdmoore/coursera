@@ -60,7 +60,7 @@ fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
  */
 fun TaxiPark.checkParetoPrinciple(): Boolean {
     if (trips.size == 0) return false
-
+/*
     val allTripsIncome = trips.sumByDouble { it.cost }
 
     // for each driver
@@ -98,5 +98,21 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
     }
 
     return (sumOfTopDrivers >= eightPercentOfAllIncome)
+*/
 
+    if (trips.isEmpty()) return false
+
+    val totalIncome = trips.sumByDouble { it.cost }
+
+    val sortedDriversIncome: List<Double> = trips
+            .groupBy { it.driver }
+            .map { (_, tripsByDriver) -> tripsByDriver.sumByDouble { it.cost } }
+            .sortedDescending()
+
+    val numberOfTopDrivers = (0.2 * allDrivers.size).toInt()
+    val incomeByTopDrivers = sortedDriversIncome
+            .take(numberOfTopDrivers)
+            .sum()
+
+    return incomeByTopDrivers >= 0.8 * totalIncome
 }
