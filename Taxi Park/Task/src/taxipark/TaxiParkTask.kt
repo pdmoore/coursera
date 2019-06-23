@@ -60,7 +60,8 @@ fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
  */
 fun TaxiPark.checkParetoPrinciple(): Boolean {
 
-
+    if (trips.isEmpty()) return false
+    
     val allTripsIncome = trips.sumByDouble { it.cost }
 
     // for each driver
