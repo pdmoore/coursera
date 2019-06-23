@@ -59,58 +59,21 @@ fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
  * Check whether 20% of the drivers contribute 80% of the income.
  */
 fun TaxiPark.checkParetoPrinciple(): Boolean {
-
     if (trips.isEmpty()) return false
-    
+
     val allTripsIncome = trips.sumByDouble { it.cost }
 
-    // for each driver
-    // for each trip
-    // if driver == trip.driver, then add to runningIncome
-    // result is map of driver to income
-    var incomeByDriver = HashMap<Driver, Double>()
-    for (driver in allDrivers) {
-        var runningSum: Double = 0.0
-
-        for (trip in trips) {
-            if (trip.driver == driver) {
-                runningSum = runningSum.plus(trip.cost)
-            }
-        }
-
-        incomeByDriver.put(driver, runningSum)
-    }
-
-    // check if 20% of drivers exceed 80% of all trips
-    val numDriversToCheck = allDrivers.size.times(.2).toInt()
-    val result = incomeByDriver.toList().sortedByDescending { (_, value) -> value}.toList()
-
-    var sumOfTopDrivers: Double = 0.0
-    for (i in 0 until numDriversToCheck) {
-        sumOfTopDrivers = sumOfTopDrivers.plus(result[i].second)
-    }
-
-    return (sumOfTopDrivers >= allTripsIncome.times(.8))
-
-
-    /*
-    if (trips.isEmpty()) return false
-
-    val totalIncome = trips.sumByDouble { it.cost }
-
-    // tally driver income, sorted, but don't associate driver to sum
+    // get the income by each driver, sorted from greatest to smallest
     val sortedDriversIncome: List<Double> = trips
             .groupBy { it.driver }
             .map { (_, tripsByDriver) -> tripsByDriver.sumByDouble { it.cost } }
             .sortedDescending()
 
-    // doesn't matter number if only a single driver, or many, exceed the 80%
-    val numberOfTopDrivers = (0.2 * allDrivers.size).toInt()
-    val incomeByTopDrivers = sortedDriversIncome
-            .take(numberOfTopDrivers)
+    // tally income of top 20% of drivers
+    val numDriversToCheck = allDrivers.size.times(.2).toInt()
+    val sumOfTopDrivers = sortedDriversIncome
+            .take(numDriversToCheck)
             .sum()
 
-    return incomeByTopDrivers >= 0.8 * totalIncome
-
-     */
+    return (sumOfTopDrivers >= allTripsIncome.times(.8))
 }
