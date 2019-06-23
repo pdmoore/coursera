@@ -60,7 +60,7 @@ fun TaxiPark.findTheMostFrequentTripDurationPeriod(): IntRange? {
  */
 fun TaxiPark.checkParetoPrinciple(): Boolean {
 
-/*
+
     val allTripsIncome = trips.sumByDouble { it.cost }
 
     // for each driver
@@ -80,16 +80,8 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
         incomeByDriver.put(driver, runningSum)
     }
 
-    // did a single driver exceed 80%?
-    val eightPercentOfAllIncome = allTripsIncome.times(.8)
-    for (driverIncome in incomeByDriver.values) {
-        if (driverIncome >= eightPercentOfAllIncome) return true
-    }
-
     // check if 20% of drivers exceed 80% of all trips
     val numDriversToCheck = allDrivers.size.times(.2).toInt()
-
-    // find sum of income by numDriversToCheck
     val result = incomeByDriver.toList().sortedByDescending { (_, value) -> value}.toList()
 
     var sumOfTopDrivers: Double = 0.0
@@ -97,9 +89,10 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
         sumOfTopDrivers = sumOfTopDrivers.plus(result[i].second)
     }
 
-    return (sumOfTopDrivers >= eightPercentOfAllIncome)
-*/
+    return (sumOfTopDrivers >= allTripsIncome.times(.8))
 
+
+    /*
     if (trips.isEmpty()) return false
 
     val totalIncome = trips.sumByDouble { it.cost }
@@ -117,4 +110,6 @@ fun TaxiPark.checkParetoPrinciple(): Boolean {
             .sum()
 
     return incomeByTopDrivers >= 0.8 * totalIncome
+
+     */
 }
