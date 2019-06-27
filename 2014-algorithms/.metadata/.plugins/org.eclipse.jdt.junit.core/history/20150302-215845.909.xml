@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BowlingGameTest" project="Kata" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="BowlingGameTest" time="0.0">
+    <testcase name="all_gutters" classname="BowlingGameTest" time="0.0"/>
+    <testcase name="no_strikes_or_spares" classname="BowlingGameTest" time="0.0"/>
+    <testcase name="some_spares" classname="BowlingGameTest" time="0.0"/>
+  </testsuite>
+</testrun>

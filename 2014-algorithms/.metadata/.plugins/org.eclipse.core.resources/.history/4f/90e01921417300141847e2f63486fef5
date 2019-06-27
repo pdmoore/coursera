@@ -1,0 +1,16 @@
+package pdm;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Vertex {
+	int ID;
+	List<Edge> edges = new ArrayList<Edge>();
+	public Vertex(int ID) {
+		this.ID = ID;
+	}
+
+	public void addEdge(Edge edge) {
+		edges.add(edge);
+	}
+}

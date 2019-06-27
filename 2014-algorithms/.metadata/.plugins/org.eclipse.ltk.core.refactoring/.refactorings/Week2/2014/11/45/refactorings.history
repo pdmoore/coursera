@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;pivot&apos; in &apos;pdm.QuickSort.partitionPivotFirst(...)&apos; to &apos;pivotVal&apos;&#x0A;- Original project: &apos;Week2&apos;&#x0A;- Original element: &apos;pdm.QuickSort.partitionPivotFirst(int[], int, int).pivot&apos;&#x0A;- Renamed element: &apos;pivot&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;pivot&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;pdm{QuickSort.java[QuickSort~partitionPivotFirst~\[I~I~I@pivot!840!866!844!848!I!0!false" name="pivotVal" references="true" stamp="1415380272279" version="1.0"/>
+</session>

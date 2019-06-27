@@ -1,0 +1,10 @@
+INDEX VERSION 1.127+/Users/pdm/Code/Coursera/Algorithms/.metadata/.plugins/org.eclipse.jdt.core
+3327929492.index
+3057047579.index
+1480112439.index
+1365734369.index
+2901415218.index
+905528456.index
+1599438126.index
+676482488.index
+3241273485.index

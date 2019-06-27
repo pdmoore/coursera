@@ -1,0 +1,6 @@
+1425361183610	Delete element
+1425750691011	Rename compilation unit 'BolwingScoreTests.java'
+1425754829127	Extract method 'thisFrameIsASpare'
+1425762423109	Rename local variable 'frame'
+1425762653792	Extract method 'thisFrameIsAStrke'
+1425762661805	Rename method 'thisFrameIsAStrke'
