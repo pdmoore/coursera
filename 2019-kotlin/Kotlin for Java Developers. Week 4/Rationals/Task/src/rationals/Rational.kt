@@ -84,8 +84,11 @@ operator fun Rational.times(other: Rational): Rational {
     return Rational(newNumerator, newDenominator)
 }
 
-operator fun Rational.div(b: Rational): Rational {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+operator fun Rational.div(other: Rational): Rational {
+    val newNumerator = this.numerator.times(other.denominator)
+    val newDenominator = this.denominator.times(other.numerator)
+
+    return Rational(newNumerator, newDenominator)
 }
 
 operator fun Rational.rangeTo(rangeEnd: Rational): Any {

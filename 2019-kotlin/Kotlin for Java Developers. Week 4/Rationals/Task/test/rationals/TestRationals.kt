@@ -65,7 +65,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample4Quotient() {
         val quotient: Rational = (1 divBy 2) / (1 divBy 3)
         Assert.assertEquals("Wrong result for quotient", 3 divBy 2, quotient)
