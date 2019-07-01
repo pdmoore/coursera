@@ -5,31 +5,30 @@ import java.math.BigInteger;
 
 data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
     override fun toString(): String {
-
         val gcd = numerator.gcd(denominator);
-        val normalizedNumerator   = numerator.div(gcd)
-        val normalizedDenominator = denominator.div(gcd)
+        var normalizedNumerator   = numerator.div(gcd)
+        var normalizedDenominator = denominator.div(gcd)
 
         if (normalizedDenominator == 1.toBigInteger()) {
             return "$normalizedNumerator"
         }
 
+        var leadingMinus = ""
+
         if (normalizedDenominator.compareTo(0.toBigInteger()) == -1) {
+            normalizedDenominator = 0.toBigInteger().minus(normalizedDenominator)
+
             if (normalizedNumerator.compareTo(0.toBigInteger()) == -1) {
-                val positiveNumerator  = 0.toBigInteger().minus(normalizedNumerator)
-                val positiveDenomintar = 0.toBigInteger().minus(normalizedDenominator)
-
-                return "$positiveNumerator/$positiveDenomintar"
+                normalizedNumerator  = 0.toBigInteger().minus(normalizedNumerator)
+            } else {
+                leadingMinus = "-"
             }
-
-            val positiveDenomintar = 0.toBigInteger().minus(normalizedDenominator)
-            return "-$normalizedNumerator/$positiveDenomintar"
         }
 
-        return "$normalizedNumerator/$normalizedDenominator"
+        return "$leadingMinus$normalizedNumerator/$normalizedDenominator"
     }
-
 }
+
 
 infix fun Any.divBy(denominator: Int): Rational {
     return Rational(1.toBigInteger(), 2.toBigInteger())
