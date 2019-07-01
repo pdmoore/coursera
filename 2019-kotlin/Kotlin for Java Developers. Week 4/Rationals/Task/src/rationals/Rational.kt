@@ -30,7 +30,7 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
 }
 
 fun BigInteger.isNegative(): Boolean {
-    return this.compareTo(0.toBigInteger()) == -1
+    return this.signum() == -1
 }
 
 infix fun Any.divBy(denominator: Int): Rational {
