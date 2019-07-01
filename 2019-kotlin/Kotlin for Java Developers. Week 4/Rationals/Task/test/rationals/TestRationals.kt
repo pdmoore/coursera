@@ -138,35 +138,27 @@ class TestRationals {
     fun test1Normalized5() = testNormalizedForm("31/-541", "-31/541")
 
     @Test
-    @Ignore
     fun test2Arithmetic0() = testArithmeticOperation("86/1", "+", "64/16", "90", Rational::plus)
 
     @Test
-    @Ignore
     fun test2Arithmetic1() = testArithmeticOperation("17/94", "-", "59/87", "-4067/8178", Rational::minus)
 
     @Test
-    @Ignore
     fun test2Arithmetic2() = testArithmeticOperation("6/70", "*", "5/2", "3/14", Rational::times)
 
     @Test
-    @Ignore
     fun test2Arithmetic3() = testArithmeticOperation("21/4", "/", "4/44", "231/4", Rational::div)
 
     @Test
-    @Ignore
     fun test2Arithmetic4() = testArithmeticOperation("828099487587993325537/44002379163849686934", "+", "597728771407450572129/542645811175759848891", "17617266896778903272923516079952426936739/884359508704835805965897828865092484822", Rational::plus)
 
     @Test
-    @Ignore
     fun test2Arithmetic5() = testArithmeticOperation("17311206/15881920", "-", "349928488/277922736", "-8267885027/48896076960", Rational::minus)
 
     @Test
-    @Ignore
     fun test2Arithmetic6() = testArithmeticOperation("2339496978/2849004564", "*", "6292023/4423077", "46121885693/39483160566", Rational::times)
 
     @Test
-    @Ignore
     fun test2Arithmetic7() = testArithmeticOperation("-159839855495465822788/224723091004279289771", "/", "2199321524829342798673/4174073637464826992623", "-7781380285275554790183890063972035564/5764317318107961130856061713789364263", Rational::div)
 
     @Test
