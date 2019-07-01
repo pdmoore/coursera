@@ -6,23 +6,16 @@ import java.math.BigInteger;
 data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
     override fun toString(): String {
         val gcd = numerator.gcd(denominator);
-        var normalizedNumerator   = numerator.div(gcd)
-        var normalizedDenominator = denominator.div(gcd)
+        val normalizedNumerator   = numerator.div(gcd).abs()
+        val normalizedDenominator = denominator.div(gcd).abs()
 
         if (normalizedDenominator == 1.toBigInteger()) {
             return "$normalizedNumerator"
         }
 
         var leadingMinus = ""
-
-        if (normalizedDenominator.isNegative()) {
-            normalizedDenominator = normalizedDenominator.negate()
-
-            if (normalizedNumerator.isNegative()) {
-                normalizedNumerator  = normalizedNumerator.negate()
-            } else {
-                leadingMinus = "-"
-            }
+        if (denominator.isNegative() && numerator.isPositive()) {
+            leadingMinus = "-"
         }
 
         return "$leadingMinus$normalizedNumerator/$normalizedDenominator"
@@ -31,6 +24,10 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
 
 fun BigInteger.isNegative(): Boolean {
     return this.signum() == -1
+}
+
+fun BigInteger.isPositive(): Boolean {
+    return this.signum() == 1
 }
 
 infix fun Any.divBy(denominator: Int): Rational {
