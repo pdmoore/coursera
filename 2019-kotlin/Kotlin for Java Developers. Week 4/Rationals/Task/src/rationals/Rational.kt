@@ -1,5 +1,63 @@
 package rationals
 
+import java.math.BigInteger;
+
+
+class Rational(numerator: BigInteger, denominator: BigInteger) {
+
+}
+
+infix fun Any.divBy(denominator: Int): Rational {
+    return Rational(1.toBigInteger(), 2.toBigInteger())
+}
+
+fun String.toRational(): Rational {
+    return Rational(3.toBigInteger(), 4.toBigInteger())
+}
+
+operator fun Rational.plus(b: Rational): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Rational.minus(b: Rational): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Rational.times(b: Rational): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Rational.div(b: Rational): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Rational.unaryMinus(): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Rational.compareTo(other: Rational): Int {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Rational.rangeTo(rangeEnd: Rational): Any {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+operator fun Any.contains(other: Rational): Boolean {
+    return false;
+}
+
+infix fun BigInteger.divBy(denominator: BigInteger): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+infix fun Long.divBy(denominator: Long): Rational {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
+
+
+
 
 
 fun main() {
@@ -35,3 +93,10 @@ fun main() {
     println("912016490186296920119201192141970416029".toBigInteger() divBy
             "1824032980372593840238402384283940832058".toBigInteger() == 1 divBy 2)
 }
+
+
+
+
+
+
+
