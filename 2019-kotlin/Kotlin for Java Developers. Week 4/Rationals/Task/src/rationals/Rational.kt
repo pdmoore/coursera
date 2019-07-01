@@ -16,10 +16,10 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
         var leadingMinus = ""
 
         if (normalizedDenominator.isNegative()) {
-            normalizedDenominator = 0.toBigInteger().minus(normalizedDenominator)
+            normalizedDenominator = normalizedDenominator.negate()
 
             if (normalizedNumerator.isNegative()) {
-                normalizedNumerator  = 0.toBigInteger().minus(normalizedNumerator)
+                normalizedNumerator  = normalizedNumerator.negate()
             } else {
                 leadingMinus = "-"
             }
