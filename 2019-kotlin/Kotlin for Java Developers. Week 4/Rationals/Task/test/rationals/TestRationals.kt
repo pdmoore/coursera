@@ -75,7 +75,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample5Negation() {
         val negation: Rational = -(1 divBy 2)
         Assert.assertEquals("Wrong result for negation", -1 divBy 2, negation)

@@ -30,8 +30,8 @@ fun BigInteger.isPositive(): Boolean {
     return this.signum() == 1
 }
 
-infix fun Any.divBy(denominator: Int): Rational {
-    return Rational(1.toBigInteger(), 2.toBigInteger())
+infix fun Int.divBy(denominator: Int): Rational {
+    return Rational(this.toBigInteger(), denominator.toBigInteger())
 }
 
 fun String.toRational(): Rational {
@@ -40,6 +40,10 @@ fun String.toRational(): Rational {
     val denominator = this.substring(slash + 1).toBigInteger()
 
     return Rational(numerator, denominator)
+}
+
+operator fun Rational.unaryMinus(): Rational {
+    return Rational(this.numerator.negate(), this.denominator)
 }
 
 operator fun Rational.plus(b: Rational): Rational {
@@ -55,10 +59,6 @@ operator fun Rational.times(b: Rational): Rational {
 }
 
 operator fun Rational.div(b: Rational): Rational {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-}
-
-operator fun Rational.unaryMinus(): Rational {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
