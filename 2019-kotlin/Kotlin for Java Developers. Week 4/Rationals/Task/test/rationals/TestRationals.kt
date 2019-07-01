@@ -91,7 +91,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample8Comparison() {
         Assert.assertTrue("Wrong result for comparison", (1 divBy 2) < (2 divBy 3))
     }
@@ -162,7 +161,6 @@ class TestRationals {
     fun test2Arithmetic7() = testArithmeticOperation("-159839855495465822788/224723091004279289771", "/", "2199321524829342798673/4174073637464826992623", "-7781380285275554790183890063972035564/5764317318107961130856061713789364263", Rational::div)
 
     @Test
-    @Ignore
     fun test3Comparison0() = testComparison("1/2", LESS, "1/3", false)
 
     @Test
@@ -170,39 +168,30 @@ class TestRationals {
     fun test3Comparison1() = testComparison("20325830850349869048604856908", MORE, "-9192901948302584358938698", true)
 
     @Test
-    @Ignore
     fun test3Comparison2() = testComparison("-1042438361047144366998/59812037109262381713", EQUAL, "1076615241954175969826/-61773005685895342531", true)
 
     @Test
-    @Ignore
     fun test3Comparison3() = testComparison("-1042438361047144366998/59812037109262381713", MORE_OR_EQUAL, "-1076615241954175969826/61773005685895342531", true)
 
     @Test
-    @Ignore
     fun test3Comparison4() = testComparison("259877352047152420620/1282471666315533247320", LESS_OR_EQUAL, "1461828422172186708965/7213993515334933226490", true)
 
     @Test
-    @Ignore
     fun test3Comparison5() = testComparison("259877352047152420620/1282471666315533247320", LESS, "1461828422172186708965/7213993515334933226490", false)
 
     @Test
-    @Ignore
     fun test3Comparison6() = testComparison("87077/297895", LESS, "40687/138970", true)
 
     @Test
-    @Ignore
     fun test3Comparison7() = testComparison("6548172/6479656", MORE, "132455/130414", false)
 
     @Test
-    @Ignore
     fun test3Comparison8() = testComparison("95676047876718598058/21886075122687372173", LESS, "719390507052102557245/53591306636978481949", true)
 
     @Test
-    @Ignore
     fun test3Comparison9() = testComparison("-48673102662562360478/2261578507553402607", LESS_OR_EQUAL, "-3238921919908420813980/150495361935138744892", true)
 
     @Test
-    @Ignore
     fun test3Comparison10() = testComparison("17/382231", EQUAL, "-17/382231", false)
 
     @Test

@@ -4,8 +4,8 @@ import java.math.BigInteger;
 
 
 data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
-    private val normalizedNumerator: BigInteger
-    private val normalizedDenominator: BigInteger
+    val normalizedNumerator: BigInteger
+    val normalizedDenominator: BigInteger
 
     init {
         val gcd = numerator.gcd(denominator);
@@ -88,7 +88,10 @@ operator fun Rational.div(other: Rational): Rational {
 }
 
 operator fun Rational.compareTo(other: Rational): Int {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    val num1 = this.normalizedNumerator.times(other.normalizedDenominator)
+    val otherNum = other.normalizedNumerator.times(this.normalizedDenominator)
+
+    return num1.compareTo(otherNum)
 }
 
 operator fun Rational.rangeTo(rangeEnd: Rational): Any {
