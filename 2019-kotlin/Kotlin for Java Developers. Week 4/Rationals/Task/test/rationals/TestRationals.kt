@@ -81,7 +81,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample6Integer() {
         Assert.assertEquals("Wrong string representation for integer number",
                 "2", (2 divBy 1).toString())
