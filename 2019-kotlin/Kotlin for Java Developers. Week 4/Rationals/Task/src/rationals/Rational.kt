@@ -14,7 +14,7 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
         }
 
         var leadingMinus = ""
-        if (denominator.isNegative() && numerator.isPositive()) {
+        if ((denominator.isNegative() && numerator.isPositive()) || (numerator.isNegative() && denominator.isPositive())) {
             leadingMinus = "-"
         }
 
