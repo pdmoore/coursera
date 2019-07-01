@@ -1,7 +1,6 @@
 package rationals
 
 import org.junit.Assert
-import org.junit.Ignore
 import org.junit.Test
 import rationals.TestRationals.ComparisonOperation.*
 
@@ -206,14 +205,11 @@ class TestRationals {
             "32493205934869548609023910932454365628", "1/2", "2/3")
 
     @Test
-    @Ignore
     fun test4InRange4() = testInRange("10/527", "37/431", "505/862", false)
 
     @Test
-    @Ignore
     fun test4InRange5() = testInRange("2/295", "5/125", "27/50", false)
 
     @Test
-    @Ignore
     fun test4InRange6() = testInRange("687/969", "33/275", "31/50", false)
 }
