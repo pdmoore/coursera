@@ -53,7 +53,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample2Difference() {
         val difference: Rational = (1 divBy 2) - (1 divBy 3)
         Assert.assertEquals("Wrong result for difference", 1 divBy 6, difference)
