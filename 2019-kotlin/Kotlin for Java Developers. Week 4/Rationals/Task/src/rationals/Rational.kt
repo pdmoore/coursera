@@ -7,25 +7,26 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
     private val normalizedNumerator: BigInteger
     private val normalizedDenominator: BigInteger
 
-
     init {
         val gcd = numerator.gcd(denominator);
-        normalizedNumerator   = numerator.div(gcd).abs()
         normalizedDenominator = denominator.div(gcd).abs()
-    }
 
+        val result = numerator.times(denominator)
+        normalizedNumerator = if (result.isPositive()) numerator.div(gcd).abs() else numerator.div(gcd).times(denominator.signum().toBigInteger())
+    }
 
     override fun toString(): String {
         if (normalizedDenominator == 1.toBigInteger()) {
             return "$normalizedNumerator"
         }
 
-        var leadingMinus = ""
-        if ((denominator.isNegative() && numerator.isPositive()) || (numerator.isNegative() && denominator.isPositive())) {
-            leadingMinus = "-"
-        }
-
-        return "$leadingMinus$normalizedNumerator/$normalizedDenominator"
+        return "$normalizedNumerator/$normalizedDenominator"
+//        var leadingMinus = ""
+//        if ((denominator.isNegative() && numerator.isPositive()) || (numerator.isNegative() && denominator.isPositive())) {
+//            leadingMinus = "-"
+//        }
+//
+//        return "$leadingMinus$normalizedNumerator/$normalizedDenominator"
     }
 
 
