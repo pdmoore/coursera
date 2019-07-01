@@ -4,11 +4,18 @@ import java.math.BigInteger;
 
 
 data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
-    override fun toString(): String {
-        val gcd = numerator.gcd(denominator);
-        val normalizedNumerator   = numerator.div(gcd).abs()
-        val normalizedDenominator = denominator.div(gcd).abs()
+    private val normalizedNumerator: BigInteger
+    private val normalizedDenominator: BigInteger
 
+
+    init {
+        val gcd = numerator.gcd(denominator);
+        normalizedNumerator   = numerator.div(gcd).abs()
+        normalizedDenominator = denominator.div(gcd).abs()
+    }
+
+
+    override fun toString(): String {
         if (normalizedDenominator == 1.toBigInteger()) {
             return "$normalizedNumerator"
         }
@@ -20,6 +27,8 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
 
         return "$leadingMinus$normalizedNumerator/$normalizedDenominator"
     }
+
+
 }
 
 fun BigInteger.isNegative(): Boolean {
