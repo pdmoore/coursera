@@ -3,7 +3,7 @@ package rationals
 import java.math.BigInteger;
 
 
-data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
+data class Rational(val numerator: BigInteger, val denominator: BigInteger) : Comparable<Rational> {
     val normalizedNumerator: BigInteger
     val normalizedDenominator: BigInteger
 
@@ -20,6 +20,13 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
             is Rational -> this.normalizedNumerator.equals(other?.normalizedNumerator) && this.normalizedDenominator.equals(other?.normalizedDenominator)
             else -> false
         }
+    }
+
+    override fun compareTo(other: Rational): Int {
+        val lcdNumerator = this.normalizedNumerator.times(other.normalizedDenominator)
+        val lcdOtherNumerator = other.normalizedNumerator.times(this.normalizedDenominator)
+
+        return lcdNumerator.compareTo(lcdOtherNumerator)
     }
 
     override fun toString(): String {
@@ -92,25 +99,20 @@ operator fun Rational.div(other: Rational): Rational {
     return Rational(newNumerator, newDenominator)
 }
 
-operator fun Rational.compareTo(other: Rational): Int {
-    val lcdNumerator = this.normalizedNumerator.times(other.normalizedDenominator)
-    val lcdOtherNumerator = other.normalizedNumerator.times(this.normalizedDenominator)
 
-    return lcdNumerator.compareTo(lcdOtherNumerator)
-}
-
-operator fun Rational.rangeTo(rangeEnd: Rational): Any {
-
-//    val lcd = this.normalizedDenominator.times(rangeEnd.normalizedDenominator)
-//    val beginNumeratorLCD = this.normalizedNumerator.times(rangeEnd.normalizedDenominator)
-//    val endNumeratorLCD   = rangeEnd.normalizedNumerator.times(this.normalizedDenominator)
+//operator fun Rational.compareTo(other: Rational): Int {
+//    val lcdNumerator = this.normalizedNumerator.times(other.normalizedDenominator)
+//    val lcdOtherNumerator = other.normalizedNumerator.times(this.normalizedDenominator)
 //
-//    val begin = Rational(beginNumeratorLCD, lcd)
-//    val end   = Rational(endNumeratorLCD, lcd)
-//
-//    return begin..end
-    return true
-}
+//    return lcdNumerator.compareTo(lcdOtherNumerator)
+//}
+
+class RationalRange<Rational: Comparable<Rational>>(
+        override val start: Rational,
+        override val endInclusive: Rational) : ClosedRange<Rational>
+
+operator fun Rational.rangeTo(rangeEnd: Rational) = RationalRange(this, rangeEnd)
+
 
 operator fun Any.contains(other: Rational): Boolean {
     return when (other) {
