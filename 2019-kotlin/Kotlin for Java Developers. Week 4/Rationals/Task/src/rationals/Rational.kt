@@ -16,7 +16,10 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
 
         if (normalizedDenominator.compareTo(0.toBigInteger()) == -1) {
             if (normalizedNumerator.compareTo(0.toBigInteger()) == -1) {
-                return "55/66"
+                val positiveNumerator  = 0.toBigInteger().minus(normalizedNumerator)
+                val positiveDenomintar = 0.toBigInteger().minus(normalizedDenominator)
+
+                return "$positiveNumerator/$positiveDenomintar"
             }
 
             val positiveDenomintar = 0.toBigInteger().minus(normalizedDenominator)
