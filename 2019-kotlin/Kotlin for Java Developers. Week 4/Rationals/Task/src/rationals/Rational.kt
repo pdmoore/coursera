@@ -34,6 +34,14 @@ infix fun Int.divBy(denominator: Int): Rational {
     return Rational(this.toBigInteger(), denominator.toBigInteger())
 }
 
+infix fun Long.divBy(denominator: Long): Rational {
+    return Rational(this.toBigInteger(), denominator.toBigInteger())
+}
+
+operator fun Rational.compareTo(other: Rational): Int {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+}
+
 fun String.toRational(): Rational {
     val slash = this.indexOf('/')
     val numerator = this.substring(0, slash).toBigInteger()
@@ -62,10 +70,6 @@ operator fun Rational.div(b: Rational): Rational {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
-operator fun Rational.compareTo(other: Rational): Int {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-}
-
 operator fun Rational.rangeTo(rangeEnd: Rational): Any {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
@@ -77,12 +81,6 @@ operator fun Any.contains(other: Rational): Boolean {
 infix fun BigInteger.divBy(denominator: BigInteger): Rational {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
-
-infix fun Long.divBy(denominator: Long): Rational {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-}
-
-
 
 
 
