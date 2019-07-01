@@ -47,10 +47,6 @@ infix fun BigInteger.divBy(denominator: BigInteger): Rational {
     return Rational(this, denominator)
 }
 
-operator fun Rational.compareTo(other: Rational): Int {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-}
-
 fun String.toRational(): Rational {
     val slash = this.indexOf('/')
     val numerator = this.substring(0, slash).toBigInteger()
@@ -89,6 +85,10 @@ operator fun Rational.div(other: Rational): Rational {
     val newDenominator = this.denominator.times(other.numerator)
 
     return Rational(newNumerator, newDenominator)
+}
+
+operator fun Rational.compareTo(other: Rational): Int {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
 operator fun Rational.rangeTo(rangeEnd: Rational): Any {
