@@ -15,10 +15,10 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
 
         var leadingMinus = ""
 
-        if (normalizedDenominator.compareTo(0.toBigInteger()) == -1) {
+        if (normalizedDenominator.isNegative()) {
             normalizedDenominator = 0.toBigInteger().minus(normalizedDenominator)
 
-            if (normalizedNumerator.compareTo(0.toBigInteger()) == -1) {
+            if (normalizedNumerator.isNegative()) {
                 normalizedNumerator  = 0.toBigInteger().minus(normalizedNumerator)
             } else {
                 leadingMinus = "-"
@@ -29,6 +29,9 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
     }
 }
 
+fun BigInteger.isNegative(): Boolean {
+    return this.compareTo(0.toBigInteger()) == -1
+}
 
 infix fun Any.divBy(denominator: Int): Rational {
     return Rational(1.toBigInteger(), 2.toBigInteger())
