@@ -5,7 +5,11 @@ import java.math.BigInteger;
 
 data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
     override fun toString(): String {
-        return "$numerator/$denominator"
+
+        val gcd = numerator.gcd(denominator);
+        val normalizedNumerator   = numerator.div(gcd)
+        val normalizedDenominator = denominator.div(gcd)
+        return "$normalizedNumerator/$normalizedDenominator"
     }
 
 }
@@ -15,13 +19,11 @@ infix fun Any.divBy(denominator: Int): Rational {
 }
 
 fun String.toRational(): Rational {
-
-    // parse stuff on either side of / and return a new rational
     val slash = this.indexOf('/')
     val numerator = this.substring(0, slash).toBigInteger()
+    val denominator = this.substring(slash + 1).toBigInteger()
 
-
-    return Rational(numerator, 4.toBigInteger())
+    return Rational(numerator, denominator)
 }
 
 operator fun Rational.plus(b: Rational): Rational {
