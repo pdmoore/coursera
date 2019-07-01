@@ -93,10 +93,10 @@ operator fun Rational.div(other: Rational): Rational {
 }
 
 operator fun Rational.compareTo(other: Rational): Int {
-    val num1 = this.normalizedNumerator.times(other.normalizedDenominator)
-    val otherNum = other.normalizedNumerator.times(this.normalizedDenominator)
+    val lcdNumerator = this.normalizedNumerator.times(other.normalizedDenominator)
+    val lcdOtherNumerator = other.normalizedNumerator.times(this.normalizedDenominator)
 
-    return num1.compareTo(otherNum)
+    return lcdNumerator.compareTo(lcdOtherNumerator)
 }
 
 operator fun Rational.rangeTo(rangeEnd: Rational): Any {
