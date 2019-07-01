@@ -88,9 +88,8 @@ class TestRationals {
 
     @Test
     fun test0Sample7NormalizedForm() {
-        val actual = -2 divBy 4
         Assert.assertEquals("Wrong normalized form for '-2 divBy 4'",
-                "-1/2", actual.toString())
+                "-1/2", (-2 divBy 4).toString())
         Assert.assertEquals("Wrong normalized form for '117/1098'",
                 "13/122", "117/1098".toRational().toString())
     }

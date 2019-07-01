@@ -21,19 +21,9 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
         }
 
         return "$normalizedNumerator/$normalizedDenominator"
-//        var leadingMinus = ""
-//        if ((denominator.isNegative() && numerator.isPositive()) || (numerator.isNegative() && denominator.isPositive())) {
-//            leadingMinus = "-"
-//        }
-//
-//        return "$leadingMinus$normalizedNumerator/$normalizedDenominator"
     }
 
 
-}
-
-fun BigInteger.isNegative(): Boolean {
-    return this.signum() == -1
 }
 
 fun BigInteger.isPositive(): Boolean {
