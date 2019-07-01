@@ -9,6 +9,11 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
         val gcd = numerator.gcd(denominator);
         val normalizedNumerator   = numerator.div(gcd)
         val normalizedDenominator = denominator.div(gcd)
+
+        if (normalizedDenominator == 1.toBigInteger()) {
+            return "$normalizedNumerator"
+        }
+
         return "$normalizedNumerator/$normalizedDenominator"
     }
 
