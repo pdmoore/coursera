@@ -3,7 +3,10 @@ package rationals
 import java.math.BigInteger;
 
 
-class Rational(numerator: BigInteger, denominator: BigInteger) {
+data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
+    override fun toString(): String {
+        return "$numerator/$denominator"
+    }
 
 }
 
@@ -12,7 +15,13 @@ infix fun Any.divBy(denominator: Int): Rational {
 }
 
 fun String.toRational(): Rational {
-    return Rational(3.toBigInteger(), 4.toBigInteger())
+
+    // parse stuff on either side of / and return a new rational
+    val slash = this.indexOf('/')
+    val numerator = this.substring(0, slash).toBigInteger()
+
+
+    return Rational(numerator, 4.toBigInteger())
 }
 
 operator fun Rational.plus(b: Rational): Rational {
