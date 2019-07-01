@@ -164,7 +164,6 @@ class TestRationals {
     fun test3Comparison0() = testComparison("1/2", LESS, "1/3", false)
 
     @Test
-    @Ignore
     fun test3Comparison1() = testComparison("20325830850349869048604856908", MORE, "-9192901948302584358938698", true)
 
     @Test
