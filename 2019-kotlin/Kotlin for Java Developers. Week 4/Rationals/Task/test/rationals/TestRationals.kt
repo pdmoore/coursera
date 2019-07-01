@@ -59,7 +59,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample3Product() {
         val product: Rational = (1 divBy 2) * (1 divBy 3)
         Assert.assertEquals("Wrong result for product", 1 divBy 6, product)

@@ -77,8 +77,11 @@ operator fun Rational.minus(other: Rational): Rational {
     return Rational(newNumerator, newDenominator)
 }
 
-operator fun Rational.times(b: Rational): Rational {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+operator fun Rational.times(other: Rational): Rational {
+    val newNumerator = this.numerator.times(other.numerator)
+    val newDenominator = this.denominator.times(other.denominator)
+
+    return Rational(newNumerator, newDenominator)
 }
 
 operator fun Rational.div(b: Rational): Rational {
