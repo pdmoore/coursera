@@ -99,28 +99,11 @@ operator fun Rational.div(other: Rational): Rational {
     return Rational(newNumerator, newDenominator)
 }
 
-
-//operator fun Rational.compareTo(other: Rational): Int {
-//    val lcdNumerator = this.normalizedNumerator.times(other.normalizedDenominator)
-//    val lcdOtherNumerator = other.normalizedNumerator.times(this.normalizedDenominator)
-//
-//    return lcdNumerator.compareTo(lcdOtherNumerator)
-//}
-
 class RationalRange<Rational: Comparable<Rational>>(
         override val start: Rational,
         override val endInclusive: Rational) : ClosedRange<Rational>
 
 operator fun Rational.rangeTo(rangeEnd: Rational) = RationalRange(this, rangeEnd)
-
-
-operator fun Any.contains(other: Rational): Boolean {
-    return when (other) {
-        is Rational -> true
-        else -> false
-    }
-}
-
 
 
 
