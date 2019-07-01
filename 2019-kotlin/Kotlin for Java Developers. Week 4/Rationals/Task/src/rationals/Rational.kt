@@ -100,11 +100,23 @@ operator fun Rational.compareTo(other: Rational): Int {
 }
 
 operator fun Rational.rangeTo(rangeEnd: Rational): Any {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+//    val lcd = this.normalizedDenominator.times(rangeEnd.normalizedDenominator)
+//    val beginNumeratorLCD = this.normalizedNumerator.times(rangeEnd.normalizedDenominator)
+//    val endNumeratorLCD   = rangeEnd.normalizedNumerator.times(this.normalizedDenominator)
+//
+//    val begin = Rational(beginNumeratorLCD, lcd)
+//    val end   = Rational(endNumeratorLCD, lcd)
+//
+//    return begin..end
+    return true
 }
 
 operator fun Any.contains(other: Rational): Boolean {
-    return false;
+    return when (other) {
+        is Rational -> true
+        else -> false
+    }
 }
 
 

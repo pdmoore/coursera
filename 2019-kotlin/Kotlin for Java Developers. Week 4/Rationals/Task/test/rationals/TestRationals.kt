@@ -96,7 +96,6 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample9InRange() {
         Assert.assertTrue("Wrong result for checking belonging to a range",
                 (1 divBy 2) in (1 divBy 3)..(2 divBy 3))
@@ -194,19 +193,15 @@ class TestRationals {
     fun test3Comparison10() = testComparison("17/382231", EQUAL, "-17/382231", false)
 
     @Test
-    @Ignore
     fun test4InRange0() = testInRange("0/68", "0/85", "1/100")
 
     @Test
-    @Ignore
     fun test4InRange1() = testInRange("95/8", "516/46", "1101/92")
 
     @Test
-    @Ignore
     fun test4InRange2() = testInRange("339/685", "273/562", "277/281")
 
     @Test
-    @Ignore
     fun test4InRange3() = testInRange("20395802948019459839003802001190283020/" +
             "32493205934869548609023910932454365628", "1/2", "2/3")
 
