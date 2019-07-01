@@ -15,6 +15,13 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
         normalizedNumerator = if (result.isPositive()) numerator.div(gcd).abs() else numerator.div(gcd).times(denominator.signum().toBigInteger())
     }
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Rational -> this.normalizedNumerator.equals(other?.normalizedNumerator) && this.normalizedDenominator.equals(other?.normalizedDenominator)
+            else -> false
+        }
+    }
+
     override fun toString(): String {
         if (normalizedDenominator == 1.toBigInteger()) {
             return "$normalizedNumerator"
@@ -22,8 +29,6 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) {
 
         return "$normalizedNumerator/$normalizedDenominator"
     }
-
-
 }
 
 fun BigInteger.isPositive(): Boolean {
@@ -35,7 +40,11 @@ infix fun Int.divBy(denominator: Int): Rational {
 }
 
 infix fun Long.divBy(denominator: Long): Rational {
-    return Rational(this.toBigInteger(), denominator.toBigInteger())
+    return Rational(toBigInteger(), denominator.toBigInteger())
+}
+
+infix fun BigInteger.divBy(denominator: BigInteger): Rational {
+    return Rational(this, denominator)
 }
 
 operator fun Rational.compareTo(other: Rational): Int {
@@ -76,10 +85,6 @@ operator fun Rational.rangeTo(rangeEnd: Rational): Any {
 
 operator fun Any.contains(other: Rational): Boolean {
     return false;
-}
-
-infix fun BigInteger.divBy(denominator: BigInteger): Rational {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }
 
 

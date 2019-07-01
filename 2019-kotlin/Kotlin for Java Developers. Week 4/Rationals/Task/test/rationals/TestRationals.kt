@@ -108,14 +108,12 @@ class TestRationals {
     }
 
     @Test
-    @Ignore
     fun test0Sample10Long() {
         Assert.assertEquals("Wrong result for normalization of '2000000000L divBy 4000000000L'",
                 1 divBy 2, 2000000000L divBy 4000000000L)
     }
 
     @Test
-    @Ignore
     fun test0Sample11BigInteger() {
         Assert.assertEquals("Wrong result for normalization of\n" +
                 "\"912016490186296920119201192141970416029\".toBigInteger() divBy\n" +
