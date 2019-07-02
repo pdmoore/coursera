@@ -36,6 +36,12 @@ data class Rational(val numerator: BigInteger, val denominator: BigInteger) : Co
 
         return "$normalizedNumerator/$normalizedDenominator"
     }
+
+    override fun hashCode(): Int {
+        var result = normalizedNumerator.hashCode()
+        result = 31 * result + normalizedDenominator.hashCode()
+        return result
+    }
 }
 
 fun BigInteger.isPositive(): Boolean {
