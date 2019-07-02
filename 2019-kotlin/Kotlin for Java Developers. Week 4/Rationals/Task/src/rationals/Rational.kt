@@ -61,16 +61,14 @@ infix fun BigInteger.divBy(denominator: BigInteger): Rational {
 }
 
 fun String.toRational(): Rational {
-    val slash = this.indexOf('/')
 
-    if (slash == -1) {
-        return Rational(this.toBigInteger(), 1.toBigInteger())
+    if (!contains('/')) {
+        return Rational(this.toBigInteger(), BigInteger.ONE)
     }
 
-    val numerator = this.substring(0, slash).toBigInteger()
-    val denominator = this.substring(slash + 1).toBigInteger()
+    val (numerator, denominator) = split("/")
 
-    return Rational(numerator, denominator)
+    return Rational(numerator.toBigInteger(), denominator.toBigInteger())
 }
 
 operator fun Rational.unaryMinus(): Rational {
