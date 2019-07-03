@@ -1,6 +1,7 @@
 package board
 
 import board.Direction.*
+import kotlin.math.min
 
 fun createSquareBoard(width: Int): SquareBoard {
     return BoardImpl(width)
@@ -11,7 +12,6 @@ fun <T> createGameBoard(width: Int): GameBoard<T> = TODO()
 
 data class BoardImpl(override val width: Int) : SquareBoard {
     var squareBoard = arrayOf<Array<Cell>>()
-
 
     init {
         for (i in 1..width) {
@@ -35,7 +35,14 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getRow(i: Int, jRange: IntProgression): List<Cell> {
-        return squareBoard.get(i - 1).toList()
+        val fullRow = squareBoard.get(i - 1)
+        var y = arrayOf<Cell>()
+        val bound = min(fullRow.size, jRange.last)
+        for (index2 in jRange.first..bound) {
+            y += fullRow[index2 - 1]
+        }
+
+        return y.toList()
     }
 
     override fun getColumn(iRange: IntProgression, j: Int): List<Cell> {

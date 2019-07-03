@@ -91,7 +91,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test10Row() {
         val row = createSquareBoard(4).getRow(1, 1..2)
         Assert.assertEquals("Wrong row for 'createSquareBoard(4).getRow(1, 1..2)'.",
