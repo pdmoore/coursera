@@ -17,7 +17,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test01Cell() {
         val board = createSquareBoard(2)
         val cell = board.getCellOrNull(1, 2)

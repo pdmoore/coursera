@@ -46,7 +46,12 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getCellOrNull(i: Int, j: Int): Cell? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        for (index in 1..listCells.size) {
 
+            val cell = listCells[index]
+            if (cell.i.equals(i) && cell.j.equals(j)) return cell
+
+        }
+        return null
+    }
 }
