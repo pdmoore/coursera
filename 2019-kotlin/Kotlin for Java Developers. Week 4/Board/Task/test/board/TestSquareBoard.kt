@@ -161,7 +161,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test17TheSameCell() {
         val board = createSquareBoard(4)
         val first = board.getCell(1, 2)
@@ -173,7 +172,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test18TheSameCell() {
         val board = createSquareBoard(1)
         val first = board.getAllCells().first()
@@ -198,7 +196,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test20TheSameCell() {
         val board = createSquareBoard(2)
         val row = board.getRow(1, 1..1)

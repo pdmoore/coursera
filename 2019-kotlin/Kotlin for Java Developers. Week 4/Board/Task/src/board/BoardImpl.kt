@@ -31,7 +31,7 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getCell(i: Int, j: Int): Cell {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return squareBoard.get(i - 1).get(j - 1)
     }
 
     override fun getAllCells(): Collection<Cell> {
