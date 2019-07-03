@@ -14,14 +14,19 @@ fun createSquareBoard(width: Int): SquareBoard {
 fun <T> createGameBoard(width: Int): GameBoard<T> = TODO()
 
 data class BoardImpl(override val width: Int) : SquareBoard {
-    val listCells = mutableListOf<Cell>()
+    var squareBoard = arrayOf<Array<Cell>>()
+
 
     init {
         for (i in 1..width) {
+            var rowCells = arrayOf<Cell>()
+
             for (j in 1..width) {
                 val cell = Cell(i, j)
-                listCells.add(cell)
+                rowCells += cell
             }
+
+            squareBoard += rowCells
         }
     }
 
@@ -30,7 +35,7 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getAllCells(): Collection<Cell> {
-        return listCells
+        return squareBoard.flatten()
     }
 
     override fun getRow(i: Int, jRange: IntProgression): List<Cell> {
@@ -46,12 +51,6 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getCellOrNull(i: Int, j: Int): Cell? {
-        for (index in 1..listCells.size) {
-
-            val cell = listCells[index]
-            if (cell.i.equals(i) && cell.j.equals(j)) return cell
-
-        }
-        return null
+        return squareBoard?.getOrNull(i - 1)?.getOrNull(j - 1)
     }
 }
