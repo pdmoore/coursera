@@ -32,7 +32,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test03Row() {
         val board = createSquareBoard(2)
         val row = board.getRow(1, 1..2)
@@ -48,7 +47,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test05RowWrongRange() {
         val board = createSquareBoard(2)
         val row = board.getRow(1, 1..10)
@@ -70,7 +68,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test07AllCells() {
         val board = createSquareBoard(3)
         val cells = board.getAllCells().sortedWith(compareBy<Cell> { it.i }.thenBy { it.j })
@@ -80,7 +77,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test08Cell() {
         val board = createSquareBoard(4)
         val cell = board.getCellOrNull(2, 3)
@@ -89,7 +85,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test09NoCell() {
         val board = createSquareBoard(4)
         val cell = board.getCellOrNull(10, 10)

@@ -39,7 +39,7 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getRow(i: Int, jRange: IntProgression): List<Cell> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return squareBoard.get(i - 1).toList()
     }
 
     override fun getColumn(iRange: IntProgression, j: Int): List<Cell> {
