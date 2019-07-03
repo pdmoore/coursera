@@ -19,12 +19,16 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getAllCells(): Collection<Cell> {
-        val cell1 = Cell(1, 1)
-        val cell2 = Cell(1, 2)
-        val cell3 = Cell(2, 1)
-        val cell4 = Cell(2, 2)
-        val cells = listOf(cell1, cell2, cell3, cell4)
-        return cells
+        val listCells = mutableListOf<Cell>()
+
+        for (i in 1..width) {
+            for (j in 1..width) {
+                val cell = Cell(i, j)
+                listCells.add(cell)
+            }
+        }
+
+        return listCells
     }
 
     override fun getRow(i: Int, jRange: IntProgression): List<Cell> {
