@@ -54,7 +54,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test06Neighbour() {
         val board = createSquareBoard(2)
         with(board) {
@@ -135,7 +134,6 @@ class TestSquareBoard {
             "Wrong neighbour for the cell $cell in a direction $direction."
 
     @Test
-	@Ignore
     fun test15Neighbour() {
         with(createSquareBoard(4)) {
             val cell = getCellOrNull(2, 3)
@@ -148,7 +146,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test16NullableNeighbour() {
         with(createSquareBoard(4)) {
             val cell = getCellOrNull(4, 4)
@@ -183,7 +180,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test19TheSameCell() {
         val board = createSquareBoard(4)
         val cell = board.getCell(1, 1)

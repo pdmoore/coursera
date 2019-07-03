@@ -1,13 +1,9 @@
 package board
 
 import board.Direction.*
-import java.util.*
 
 fun createSquareBoard(width: Int): SquareBoard {
-    var board = BoardImpl(width)
-
-    return board
-
+    return BoardImpl(width)
 }
 
 
@@ -47,7 +43,12 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun Cell.getNeighbour(direction: Direction): Cell? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return when (direction) {
+            UP -> getCellOrNull(i - 1, j)
+            DOWN -> getCellOrNull(i + 1, j)
+            LEFT -> getCellOrNull(i, j - 1)
+            RIGHT -> getCellOrNull(i, j + 1)
+        }
     }
 
     override fun getCellOrNull(i: Int, j: Int): Cell? {
