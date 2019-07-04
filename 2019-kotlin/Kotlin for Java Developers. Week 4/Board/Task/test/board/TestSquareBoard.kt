@@ -39,7 +39,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test04RowReversed() {
         val board = createSquareBoard(2)
         val row = board.getRow(1, 2 downTo 1)
