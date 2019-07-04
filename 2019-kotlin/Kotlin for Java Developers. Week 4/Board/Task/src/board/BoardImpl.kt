@@ -59,6 +59,15 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     override fun getColumn(iRange: IntProgression, j: Int): List<Cell> {
         var column = arrayOf<Cell>()
 
+        if (iRange.step < 0) {
+            for (index in iRange.last..iRange.first) {
+                val row = squareBoard.get(index - 1)
+                column += row.get(j - 1)
+            }
+
+            return column.toList().reversed()
+        }
+
         val bound = min(iRange.last, width)
         for (index in iRange.first..bound) {
             val row = squareBoard.get(index - 1)

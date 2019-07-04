@@ -111,7 +111,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test13ColumnReversedRange() {
         val row = createSquareBoard(4).getColumn(2 downTo 1, 3)
         Assert.assertEquals("Wrong column for 'createSquareBoard(4).getColumn(2 downTo 1, 3)'.",
