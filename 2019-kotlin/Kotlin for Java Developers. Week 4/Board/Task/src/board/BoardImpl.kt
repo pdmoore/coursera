@@ -36,6 +36,17 @@ data class BoardImpl(override val width: Int) : SquareBoard {
 
     override fun getRow(i: Int, jRange: IntProgression): List<Cell> {
         val fullRow = squareBoard.get(i - 1)
+
+        if (jRange.step < 0) {
+            var y = arrayOf<Cell>()
+            for (index2 in jRange.last..jRange.first) {
+                y += fullRow[index2 - 1]
+            }
+
+            return y.toList().reversed()
+        }
+
+
         var y = arrayOf<Cell>()
         val bound = min(fullRow.size, jRange.last)
         for (index2 in jRange.first..bound) {
