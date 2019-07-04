@@ -119,7 +119,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test14ColumnWrongRange() {
         val row = createSquareBoard(4).getColumn(3..6, 2)
         Assert.assertEquals("Wrong column for 'createSquareBoard(4).getColumn(3..6, 2)'.",
@@ -200,7 +199,6 @@ class TestSquareBoard {
     }
 
     @Test
-	@Ignore
     fun test21TheSameCell() {
         val board = createSquareBoard(2)
         val column = board.getColumn(1..1, 2)
