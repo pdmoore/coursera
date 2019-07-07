@@ -14,23 +14,19 @@ fun <T> createGameBoard(width: Int): GameBoard<T> {
 
 
 data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
-    var squareBoard: SquareBoard
-    lateinit var cellMap: HashMap<Cell, T?>
+    var squareBoard: SquareBoard = createSquareBoard(width)
+    var cellMap: HashMap<Cell, T?> = hashMapOf()
 
     init {
-        squareBoard = createSquareBoard(width)
-        cellMap = hashMapOf<Cell, T?>()
-
-        // stuff null in all cells
-        squareBoard.getAllCells().forEach { it -> cellMap.put(it, null) }
-    }
-
-    override fun getCellOrNull(i: Int, j: Int): Cell? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        squareBoard.getAllCells().forEach { cellMap[it] = null }
     }
 
     override fun getCell(i: Int, j: Int): Cell {
         return squareBoard.getCell(i, j)
+    }
+
+    override fun getCellOrNull(i: Int, j: Int): Cell? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getAllCells(): Collection<Cell> {
@@ -152,6 +148,6 @@ data class BoardImpl(override val width: Int) : SquareBoard {
     }
 
     override fun getCellOrNull(i: Int, j: Int): Cell? {
-        return squareBoard?.getOrNull(i - 1)?.getOrNull(j - 1)
+        return squareBoard.getOrNull(i - 1)?.getOrNull(j - 1)
     }
 }
