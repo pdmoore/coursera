@@ -88,7 +88,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test08AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 1
@@ -99,7 +98,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test09AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 0
@@ -110,7 +108,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test10AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 1
@@ -121,7 +118,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test11AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 0
