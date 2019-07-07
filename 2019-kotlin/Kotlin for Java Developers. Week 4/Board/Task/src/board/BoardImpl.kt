@@ -58,10 +58,6 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun all(predicate: (T?) -> Boolean): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun set(cell: Cell, value: T?) {
         value?.let { cellMap.put(cell, it) }
     }
@@ -69,6 +65,10 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
 
     override fun filter(predicate: (T?) -> Boolean): Collection<Cell> {
         return cellMap.filterValues(predicate).keys
+    }
+
+    override fun all(predicate: (T?) -> Boolean): Boolean {
+        return cellMap.filterValues(predicate).size.equals(width * width)
     }
 
 
