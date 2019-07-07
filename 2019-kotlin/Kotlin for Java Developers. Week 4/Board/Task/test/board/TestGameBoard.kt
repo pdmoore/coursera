@@ -19,7 +19,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test02Filter() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'

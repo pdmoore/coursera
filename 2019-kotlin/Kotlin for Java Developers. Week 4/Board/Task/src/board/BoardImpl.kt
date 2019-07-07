@@ -14,7 +14,6 @@ fun <T> createGameBoard(width: Int): GameBoard<T> {
 
 
 data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
-
     var squareBoard: SquareBoard
     lateinit var cellMap: HashMap<Cell, T>
 
@@ -51,10 +50,6 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
         return cellMap[cell]
     }
 
-    override fun filter(predicate: (T?) -> Boolean): Collection<Cell> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun find(predicate: (T?) -> Boolean): Cell? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -69,6 +64,11 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
 
     override fun set(cell: Cell, value: T?) {
         value?.let { cellMap.put(cell, it) }
+    }
+
+
+    override fun filter(predicate: (T?) -> Boolean): Collection<Cell> {
+        return cellMap.filterValues(predicate).keys
     }
 
 
