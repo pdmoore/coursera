@@ -15,11 +15,14 @@ fun <T> createGameBoard(width: Int): GameBoard<T> {
 
 data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
     var squareBoard: SquareBoard
-    lateinit var cellMap: HashMap<Cell, T>
+    lateinit var cellMap: HashMap<Cell, T?>
 
     init {
         squareBoard = createSquareBoard(width)
-        cellMap = hashMapOf<Cell, T>()
+        cellMap = hashMapOf<Cell, T?>()
+
+        // stuff null in all cells
+        squareBoard.getAllCells().forEach { it -> cellMap.put(it, null) }
     }
 
     override fun getCellOrNull(i: Int, j: Int): Cell? {
@@ -54,14 +57,9 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun any(predicate: (T?) -> Boolean): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun set(cell: Cell, value: T?) {
         value?.let { cellMap.put(cell, it) }
     }
-
 
     override fun filter(predicate: (T?) -> Boolean): Collection<Cell> {
         return cellMap.filterValues(predicate).keys
@@ -71,7 +69,14 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
         return cellMap.filterValues(predicate).size.equals(width * width)
     }
 
+    override fun any(predicate: (T?) -> Boolean): Boolean {
 
+        // This is failing Test 4 second assert
+        // it is checking for any cell mapping to null.
+        // Right now only populating cellMap on set, can resolve this be initializing cellMap cells -> null at start
+
+        return cellMap.filterValues(predicate).isNotEmpty()
+    }
 }
 
 data class BoardImpl(override val width: Int) : SquareBoard {
