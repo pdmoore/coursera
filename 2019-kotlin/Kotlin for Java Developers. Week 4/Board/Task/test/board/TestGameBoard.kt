@@ -51,7 +51,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test05TheSameCell() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -62,7 +61,6 @@ class TestGameBoard {
     }
 
     @Test
-    @Ignore
     fun test06FindReturnsTheSameCell() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'

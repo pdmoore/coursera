@@ -53,10 +53,6 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
         return cellMap[cell]
     }
 
-    override fun find(predicate: (T?) -> Boolean): Cell? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun set(cell: Cell, value: T?) {
         value?.let { cellMap.put(cell, it) }
     }
@@ -70,13 +66,13 @@ data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
     }
 
     override fun any(predicate: (T?) -> Boolean): Boolean {
-
-        // This is failing Test 4 second assert
-        // it is checking for any cell mapping to null.
-        // Right now only populating cellMap on set, can resolve this be initializing cellMap cells -> null at start
-
         return cellMap.filterValues(predicate).isNotEmpty()
     }
+
+    override fun find(predicate: (T?) -> Boolean): Cell? {
+        return cellMap.filterValues(predicate).keys.first()
+    }
+
 }
 
 data class BoardImpl(override val width: Int) : SquareBoard {
