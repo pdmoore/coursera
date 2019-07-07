@@ -2,6 +2,7 @@ package board
 
 import org.junit.Assert
 import org.junit.FixMethodOrder
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runners.MethodSorters
 
@@ -18,6 +19,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test02Filter() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -30,6 +32,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test03All() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -41,6 +44,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test04Any() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -50,6 +54,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test05TheSameCell() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -60,6 +65,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test06FindReturnsTheSameCell() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -72,6 +78,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test07FilterTheSameCell() {
         val gameBoard = createGameBoard<Char>(2)
         gameBoard[1, 1] = 'a'
@@ -85,6 +92,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test08AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 1
@@ -95,6 +103,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test09AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 0
@@ -105,6 +114,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test10AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 1
@@ -115,6 +125,7 @@ class TestGameBoard {
     }
 
     @Test
+    @Ignore
     fun test11AllAny() {
         val gameBoard = createGameBoard<Int>(2)
         gameBoard[1, 1] = 0

@@ -8,7 +8,71 @@ fun createSquareBoard(width: Int): SquareBoard {
 }
 
 
-fun <T> createGameBoard(width: Int): GameBoard<T> = TODO()
+fun <T> createGameBoard(width: Int): GameBoard<T> {
+    return BoardGameImpl<T>(width)
+}
+
+
+data class BoardGameImpl<T>(override val width: Int) : GameBoard<T> {
+
+    var squareBoard: SquareBoard
+    lateinit var cellMap: HashMap<Cell, T>
+
+    init {
+        squareBoard = createSquareBoard(width)
+        cellMap = hashMapOf<Cell, T>()
+    }
+
+    override fun getCellOrNull(i: Int, j: Int): Cell? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getCell(i: Int, j: Int): Cell {
+        return squareBoard.getCell(i, j)
+    }
+
+    override fun getAllCells(): Collection<Cell> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getRow(i: Int, jRange: IntProgression): List<Cell> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getColumn(iRange: IntProgression, j: Int): List<Cell> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun Cell.getNeighbour(direction: Direction): Cell? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun get(cell: Cell): T? {
+        return cellMap[cell]
+    }
+
+    override fun filter(predicate: (T?) -> Boolean): Collection<Cell> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun find(predicate: (T?) -> Boolean): Cell? {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun any(predicate: (T?) -> Boolean): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun all(predicate: (T?) -> Boolean): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun set(cell: Cell, value: T?) {
+        value?.let { cellMap.put(cell, it) }
+    }
+
+
+}
 
 data class BoardImpl(override val width: Int) : SquareBoard {
     var squareBoard = arrayOf<Array<Cell>>()
