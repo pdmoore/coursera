@@ -1,9 +1,8 @@
 package board
 
-import junit.framework.Assert.assertEquals
+import junit.framework.TestCase.assertEquals
 
 // Week 5 - Playground Member extensions
-
 class Words {
     private val list = mutableListOf<String>()
 
